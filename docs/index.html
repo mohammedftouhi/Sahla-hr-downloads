@@ -511,6 +511,8 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
 </dialog>
 
 <script>
+function srcTag(){ var q=new URLSearchParams(location.search).get('src'); try{ if(q) sessionStorage.setItem('src',q); return q||sessionStorage.getItem('src')||''; }catch(e){ return q||''; } }
+srcTag();
 const TABS = [
   { k: 'attendance', t: 'الحضور والانصراف', d: 'كشف يومي وشهري لكل فرع، يتعبّى من جهاز البصمة أو من ملف Excel.',
     p: ['<b>الحالة لكل موظف:</b> حاضر، غائب، إجازة، بصمة ناقصة', '<b>التأخير والخروج المبكر والإضافي</b> محسوبة حسب ورديته', '<b>إيميل فوري للموظف</b> إذا تأخر أو ما بصم أو طلع بدري (نسخ البريد)', 'دوام فترة واحدة أو فترتين، حسب الوردية أو ساعات خاصة لكل موظف', 'أيام راحة مختلفة لكل موظف، ودوام رمضان تلقائياً', 'تصدير الكشف Excel أو PDF'] },
@@ -577,7 +579,7 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
     if (name.length < 2) { err.textContent = 'اكتب اسمك.'; f.name.focus(); return; }
     if (!validPhone(phone)) { err.textContent = 'اكتب رقم واتساب صحيح، مثل 05xxxxxxxx'; f.phone.focus(); return; }
     go.disabled = true; go.textContent = 'جاري التحميل…';
-    const data = { name, phone, company: f.company.value.trim(), size: f.size.value, edition: edOf(target), page: location.hostname + location.pathname };
+    const data = { name, phone, company: f.company.value.trim(), size: f.size.value, edition: edOf(target), page: location.hostname + location.pathname + (srcTag() ? ' ← ' + srcTag() : '') };
     store.set('hr-lead', JSON.stringify(data));
     const body = new URLSearchParams(data);
     try { await Promise.race([fetch(LEADS, { method: 'POST', mode: 'no-cors', body }), new Promise(r => setTimeout(r, 4000))]); } catch (x) {}
