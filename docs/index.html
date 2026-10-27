@@ -218,12 +218,35 @@ h2 { margin-bottom: 6px; }
 .faq summary { padding-block: 20px; line-height: 1.6; }
 .faq details p { line-height: 1.95; padding-bottom: 18px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
+footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+/* download lead dialog */
+#dl { border: 1px solid var(--line); border-radius: 16px; padding: 0; background: var(--surface); color: var(--fg); width: min(480px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow: auto; box-shadow: 0 30px 80px -20px rgba(0,0,0,.6); }
+#dl::backdrop { background: rgba(8,10,12,.62); backdrop-filter: blur(3px); }
+#dlf { display: grid; gap: 14px; padding: 26px 22px 20px; position: relative; }
+#dlf::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: var(--accent); }
+#dlf h3 { font-size: 22px; padding-inline-end: 34px; }
+.dl-sub { color: var(--muted); font-size: 15.5px; line-height: 1.7; }
+.dl-ed { font-size: 14px; color: var(--accent); font-weight: 700; }
+#dlf label { display: grid; gap: 6px; font-size: 15px; font-weight: 500; color: var(--muted); }
+#dlf label small { color: var(--faint); font-weight: 400; }
+#dlf input, #dlf select { font: inherit; font-size: 17px; color: var(--fg); background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; min-width: 0; }
+#dlf input[dir="ltr"] { text-align: right; }
+#dlf input:focus, #dlf select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.dl-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .dl-2 { grid-template-columns: 1fr; } }
+.dl-err { color: #ff6b6b; font-size: 15px; min-height: 0; }
+.dl-err:empty { display: none; }
+.dl-go { width: 100%; font-size: 17px; padding: 14px; }
+.dl-go:disabled { opacity: .75; cursor: progress; transform: none; }
+.dl-note { color: var(--faint); font-size: 13px; text-align: center; }
+.dl-x { position: absolute; top: 14px; left: 14px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface-2); color: var(--muted); font-size: 22px; line-height: 1; cursor: pointer; }
 </style>
 
 <header>
   <div class="wrap">
     <a href="#top" aria-label="سهلة HR — الرئيسية"><img class="logo dark" src="img/logo-dark.png" alt="سهلة HR Management"><img class="logo light" src="img/logo-light.png" alt="سهلة HR Management"></a>
-    <nav aria-label="أقسام الصفحة"><a href="#tour">جولة في البرنامج</a><a href="#editions">النسخ والأسعار</a><a href="#faq">أسئلة شائعة</a></nav>
+    <nav aria-label="أقسام الصفحة"><a href="#tour">جولة في البرنامج</a><a href="#editions">النسخ والأسعار</a><a href="#faq">أسئلة شائعة</a><a href="end-of-service/">حاسبة نهاية الخدمة</a></nav>
     <a class="btn primary" href="#editions">جرّب مجاناً</a>
   </div>
 </header>
@@ -399,7 +422,27 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   </section>
 </main>
 
-<footer><div class="wrap"><span>سهلة HR — نظام شؤون الموظفين</span><span>سهلة · SAHLA</span></div></footer>
+<footer><div class="wrap"><span>سهلة HR — نظام شؤون الموظفين</span><a href="end-of-service/">حاسبة نهاية الخدمة المجانية</a><span>سهلة · SAHLA</span></div></footer>
+
+<dialog id="dl" aria-labelledby="dl-h">
+  <form id="dlf" novalidate>
+    <button type="button" class="dl-x" id="dlx" aria-label="إغلاق">×</button>
+    <h3 id="dl-h">التحميل يبدأ بعد هالخطوة</h3>
+    <p class="dl-sub">نرسل لك على الواتساب رابط المساعدة بالتثبيت، ونساعدك تفعّل البرنامج.</p>
+    <p class="dl-ed" id="dled"></p>
+    <label>الاسم<input name="name" id="dln" autocomplete="name" required maxlength="80"></label>
+    <label>رقم الواتساب<input name="phone" id="dlp" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xxxxxxxx" required maxlength="20" dir="ltr"></label>
+    <div class="dl-2">
+      <label><span>اسم المنشأة <small>(اختياري)</small></span><input name="company" id="dlc" autocomplete="organization" maxlength="100"></label>
+      <label><span>عدد الموظفين <small>(اختياري)</small></span>
+        <select name="size" id="dls"><option value="">—</option><option>أقل من 10</option><option>10 – 50</option><option>51 – 100</option><option>أكثر من 100</option></select>
+      </label>
+    </div>
+    <p class="dl-err" id="dlerr" role="alert"></p>
+    <button class="btn primary dl-go" type="submit" id="dlgo">حمّل البرنامج الآن</button>
+    <p class="dl-note">بياناتك ما تُشارك مع أي جهة، ونستخدمها للتواصل معك بخصوص البرنامج فقط.</p>
+  </form>
+</dialog>
 
 <script>
 const TABS = [
@@ -439,4 +482,42 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
   catch { const r = document.createRange(); r.selectNodeContents(document.querySelector('.numrow .n')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'انسخ الرقم المحدد'; }
   setTimeout(() => { b.textContent = 'نسخ الرقم'; }, 2500);
 });
+
+/* trial download: name + WhatsApp required, saved to Google Sheet, then download starts */
+(function () {
+  const LEADS = 'https://script.google.com/macros/s/AKfycbydzDJ4b7MGnmaVyrxQ_no8mS-X4ZrJCus6GuxcVVTvnE1DZShqfd2Y6lZS1p_WNz4mrw/exec';
+  const dlg = document.getElementById('dl'), f = document.getElementById('dlf'), err = document.getElementById('dlerr'), go = document.getElementById('dlgo');
+  const ED = { 'Desktop': 'كمبيوتر بدون إشعارات', 'Desktop-Email': 'كمبيوتر مع إشعارات البريد', 'Server': 'سيرفر بدون إشعارات', 'Server-Email': 'سيرفر مع إشعارات البريد' };
+  let target = null;
+  const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+  const edOf = href => { const m = /Sahla-HR-(.+)-Setup\.exe/.exec(href || ''); return m ? (ED[m[1]] || m[1]) : ''; };
+  const normPhone = v => { let d = String(v || '').replace(/[٠-٩]/g, c => '٠١٢٣٤٥٦٧٨٩'.indexOf(c)).replace(/[^\d+]/g, ''); return d; };
+  const validPhone = d => /^(\+?9665\d{8}|05\d{8}|5\d{8})$/.test(d) || /^\+?\d{9,15}$/.test(d);
+  function start(href) { const a = document.createElement('a'); a.href = href; a.download = ''; document.body.append(a); a.click(); a.remove(); }
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href$=".exe"]'); if (!a) return;
+    if (!dlg || typeof dlg.showModal !== 'function') return; // very old browsers: plain download
+    e.preventDefault(); target = a.href;
+    document.getElementById('dled').textContent = 'النسخة: ' + edOf(target);
+    const saved = store.get('hr-lead'); if (saved) { try { const s = JSON.parse(saved); f.name.value = s.name || ''; f.phone.value = s.phone || ''; f.company.value = s.company || ''; f.size.value = s.size || ''; } catch (x) {} }
+    err.textContent = ''; go.disabled = false; go.textContent = 'حمّل البرنامج الآن';
+    dlg.showModal(); setTimeout(() => (f.name.value ? f.phone : f.name).focus(), 30);
+  });
+  document.getElementById('dlx').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  f.addEventListener('submit', async e => {
+    e.preventDefault(); err.textContent = '';
+    const name = f.name.value.trim(), phone = normPhone(f.phone.value);
+    if (name.length < 2) { err.textContent = 'اكتب اسمك.'; f.name.focus(); return; }
+    if (!validPhone(phone)) { err.textContent = 'اكتب رقم واتساب صحيح، مثل 05xxxxxxxx'; f.phone.focus(); return; }
+    go.disabled = true; go.textContent = 'جاري التحميل…';
+    const data = { name, phone, company: f.company.value.trim(), size: f.size.value, edition: edOf(target), page: location.hostname + location.pathname };
+    store.set('hr-lead', JSON.stringify(data));
+    const body = new URLSearchParams(data);
+    try { await Promise.race([fetch(LEADS, { method: 'POST', mode: 'no-cors', body }), new Promise(r => setTimeout(r, 4000))]); } catch (x) {}
+    start(target);
+    go.textContent = 'بدأ التحميل ✓';
+    setTimeout(() => dlg.close(), 1600);
+  });
+})();
 </script>

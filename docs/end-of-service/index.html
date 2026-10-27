@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حاسبة مكافأة نهاية الخدمة 2026 — حسب نظام العمل السعودي | سهلة HR</title>
+<meta name="description" content="احسب مكافأة نهاية الخدمة في السعودية مجاناً: انتهاء العقد، الإنهاء من صاحب العمل، أو الاستقالة (ثلث، ثلثين، كاملة) حسب المادتين 84 و85 من نظام العمل، مع تعويض رصيد الإجازات.">
+<link rel="canonical" href="https://hr.sahla-sa.com/end-of-service/">
+<meta property="og:title" content="حاسبة مكافأة نهاية الخدمة — نظام العمل السعودي">
+<meta property="og:description" content="احسبها في ثواني: مدة الخدمة، الأجر، سبب انتهاء العلاقة، ورصيد الإجازات.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hr.sahla-sa.com/end-of-service/">
+<meta property="og:image" content="https://hr.sahla-sa.com/img/logo-dark.png">
+<meta property="og:locale" content="ar_SA">
+<link rel="icon" href="../img/logo-dark.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"كيف تحسب مكافأة نهاية الخدمة في السعودية؟","acceptedAnswer":{"@type":"Answer","text":"نصف أجر شهر عن كل سنة من السنوات الخمس الأولى، وأجر شهر كامل عن كل سنة بعدها، على أساس آخر أجر فعلي، وتُحسب أجزاء السنة بنسبتها (المادة 84)."}},
+{"@type":"Question","name":"كم يستحق الموظف إذا استقال؟","acceptedAnswer":{"@type":"Answer","text":"أقل من سنتين لا شيء، من سنتين إلى أقل من 5 سنوات ثلث المكافأة، من 5 إلى أقل من 10 سنوات ثلثاها، و10 سنوات فأكثر المكافأة كاملة (المادة 85)."}},
+{"@type":"Question","name":"ما الأجر الذي تحسب عليه المكافأة؟","acceptedAnswer":{"@type":"Answer","text":"آخر أجر فعلي: الأجر الأساسي مع البدلات الثابتة مثل السكن والنقل."}}
+]}
+</script>
+<style>
+@font-face{font-family:'Dubai';src:url('../fonts/Dubai-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'Dubai';src:url('../fonts/Dubai-Medium.ttf') format('truetype');font-weight:500;font-display:swap}
+@font-face{font-family:'Dubai';src:url('../fonts/Dubai-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+:root {
+  --bg: #1b1e22; --surface: #24272b; --surface-2: #2c3036; --line: #353a41;
+  --fg: #eef2f6; --muted: #a2a9b2; --faint: #747c86;
+  --accent: #00b8ff; --accent-ink: #03131d; --accent-soft: rgba(0,184,255,.12);
+  --ok: #3ccf8e; --warn: #ffb547; --bad: #ff6b6b;
+  --font: 'Dubai', 'Segoe UI', Tahoma, sans-serif; --r: 14px; color-scheme: dark;
+}
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) {
+  --bg: #f3f6f9; --surface: #ffffff; --surface-2: #eef2f6; --line: #dbe1e8;
+  --fg: #15191e; --muted: #57606b; --faint: #8a929c;
+  --accent: #0a84d6; --accent-ink: #ffffff; --accent-soft: rgba(10,132,214,.10);
+  --ok: #138a57; --warn: #a86400; --bad: #c62828; color-scheme: light } }
+:root[data-theme="light"] {
+  --bg: #f3f6f9; --surface: #ffffff; --surface-2: #eef2f6; --line: #dbe1e8;
+  --fg: #15191e; --muted: #57606b; --faint: #8a929c;
+  --accent: #0a84d6; --accent-ink: #ffffff; --accent-soft: rgba(10,132,214,.10);
+  --ok: #138a57; --warn: #a86400; --bad: #c62828; color-scheme: light }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 17px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { line-height: 1.3; margin: 0; font-weight: 700; text-wrap: balance; }
+h1 { font-size: clamp(30px, 4.6vw, 48px); }
+h2 { font-size: clamp(23px, 3vw, 30px); }
+p { margin: 0; }
+.num { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { color: var(--accent); font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ""; width: 34px; height: 3px; background: var(--accent); box-shadow: 0 7px 0 -0.5px var(--accent); transform: skewX(-20deg); margin-bottom: 7px; }
+.lead { color: var(--muted); font-size: 18.5px; max-width: 64ch; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 20px; border-radius: 10px; font-weight: 700; font-size: 16px; text-decoration: none; border: 1.5px solid transparent; font-family: var(--font); cursor: pointer; white-space: nowrap; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
+.btn.ghost { border-color: var(--line); color: var(--fg); background: var(--surface); }
+.logo { height: 42px; width: auto; display: block; }
+.logo.light { display: none; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .logo.dark { display: none; } :root:not([data-theme="dark"]) .logo.light { display: block; } }
+:root[data-theme="light"] .logo.dark { display: none; } :root[data-theme="light"] .logo.light { display: block; }
+header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-block: 10px; }
+header .btn { padding: 9px 16px; font-size: 15px; }
+@media (max-width: 520px) { .logo { height: 34px; } header .btn { padding: 8px 12px; font-size: 14px; } }
+
+.intro { padding-block: clamp(36px, 6vw, 64px) 26px; display: grid; gap: 16px; }
+.calc { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 22px; align-items: start; padding-bottom: 56px; }
+@media (max-width: 900px) { .calc { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: clamp(18px, 3vw, 28px); }
+form { display: grid; gap: 18px; }
+fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 12px; }
+legend { font-weight: 700; font-size: 18px; margin-bottom: 4px; padding: 0; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } }
+label { display: grid; gap: 6px; font-weight: 500; font-size: 15px; color: var(--muted); }
+input, select { font: inherit; font-size: 17px; color: var(--fg); background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; min-width: 0; }
+input[type="number"] { direction: ltr; text-align: right; }
+input[type="date"] { direction: ltr; text-align: right; min-height: 48px; }
+input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.hint { font-size: 13.5px; color: var(--faint); }
+.err { color: var(--bad); font-size: 15px; min-height: 0; }
+
+.result { position: sticky; top: 84px; display: grid; gap: 18px; }
+@media (max-width: 900px) { .result { position: static; } }
+.big { display: grid; gap: 4px; }
+.big > span { color: var(--muted); font-size: 15px; }
+.big b { font-size: clamp(36px, 6vw, 52px); line-height: 1.15; color: var(--accent); }
+.big small { font-size: 18px; color: var(--muted); font-weight: 500; }
+.rows { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.rows div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+.rows div span:first-child { color: var(--muted); }
+.rows div b { font-weight: 700; }
+.rows div.total { font-size: 18px; }
+.rows div.total span:first-child { color: var(--fg); font-weight: 700; }
+.why { background: var(--accent-soft); border-radius: 10px; padding: 12px 14px; font-size: 15.5px; }
+.empty { color: var(--muted); }
+
+.cta { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: clamp(20px, 4vw, 34px); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: center; position: relative; overflow: hidden; }
+.cta::before { content: ""; position: absolute; inset: auto 0 0 0; height: 4px; background: var(--accent); }
+.cta ul { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; color: var(--muted); font-size: 16px; }
+.cta li::before { content: ""; display: inline-block; width: 10px; height: 4px; background: var(--accent); transform: skewX(-20deg); margin-inline-end: 10px; vertical-align: middle; }
+.cta .btns { display: grid; gap: 10px; }
+@media (max-width: 760px) { .cta { grid-template-columns: 1fr; } }
+
+.rules { padding-block: 56px; display: grid; gap: 22px; }
+table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; font-size: 16px; }
+th, td { text-align: right; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+th { background: var(--surface-2); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+.notes { display: grid; gap: 10px; color: var(--muted); max-width: 80ch; }
+.notes b { color: var(--fg); }
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; }
+details + details { margin-top: 10px; }
+summary { cursor: pointer; font-weight: 700; }
+details p { margin-top: 8px; color: var(--muted); }
+footer { border-top: 1px solid var(--line); padding-block: 26px; color: var(--faint); font-size: 14px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a href="../" aria-label="سهلة HR — الرئيسية"><img class="logo dark" src="../img/logo-dark.png" alt="سهلة HR Management"><img class="logo light" src="../img/logo-light.png" alt="سهلة HR Management"></a>
+    <a class="btn primary" href="../#editions">جرّب البرنامج مجاناً</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap intro">
+    <div class="eyebrow">أداة مجانية من سهلة HR</div>
+    <h1>حاسبة مكافأة نهاية الخدمة</h1>
+    <p class="lead">احسب مكافأة نهاية الخدمة لأي موظف في السعودية حسب المادتين 84 و85 من نظام العمل: انتهاء العقد، الإنهاء من صاحب العمل، أو الاستقالة، مع تعويض رصيد الإجازات.</p>
+  </div>
+
+  <div class="wrap calc">
+    <div class="card">
+      <form id="f" novalidate>
+        <fieldset>
+          <legend>مدة الخدمة</legend>
+          <div class="grid2">
+            <label>تاريخ المباشرة<input type="date" id="start" required></label>
+            <label>آخر يوم عمل<input type="date" id="end" required></label>
+          </div>
+          <label>أيام غياب بدون أجر تُستبعد من الخدمة (اختياري)<input type="number" id="excl" min="0" step="1" inputmode="numeric" placeholder="0"></label>
+        </fieldset>
+        <fieldset>
+          <legend>آخر أجر شهري (ريال)</legend>
+          <div class="grid2">
+            <label>الراتب الأساسي<input type="number" id="basic" min="0" step="any" inputmode="decimal" placeholder="مثال: 5000" required></label>
+            <label>بدل السكن<input type="number" id="housing" min="0" step="any" inputmode="decimal" placeholder="0"></label>
+            <label>بدل النقل<input type="number" id="transport" min="0" step="any" inputmode="decimal" placeholder="0"></label>
+            <label>بدلات ثابتة أخرى<input type="number" id="other" min="0" step="any" inputmode="decimal" placeholder="0"></label>
+          </div>
+          <p class="hint">المكافأة تُحسب على آخر أجر فعلي: الأساسي مع البدلات الثابتة.</p>
+        </fieldset>
+        <fieldset>
+          <legend>سبب انتهاء العلاقة</legend>
+          <label class="sr">السبب
+            <select id="reason">
+              <option value="full">انتهاء مدة العقد</option>
+              <option value="full2">إنهاء العقد من صاحب العمل</option>
+              <option value="resign">استقالة الموظف</option>
+              <option value="full3">ترك العمل لسبب مشروع (المادة 81)</option>
+              <option value="full4">ترك العمل لقوة قاهرة (المادة 87)</option>
+              <option value="full5">إنهاء العاملة خلال 6 أشهر من الزواج أو 3 أشهر من الوضع (المادة 87)</option>
+              <option value="full6">بلوغ سن التقاعد</option>
+              <option value="none">فصل وفق المادة 80 (بدون مكافأة)</option>
+            </select>
+          </label>
+          <label>رصيد إجازات سنوية غير مستخدم بالأيام (اختياري)<input type="number" id="leave" min="0" step="any" inputmode="decimal" placeholder="0"></label>
+        </fieldset>
+        <p class="err" id="err" role="alert"></p>
+      </form>
+    </div>
+
+    <div class="card result" aria-live="polite" id="res">
+      <p class="empty">أدخل تاريخ المباشرة وآخر يوم عمل والراتب الأساسي، والنتيجة تظهر هنا مباشرة.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="cta">
+      <div>
+        <h2>عندك أكثر من موظف؟ خلّ البرنامج يحسبها عنك</h2>
+        <ul>
+          <li>نهاية الخدمة والإجازات والسلف والعُهد في مخالصة وحدة جاهزة للطباعة</li>
+          <li>التزام نهاية الخدمة لكل الموظفين محسوب تلقائياً كل شهر</li>
+          <li>الرواتب، التأمينات، ملف حماية الأجور، والحضور من جهاز البصمة</li>
+          <li>تشتريه مرة وحدة وبياناتك تبقى على جهازك</li>
+        </ul>
+      </div>
+      <div class="btns">
+        <a class="btn primary" href="../#editions">حمّل التجربة المجانية 7 أيام</a>
+        <a class="btn ghost" href="../#video">شوف الفيديو</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="wrap rules" aria-labelledby="rules-h">
+    <h2 id="rules-h">كيف تُحسب مكافأة نهاية الخدمة؟</h2>
+    <div class="notes">
+      <p><b>المكافأة الكاملة (المادة 84):</b> أجر نصف شهر عن كل سنة من السنوات الخمس الأولى، وأجر شهر كامل عن كل سنة بعدها. أجزاء السنة تُحسب بنسبتها.</p>
+      <p><b>عند الاستقالة (المادة 85):</b> يستحق الموظف جزءاً من المكافأة الكاملة حسب مدة خدمته:</p>
+    </div>
+    <table>
+      <thead><tr><th>مدة الخدمة عند الاستقالة</th><th>المستحق</th></tr></thead>
+      <tbody>
+        <tr><td>أقل من سنتين</td><td>لا شيء</td></tr>
+        <tr><td>من سنتين إلى أقل من 5 سنوات</td><td>ثلث المكافأة</td></tr>
+        <tr><td>من 5 إلى أقل من 10 سنوات</td><td>ثلثا المكافأة</td></tr>
+        <tr><td>10 سنوات فأكثر</td><td>المكافأة كاملة</td></tr>
+      </tbody>
+    </table>
+    <div class="notes">
+      <p><b>مثال:</b> موظف آخر أجر له 6,000 ريال وخدم 7 سنوات. المكافأة الكاملة = (3,000 × 5) + (6,000 × 2) = 27,000 ريال. إذا استقال يستحق ثلثيها: 18,000 ريال.</p>
+      <p><b>تعويض الإجازات:</b> رصيد الإجازة السنوية غير المستخدم يُصرف بأجره عند انتهاء العلاقة، ويُحسب هنا على أساس أجر اليوم = الأجر الشهري ÷ 30.</p>
+      <p class="hint">النتيجة تقديرية للاسترشاد. الحالات الخاصة (مثل عقود فيها شروط أفضل للموظف أو خصومات مستحقة) راجع فيها مختصاً أو وزارة الموارد البشرية.</p>
+    </div>
+
+    <div>
+      <h2 style="margin-bottom:14px">أسئلة شائعة</h2>
+      <details><summary>هل تدخل البدلات في حساب المكافأة؟</summary><p>نعم، تُحسب على آخر أجر فعلي، وهو الأساسي مع البدلات الثابتة مثل السكن والنقل. العمولات والمكافآت غير الثابتة لها تفاصيل خاصة.</p></details>
+      <details><summary>هل تُحسب الأشهر والأيام أو السنوات الكاملة فقط؟</summary><p>أجزاء السنة تُحسب بنسبتها، فخدمة 3 سنوات و6 أشهر تُحسب 3.5 سنة تقريباً.</p></details>
+      <details><summary>إذا انتهى العقد المحدد المدة ولم يُجدَّد، كم يستحق الموظف؟</summary><p>يستحق المكافأة كاملة لأن الانتهاء ليس استقالة.</p></details>
+      <details><summary>الموظفة التي تستقيل بعد الزواج أو الولادة؟</summary><p>إذا أنهت عقدها خلال 6 أشهر من الزواج أو 3 أشهر من الوضع تستحق المكافأة كاملة (المادة 87).</p></details>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>سهلة HR — نظام شؤون الموظفين</span><a href="../">الصفحة الرئيسية</a></div></footer>
+
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const DAY = 86400000;
+  const fmt = n => n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+  const money = n => fmt(Math.round(n * 100) / 100);
+  const num = id => { const v = parseFloat($(id).value); return isFinite(v) && v > 0 ? v : 0; };
+  const parse = s => { if (!s) return null; const [y, m, d] = s.split('-').map(Number); return Date.UTC(y, m - 1, d); };
+  // today as default end date
+  try { const t = new Date(); $('end').value = new Date(t.getTime() - t.getTimezoneOffset() * 60000).toISOString().slice(0, 10); } catch (e) {}
+
+  // calendar years / months / days of service (last day inclusive)
+  function span(start, end) {
+    const a = new Date(start), b = new Date(end + DAY);
+    let y = b.getUTCFullYear() - a.getUTCFullYear(), m = b.getUTCMonth() - a.getUTCMonth(), d = b.getUTCDate() - a.getUTCDate();
+    if (d < 0) { m--; d += new Date(Date.UTC(b.getUTCFullYear(), b.getUTCMonth(), 0)).getUTCDate(); }
+    if (m < 0) { y--; m += 12; }
+    return { y, m, d };
+  }
+  function ymd(start, end) {
+    const { y, m, d } = span(start, end);
+    const parts = [];
+    if (y) parts.push(y === 1 ? 'سنة' : y === 2 ? 'سنتان' : y + (y <= 10 ? ' سنوات' : ' سنة'));
+    if (m) parts.push(m === 1 ? 'شهر' : m === 2 ? 'شهران' : m + (m <= 10 ? ' أشهر' : ' شهراً'));
+    if (d) parts.push(d === 1 ? 'يوم' : d === 2 ? 'يومان' : d + (d <= 10 ? ' أيام' : ' يوماً'));
+    return parts.join(' و') || '0';
+  }
+
+  function calc() {
+    const s = parse($('start').value), e = parse($('end').value), basic = num('basic');
+    const res = $('res'); $('err').textContent = '';
+    if (!s || !e || !basic) { res.innerHTML = '<p class="empty">أدخل تاريخ المباشرة وآخر يوم عمل والراتب الأساسي، والنتيجة تظهر هنا مباشرة.</p>'; return; }
+    if (e < s) { $('err').textContent = 'آخر يوم عمل لازم يكون بعد تاريخ المباشرة.'; res.innerHTML = '<p class="empty">صحّح التواريخ لعرض النتيجة.</p>'; return; }
+    const wage = basic + num('housing') + num('transport') + num('other');
+    const sp = span(s, e);
+    const years = Math.max(0, sp.y + sp.m / 12 + sp.d / 365 - Math.floor(num('excl')) / 365);
+    const y5 = Math.min(years, 5), yRest = Math.max(0, years - 5);
+    const full = (y5 * 0.5 + yRest) * wage;
+    const r = $('reason').value;
+    let ratio = 1, why = 'انتهاء العلاقة بغير استقالة: يستحق الموظف المكافأة كاملة.';
+    if (r === 'none') { ratio = 0; why = 'الفصل وفق المادة 80 لا يستحق معه الموظف مكافأة نهاية الخدمة.'; }
+    if (r === 'resign') {
+      if (years < 2) { ratio = 0; why = 'استقالة قبل إكمال سنتين: لا يستحق مكافأة.'; }
+      else if (years < 5) { ratio = 1 / 3; why = 'استقالة بعد سنتين وقبل 5 سنوات: يستحق ثلث المكافأة.'; }
+      else if (years < 10) { ratio = 2 / 3; why = 'استقالة بعد 5 سنوات وقبل 10: يستحق ثلثي المكافأة.'; }
+      else { ratio = 1; why = 'استقالة بعد 10 سنوات أو أكثر: يستحق المكافأة كاملة.'; }
+    }
+    const due = full * ratio;
+    const leaveAmt = num('leave') * wage / 30;
+    const total = due + leaveAmt;
+    const ratioTxt = ratio === 1 ? 'كاملة' : ratio === 0 ? 'لا شيء' : ratio < .5 ? 'الثلث' : 'الثلثان';
+    res.innerHTML =
+      '<div class="big"><span>المكافأة المستحقة</span><b><span class="num">' + money(due) + '</span> <small>ريال</small></b></div>' +
+      '<p class="why">' + why + '</p>' +
+      '<div class="rows">' +
+        '<div><span>مدة الخدمة</span><b>' + ymd(s, e) + '</b></div>' +
+        '<div><span>بالسنوات</span><b class="num">' + fmt(Math.round(years * 100) / 100) + '</b></div>' +
+        '<div><span>الأجر المعتمد</span><b><span class="num">' + money(wage) + '</span> ريال</b></div>' +
+        '<div><span>أول 5 سنوات (نصف شهر لكل سنة)</span><b><span class="num">' + money(y5 * 0.5 * wage) + '</span></b></div>' +
+        (yRest ? '<div><span>ما بعد 5 سنوات (شهر لكل سنة)</span><b><span class="num">' + money(yRest * wage) + '</span></b></div>' : '') +
+        '<div><span>المكافأة الكاملة</span><b><span class="num">' + money(full) + '</span> ريال</b></div>' +
+        '<div><span>نسبة الاستحقاق</span><b>' + ratioTxt + '</b></div>' +
+        (leaveAmt ? '<div><span>تعويض الإجازات (' + fmt(num('leave')) + ' يوم)</span><b><span class="num">' + money(leaveAmt) + '</span> ريال</b></div>' : '') +
+        (leaveAmt ? '<div class="total"><span>الإجمالي</span><b><span class="num">' + money(total) + '</span> ريال</b></div>' : '') +
+      '</div>' +
+      '<a class="btn primary" href="../#editions">احسبها لكل موظفيك تلقائياً — جرّب سهلة HR</a>';
+  }
+  $('f').addEventListener('input', calc);
+  $('f').addEventListener('change', calc);
+  $('f').addEventListener('submit', ev => { ev.preventDefault(); calc(); });
+})();
+</script>
+</body>
+</html>
