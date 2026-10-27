@@ -220,6 +220,39 @@ h2 { margin-bottom: 6px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
 footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
 
+/* attendance alerts section */
+.attn { border-block: 1px solid var(--line); background: var(--surface); }
+.attn .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+@media (max-width: 900px) { .attn .wrap { grid-template-columns: 1fr; } }
+.attn-copy { display: grid; gap: 18px; min-width: 0; }
+.attn-list { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 560px) { .attn-list { grid-template-columns: 1fr; } }
+.attn-list li { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 4px; position: relative; overflow: hidden; }
+.attn-list li::before { content: ""; position: absolute; inset: 0 0 auto auto; width: 4px; height: 100%; background: var(--accent); }
+.attn-list b { font-size: 17px; }
+.attn-list span { color: var(--muted); font-size: 15px; line-height: 1.7; }
+.attn-note { color: var(--faint); font-size: 14.5px; }
+.attn-demo { display: grid; gap: 18px; min-width: 0; }
+.tl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; position: relative; }
+.tl::before { content: ""; position: absolute; top: 15px; inset-inline: 16.6%; height: 3px; background: linear-gradient(to left, var(--line), var(--warn), var(--ok)); border-radius: 2px; }
+.tl-i { display: grid; justify-items: center; gap: 8px; text-align: center; font-size: 14px; color: var(--muted); position: relative; }
+.tl-i .t { width: 64px; height: 32px; border-radius: 999px; display: grid; place-items: center; background: var(--surface-2); border: 1.5px solid var(--line); color: var(--fg); font-weight: 700; font-size: 15px; position: relative; }
+.tl-i.warn .t { border-color: var(--warn); color: var(--warn); }
+.tl-i.ok .t { border-color: var(--ok); color: var(--ok); animation: tlPulse 2.6s ease-in-out infinite; }
+@keyframes tlPulse { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 45%, transparent); } 50% { box-shadow: 0 0 0 8px transparent; } }
+.mailcard { background: #ffffff; color: #1f2328; border-radius: 16px; padding: 0 20px 18px; box-shadow: 0 30px 70px -28px rgba(0,0,0,.55); border: 1px solid #e3e6ea; overflow: hidden; animation: mcIn 3.6s ease-out infinite; }
+@keyframes mcIn { 0% { transform: translateY(14px); opacity: 0; } 12%, 88% { transform: none; opacity: 1; } 100% { transform: none; opacity: 1; } }
+.mc-bar { height: 5px; margin: 0 -20px 14px; background: #0a84d6; }
+.mc-from { display: flex; align-items: center; gap: 10px; }
+.mc-from i { width: 36px; height: 36px; border-radius: 50%; background: #e8f4fd; color: #0a84d6; display: grid; place-items: center; font-style: normal; font-size: 17px; flex: none; }
+.mc-from div { display: grid; line-height: 1.4; } .mc-from small { color: #6b7280; font-size: 12.5px; }
+.mc-time { margin-inline-start: auto; color: #6b7280; font-size: 13px; }
+.mc-sub { margin-top: 12px; font-size: 13.5px; color: #6b7280; }
+.mc-title { font-size: 20px; font-weight: 700; margin: 2px 0 10px; }
+.mc-row { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-top: 1px solid #f0f2f4; font-size: 15px; }
+.mc-row span { color: #6b7280; }
+.mc-row.hl b { color: #c62828; }
+
 /* download lead dialog */
 #dl { border: 1px solid var(--line); border-radius: 16px; padding: 0; background: var(--surface); color: var(--fg); width: min(480px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow: auto; box-shadow: 0 30px 80px -20px rgba(0,0,0,.6); }
 #dl::backdrop { background: rgba(8,10,12,.62); backdrop-filter: blur(3px); }
@@ -276,7 +309,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
       <div>
         <div class="eyebrow">فيديو تعريفي</div>
         <h2>شوف البرنامج في أقل من دقيقة</h2>
-        <p class="lead" style="margin-top:10px">جولة سريعة على لوحة التحكم، ملف الموظف، الحضور، الرواتب، نهاية الخدمة، الإجازات، التقارير، وإشعارات البريد.</p>
+        <p class="lead" style="margin-top:10px">جولة سريعة على لوحة التحكم، ملف الموظف، الحضور، الرواتب، نهاية الخدمة، الإجازات، التقارير، وإشعارات البريد وتنبيهات التأخير.</p>
       </div>
       <div class="vbox"><video controls playsinline preload="metadata" poster="media/sahla-hr-intro-poster.jpg"><source src="media/sahla-hr-intro.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
     </div>
@@ -304,6 +337,39 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
       <div class="panel" role="tabpanel" id="panel" aria-live="polite">
         <div class="shot"><img id="shot" src="img/attendance-d.webp" alt="" width="1600" height="1000"></div>
         <div class="text"><h3 id="ttl">الحضور والانصراف</h3><p class="lead" id="dsc" style="font-size:16.5px"></p><ul id="pts"></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="attn" id="attendance-alerts" aria-labelledby="attn-h">
+    <div class="wrap">
+      <div class="attn-copy">
+        <div class="eyebrow">جديد · في نسخ إشعارات البريد</div>
+        <h2 id="attn-h">الموظف يعرف بتأخيره قبل ما تكلّمه</h2>
+        <p class="lead">البرنامج يسحب البصمات من جهاز BioTime كل 3 دقائق، ولما يتأخر الموظف أو ما يبصم أو يطلع بدري، يوصله إيميل تلقائي من بريد منشأتك، وتوصلك نسخة إذا تبي.</p>
+        <ul class="attn-list">
+          <li><b>التأخير</b><span>إذا بصم بعد بداية دوامه بأكثر من الدقائق اللي تحددها</span></li>
+          <li><b>ما بصم دخول</b><span>إذا مرّت مدة تحددها من بداية الدوام بدون بصمة</span></li>
+          <li><b>خروج مبكر</b><span>إذا طلع قبل نهاية دوامه بأكثر من المدة المسموحة</span></li>
+          <li><b>ما بصم خروج</b><span>إذا انتهى دوامه وما سجّل بصمة الخروج</span></li>
+        </ul>
+        <p class="attn-note">ما يوصل إشعار في الإجازات وأيام الراحة والعطل الرسمية، ولا يتكرر نفس الإشعار في اليوم.</p>
+      </div>
+      <div class="attn-demo" aria-hidden="true">
+        <div class="tl">
+          <div class="tl-i"><span class="t num">8:00</span><span>بداية الدوام</span></div>
+          <div class="tl-i warn"><span class="t num">8:40</span><span>بصمة الدخول</span></div>
+          <div class="tl-i ok"><span class="t num">8:43</span><span>وصل الإيميل للموظف</span></div>
+        </div>
+        <div class="mailcard">
+          <div class="mc-bar"></div>
+          <div class="mc-from"><i>✉</i><div><b>الموارد البشرية</b><small>إلى: أحمد</small></div><span class="mc-time num">8:43 ص</span></div>
+          <div class="mc-sub">تنبيه تأخير: 40 دقيقة اليوم</div>
+          <div class="mc-title">تم تسجيل تأخيرك عن الدوام</div>
+          <div class="mc-row"><span>بداية الدوام</span><b class="num">8:00 ص</b></div>
+          <div class="mc-row"><span>وقت البصمة</span><b class="num">8:40 ص</b></div>
+          <div class="mc-row hl"><span>مدة التأخير</span><b>40 دقيقة</b></div>
+        </div>
       </div>
     </div>
   </section>
@@ -343,7 +409,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
           <span class="tag"><svg viewBox="0 0 28 21" width="16" height="12" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M3 4 L14 12 L25 4" fill="none" stroke="currentColor" stroke-width="3"/></svg>نسخة الكمبيوتر</span>
           <h3>مع إشعارات البريد</h3>
           <div class="price"><b class="num">1,199</b><span>ريال، مرة واحدة</span><s class="num">2,700</s></div>
-          <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li>كل أقسام البرنامج بدون استثناء</li><li>بياناتك في مجلد مستقل، ما تنحذف لو حدّثت البرنامج</li></ul>
+          <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li><span><b>تنبيه فوري بالتأخير</b> وعدم التبصيم والخروج المبكر، بعد دقائق تحددها أنت</span></li><li>كل أقسام البرنامج بدون استثناء</li><li>بياناتك في مجلد مستقل، ما تنحذف لو حدّثت البرنامج</li></ul>
           <div class="acts">
             <a class="btn primary" href="https://hr.sahla-sa.com/download/Sahla-HR-Desktop-Email-Setup.exe" rel="noopener">حمّل التجربة <small>Windows · 19 ميجا</small></a>
             <a class="btn ghost" href="https://sahla-sa.com/-/p839986011" target="_blank" rel="noopener">اشترِ الترخيص</a>
@@ -369,7 +435,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
           <span class="tag"><svg viewBox="0 0 28 21" width="16" height="12" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M3 4 L14 12 L25 4" fill="none" stroke="currentColor" stroke-width="3"/></svg>نسخة السيرفر · الأكثر طلباً</span>
           <h3>مع إشعارات البريد</h3>
           <div class="price"><b class="num">1,499</b><span>ريال، مرة واحدة</span><s class="num">3,500</s></div>
-          <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li>تتثبت على سيرفر الشركة وتشتغل تلقائياً مع ويندوز</li><li>فريقك يفتحها برابط من أي كمبيوتر أو جوال على الشبكة</li><li>مستخدمين متعددين مع صلاحيات لكل واحد</li></ul>
+          <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li><span><b>تنبيه فوري بالتأخير</b> وعدم التبصيم والخروج المبكر، بعد دقائق تحددها أنت</span></li><li>تتثبت على سيرفر الشركة وتشتغل تلقائياً مع ويندوز</li><li>فريقك يفتحها برابط من أي كمبيوتر أو جوال على الشبكة</li><li>مستخدمين متعددين مع صلاحيات لكل واحد</li></ul>
           <div class="acts">
             <a class="btn primary" href="https://hr.sahla-sa.com/download/Sahla-HR-Server-Email-Setup.exe" rel="noopener">حمّل التجربة <small>Windows Server · 19 ميجا</small></a>
             <a class="btn ghost" href="https://sahla-sa.com/-/p982089646" target="_blank" rel="noopener">اشترِ الترخيص</a>
@@ -447,7 +513,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
 <script>
 const TABS = [
   { k: 'attendance', t: 'الحضور والانصراف', d: 'كشف يومي وشهري لكل فرع، يتعبّى من جهاز البصمة أو من ملف Excel.',
-    p: ['<b>الحالة لكل موظف:</b> حاضر، غائب، إجازة، بصمة ناقصة', '<b>التأخير والخروج المبكر والإضافي</b> محسوبة حسب ورديته', 'أيام راحة مختلفة لكل موظف، ودوام رمضان تلقائياً', 'تصدير الكشف Excel أو PDF'] },
+    p: ['<b>الحالة لكل موظف:</b> حاضر، غائب، إجازة، بصمة ناقصة', '<b>التأخير والخروج المبكر والإضافي</b> محسوبة حسب ورديته', '<b>إيميل فوري للموظف</b> إذا تأخر أو ما بصم أو طلع بدري (نسخ البريد)', 'أيام راحة مختلفة لكل موظف، ودوام رمضان تلقائياً', 'تصدير الكشف Excel أو PDF'] },
   { k: 'payroll-run', t: 'مسير الرواتب', d: 'مسير لكل علامة كل شهر، يتحسب من الحضور والإجازات والسلف والجزاءات.',
     p: ['<b>التأمينات</b> على الموظف والمنشأة حسب نوعه', '<b>ملف حماية الأجور</b> جاهز لمدد', 'قسائم رواتب PDF لكل موظف', 'اعتماد وقفل المسير بعد المراجعة'] },
   { k: 'eos-calc', t: 'نهاية الخدمة', d: 'حاسبة المكافأة والمخالصة حسب سبب انتهاء العلاقة.',
@@ -459,7 +525,7 @@ const TABS = [
   { k: 'documents', t: 'الوثائق والتنبيهات', d: 'الإقامات والجوازات والعقود والتأمين الطبي، مع تواريخ انتهائها.',
     p: ['<b>تنبيه قبل الانتهاء</b> في لوحة التحكم', 'إرفاق صورة الوثيقة بملف الموظف', 'تقرير كامل بالوثائق المنتهية والقريبة'] },
   { k: 'email', t: 'إشعارات البريد', d: 'في نسخ «مع إشعارات البريد»: يوصل الموظف إيميل تلقائي من بريد منشأتك مع كل حدث يخصه.',
-    p: ['<b>الإنذارات والجزاءات</b> والخطابات الصادرة له', '<b>قرار الإجازة والسلفة والمصروفات</b> أول ما يُعتمد أو يُرفض', '<b>قسيمة الراتب</b> عند اعتماد مسير الشهر', 'تنبيه بقرب انتهاء الإقامة أو الجواز أو العقد، وملخص يومي لصاحب المنشأة', 'يشتغل مع Google Workspace وGmail وMicrosoft 365 وZoho'] },
+    p: ['<b>التأخير وعدم التبصيم والخروج المبكر</b> بعد دقائق تحددها أنت', '<b>الإنذارات والجزاءات</b> والخطابات الصادرة له', '<b>قرار الإجازة والسلفة والمصروفات</b> أول ما يُعتمد أو يُرفض', '<b>قسيمة الراتب</b> عند اعتماد مسير الشهر', 'تنبيه بقرب انتهاء الإقامة أو الجواز أو العقد، وملخص يومي لصاحب المنشأة', 'يشتغل مع Google Workspace وGmail وMicrosoft 365 وZoho'] },
   { k: 'reports', t: 'التقارير', d: 'تقارير جاهزة للإدارة، تتصدّر Excel أو PDF.',
     p: ['تكلفة الرواتب ونسبة التوطين لكل علامة', 'الحضور والتأخير والغياب', 'مخصص نهاية الخدمة المتراكم', 'حركة الموظفين والتعيينات'] },
 ];
