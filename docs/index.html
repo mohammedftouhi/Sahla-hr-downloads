@@ -142,9 +142,29 @@ header .btn { padding: 9px 16px; font-size: 15px; }
 .ed .acts .btn { width: 100%; }
 .req { color: var(--faint); font-size: 13.5px; }
 @media (max-width: 860px) { .editions .grid { grid-template-columns: 1fr; } }
+/* e-mail editions: dark card + animated envelope */
+.ed.mail { position: relative; overflow: hidden; background: radial-gradient(120% 80% at 15% 20%, rgba(0,184,255,.20), rgba(0,184,255,0) 60%), #14171b; border-color: #00b8ff; color: #f3f6f9; }
+.ed.mail h3, .ed.mail .price b { color: #fff; }
+.ed.mail .price span, .ed.mail li, .ed.mail .req { color: #b8c0c9; }
+.ed.mail .price s { color: #7d8792; }
+.ed.mail li::before { color: #00b8ff; }
+.ed.mail li:first-child, .ed.mail li:first-child b { color: #00b8ff; }
+.ed.mail .tag { background: #00b8ff; color: #0e1114; display: inline-flex; align-items: center; gap: 6px; animation: tagPulse 2.4s ease-out infinite; }
+.ed.mail .btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.35); }
+.mailfx { position: absolute; top: 22px; left: 24px; width: 92px; height: 70px; pointer-events: none; }
+.mailfx svg { width: 92px; height: 70px; animation: envFloat 3.2s ease-in-out infinite; filter: drop-shadow(0 8px 18px rgba(0,184,255,.35)); }
+.mailfx .badge { position: absolute; top: -10px; right: -12px; width: 30px; height: 30px; border-radius: 50%; background: #ff4d4f; color: #fff; font: 700 16px/30px var(--display); text-align: center; border: 3px solid #14171b; animation: badgePop 3.2s ease-out infinite; }
+.mailfx .trail { position: absolute; top: 24px; left: -60px; display: grid; gap: 7px; }
+.mailfx .trail i { display: block; height: 4px; border-radius: 2px; background: #00b8ff; transform-origin: right; animation: trail 3.2s ease-out infinite; }
+.mailfx .trail i:nth-child(1) { width: 46px; } .mailfx .trail i:nth-child(2) { width: 30px; animation-delay: .1s; } .mailfx .trail i:nth-child(3) { width: 16px; animation-delay: .2s; }
+@keyframes envFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-6px) rotate(2deg); } }
+@keyframes badgePop { 0%, 18% { transform: scale(0); } 26% { transform: scale(1.3); } 32%, 88% { transform: scale(1); } 100% { transform: scale(0); } }
+@keyframes trail { 0% { transform: scaleX(0); opacity: 0; } 15% { transform: scaleX(1); opacity: 1; } 45%, 100% { transform: scaleX(1); opacity: 0; } }
+@keyframes tagPulse { 0% { box-shadow: 0 0 0 0 rgba(0,184,255,.55); } 70%, 100% { box-shadow: 0 0 0 12px rgba(0,184,255,0); } }
+
 .editions .grp { margin: 40px 0 0; font-size: 19px; color: var(--muted); font-weight: 700; }
 .editions .grp + .grid { margin-top: 16px; }
-.ed.mail .tag { background: var(--accent); color: #fff; }
+
 
 /* steps */
 .steps ol { list-style: none; margin: 34px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; counter-reset: s; }
@@ -278,7 +298,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
           <p class="req">يحتاج Windows 10 أو 11.</p>
         </article>
         <article class="ed mail">
-          <span class="tag">نسخة الكمبيوتر</span>
+          <div class="mailfx" aria-hidden="true"><div class="trail"><i></i><i></i><i></i></div><svg viewBox="0 0 120 90"><rect x="4" y="4" width="112" height="82" rx="12" fill="#1d232b" stroke="#00b8ff" stroke-width="6"/><path d="M8 12 L60 52 L112 12" fill="none" stroke="#00b8ff" stroke-width="6" stroke-linejoin="round"/></svg><span class="badge">1</span></div>
+          <span class="tag"><svg viewBox="0 0 28 21" width="16" height="12" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M3 4 L14 12 L25 4" fill="none" stroke="currentColor" stroke-width="3"/></svg>نسخة الكمبيوتر</span>
           <h3>مع إشعارات البريد</h3>
           <div class="price"><b class="num">1,199</b><span>ريال، مرة واحدة</span><s class="num">2,700</s></div>
           <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li>كل أقسام البرنامج بدون استثناء</li><li>بياناتك في مجلد مستقل، ما تنحذف لو حدّثت البرنامج</li></ul>
@@ -303,7 +324,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
           <p class="req">يشتغل على Windows Server 2012 R2 وأحدث، أو أي ويندوز 10/11 يكون سيرفر للشبكة.</p>
         </article>
         <article class="ed hot mail">
-          <span class="tag">نسخة السيرفر · الأكثر طلباً</span>
+          <div class="mailfx" aria-hidden="true"><div class="trail"><i></i><i></i><i></i></div><svg viewBox="0 0 120 90"><rect x="4" y="4" width="112" height="82" rx="12" fill="#1d232b" stroke="#00b8ff" stroke-width="6"/><path d="M8 12 L60 52 L112 12" fill="none" stroke="#00b8ff" stroke-width="6" stroke-linejoin="round"/></svg><span class="badge">1</span></div>
+          <span class="tag"><svg viewBox="0 0 28 21" width="16" height="12" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M3 4 L14 12 L25 4" fill="none" stroke="currentColor" stroke-width="3"/></svg>نسخة السيرفر · الأكثر طلباً</span>
           <h3>مع إشعارات البريد</h3>
           <div class="price"><b class="num">1,499</b><span>ريال، مرة واحدة</span><s class="num">3,500</s></div>
           <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li>تتثبت على سيرفر الشركة وتشتغل تلقائياً مع ويندوز</li><li>فريقك يفتحها برابط من أي كمبيوتر أو جوال على الشبكة</li><li>مستخدمين متعددين مع صلاحيات لكل واحد</li></ul>
