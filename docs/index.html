@@ -1,15 +1,12 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="سهلة HR: برنامج شؤون موظفين ورواتب على جهازك بدون إنترنت، مبني على نظام العمل السعودي. جرّبه 7 أيام مجاناً.">
-<link rel="icon" href="img/icon-192.png">
 <title>سهلة HR</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 <style>
+@font-face{font-family:'Dubai';src:url('fonts/Dubai-Light.ttf') format('truetype');font-weight:300;font-display:swap}
+@font-face{font-family:'Dubai';src:url('fonts/Dubai-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'Dubai';src:url('fonts/Dubai-Medium.ttf') format('truetype');font-weight:500;font-display:swap}
+@font-face{font-family:'Dubai';src:url('fonts/Dubai-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+
 /* Layout: graphite "control room" — logo speed-lines run as horizontal rules through the page;
    hero = product frame + phone; one tabbed product tour; editions side by side. */
 :root {
@@ -17,8 +14,8 @@
   --fg: #eef2f6; --muted: #a2a9b2; --faint: #747c86;
   --accent: #00b8ff; --accent-ink: #03131d; --accent-soft: rgba(0,184,255,.12);
   --ok: #3ccf8e; --warn: #ffb547;
-  --display: 'Dubai', 'Alexandria', 'Segoe UI', Tahoma, sans-serif;
-  --body: 'Dubai', 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+  --display: 'Dubai', 'Segoe UI', Tahoma, sans-serif;
+  --body: 'Dubai', 'Segoe UI', Tahoma, sans-serif;
   --mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
   --r: 14px;
   color-scheme: dark;
@@ -41,7 +38,7 @@ body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--bo
 img { max-width: 100%; display: block; }
 a { color: var(--accent); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-h1, h2, h3 { font-family: var(--display); line-height: 1.25; margin: 0; text-wrap: balance; font-weight: 800; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.25; margin: 0; text-wrap: balance; font-weight: 700; }
 h1 { font-size: clamp(32px, 5.2vw, 58px); letter-spacing: -.01em; }
 h2 { font-size: clamp(26px, 3.4vw, 38px); }
 h3 { font-size: 20px; font-weight: 700; }
@@ -149,7 +146,7 @@ header .btn { padding: 9px 16px; font-size: 15px; }
 /* steps */
 .steps ol { list-style: none; margin: 34px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; counter-reset: s; }
 .steps li { counter-increment: s; border-top: 3px solid var(--accent); padding-top: 18px; display: grid; gap: 8px; min-width: 0; }
-.steps li::before { content: counter(s); font-family: var(--display); font-weight: 800; font-size: 34px; color: var(--accent); line-height: 1; }
+.steps li::before { content: counter(s); font-family: var(--display); font-weight: 700; font-size: 34px; color: var(--accent); line-height: 1; }
 .steps li p { color: var(--muted); font-size: 15.5px; }
 @media (max-width: 760px) { .steps ol { grid-template-columns: 1fr; } }
 
@@ -170,11 +167,29 @@ header .btn { padding: 9px 16px; font-size: 15px; }
 .copybtn { font: inherit; font-size: 14px; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); cursor: pointer; }
 @media (max-width: 760px) { .contact .box { grid-template-columns: 1fr; } }
 footer { padding-block: 26px; color: var(--faint); font-size: 14px; border-top: 1px solid var(--line); }
+/* readability: comfortable Arabic leading and spacing */
+body { line-height: 1.85; }
+h1, h2, h3 { line-height: 1.32; }
+h1 { letter-spacing: 0; }
+h2 { margin-bottom: 6px; }
+.eyebrow { font-size: 15px; margin-bottom: 10px; }
+.lead { line-height: 1.95; }
+.hero .meta { gap: 12px 26px; font-size: 16px; }
+.panel .text h3 { margin-bottom: 10px; }
+.panel .text .lead { margin-bottom: 18px; }
+.panel .text ul { gap: 16px; }
+.panel .text li { font-size: 16.5px; line-height: 1.85; }
+.offline .card p, .steps li p, .ed li { font-size: 16.5px; line-height: 1.9; }
+.offline .card h3 { margin-bottom: 8px; }
+.ed ul { gap: 13px; }
+.steps li { gap: 12px; }
+.req { font-size: 14.5px; line-height: 1.8; }
+.ksa span { font-size: 15.5px; line-height: 1.8; }
+.faq summary { padding-block: 20px; line-height: 1.6; }
+.faq details p { line-height: 1.95; padding-bottom: 18px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
 </style>
 
-</head>
-<body>
 <header>
   <div class="wrap">
     <a href="#top" aria-label="سهلة HR — الرئيسية"><img class="logo dark" src="img/logo-dark.png" alt="سهلة HR Management"><img class="logo light" src="img/logo-light.png" alt="سهلة HR Management"></a>
@@ -352,6 +367,3 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
   setTimeout(() => { b.textContent = 'نسخ الرقم'; }, 2500);
 });
 </script>
-
-</body>
-</html>
