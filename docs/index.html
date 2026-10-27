@@ -142,6 +142,9 @@ header .btn { padding: 9px 16px; font-size: 15px; }
 .ed .acts .btn { width: 100%; }
 .req { color: var(--faint); font-size: 13.5px; }
 @media (max-width: 860px) { .editions .grid { grid-template-columns: 1fr; } }
+.editions .grp { margin: 40px 0 0; font-size: 19px; color: var(--muted); font-weight: 700; }
+.editions .grp + .grid { margin-top: 16px; }
+.ed.mail .tag { background: var(--accent); color: #fff; }
 
 /* steps */
 .steps ol { list-style: none; margin: 34px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; counter-reset: s; }
@@ -260,11 +263,12 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     <div class="wrap">
       <div class="eyebrow">النسخ والأسعار</div>
       <h2>جرّب 7 أيام مجاناً، وبعدها ترخيص دائم تدفعه مرة وحدة</h2>
-      <p class="lead" style="margin-top:12px">حمّل النسخة المناسبة، وجرّب البرنامج كامل بدون أي قيود. إذا عجبك، نرسل لك رقم الترخيص على واتساب.</p>
+      <p class="lead" style="margin-top:12px">اختر جهاز واحد أو كل أجهزة الشبكة، ومع إشعارات البريد للموظفين أو بدونها. جرّب 7 أيام بدون أي قيود، وإذا عجبك نرسل لك رقم الترخيص على واتساب.</p>
+      <h3 class="grp">لجهاز واحد</h3>
       <div class="grid">
         <article class="ed">
-          <span class="tag">لجهاز واحد</span>
-          <h3>نسخة الكمبيوتر</h3>
+          <span class="tag">نسخة الكمبيوتر</span>
+          <h3>بدون إشعارات البريد</h3>
           <div class="price"><b class="num">999</b><span>ريال، مرة واحدة</span><s class="num">2,300</s></div>
           <ul><li>تثبيت مباشر بدون صلاحيات مدير</li><li>أيقونة على سطح المكتب وتفتح في نافذة مستقلة</li><li>كل أقسام البرنامج بدون استثناء</li><li>بياناتك في مجلد مستقل، ما تنحذف لو حدّثت البرنامج</li></ul>
           <div class="acts">
@@ -273,14 +277,39 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
           </div>
           <p class="req">يحتاج Windows 10 أو 11.</p>
         </article>
-        <article class="ed hot">
-          <span class="tag">لكل أجهزة الشبكة</span>
-          <h3>نسخة السيرفر</h3>
+        <article class="ed mail">
+          <span class="tag">نسخة الكمبيوتر</span>
+          <h3>مع إشعارات البريد</h3>
+          <div class="price"><b class="num">1,199</b><span>ريال، مرة واحدة</span><s class="num">2,700</s></div>
+          <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li>كل أقسام البرنامج بدون استثناء</li><li>بياناتك في مجلد مستقل، ما تنحذف لو حدّثت البرنامج</li></ul>
+          <div class="acts">
+            <a class="btn primary" href="https://github.com/mohammedftouhi/sahla-hr-downloads/raw/main/Sahla-HR-Desktop-Email-Setup.exe" rel="noopener">حمّل التجربة <small>Windows · 19 ميجا</small></a>
+            <a class="btn ghost" href="https://wa.me/966538000892?text=%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B4%D8%AA%D8%B1%D9%8A%20%D8%B3%D9%87%D9%84%D8%A9%20HR%20%D9%86%D8%B3%D8%AE%D8%A9%20%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1%20%D9%85%D8%B9%20%D8%A5%D8%B4%D8%B9%D8%A7%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%A8%D8%B1%D9%8A%D8%AF" target="_blank" rel="noopener">اشترِ الترخيص</a>
+          </div>
+          <p class="req">يحتاج Windows 10 أو 11.</p>
+        </article>
+      </div>
+      <h3 class="grp">لكل أجهزة الشبكة</h3>
+      <div class="grid">
+        <article class="ed">
+          <span class="tag">نسخة السيرفر</span>
+          <h3>بدون إشعارات البريد</h3>
           <div class="price"><b class="num">1,299</b><span>ريال، مرة واحدة</span><s class="num">3,000</s></div>
           <ul><li>تتثبت على سيرفر الشركة وتشتغل تلقائياً مع ويندوز</li><li>فريقك يفتحها برابط من أي كمبيوتر أو جوال على الشبكة</li><li>مستخدمين متعددين مع صلاحيات لكل واحد</li><li>تقدر تثبّتها على الكمبيوتر كتطبيق بأيقونة سهلة HR</li></ul>
           <div class="acts">
             <a class="btn primary" href="https://github.com/mohammedftouhi/sahla-hr-downloads/raw/main/Sahla-HR-Server-Setup.exe" rel="noopener">حمّل التجربة <small>Windows Server · 19 ميجا</small></a>
             <a class="btn ghost" href="https://sahla-sa.com/-/p1475062499" target="_blank" rel="noopener">اشترِ الترخيص</a>
+          </div>
+          <p class="req">يشتغل على Windows Server 2012 R2 وأحدث، أو أي ويندوز 10/11 يكون سيرفر للشبكة.</p>
+        </article>
+        <article class="ed hot mail">
+          <span class="tag">نسخة السيرفر · الأكثر طلباً</span>
+          <h3>مع إشعارات البريد</h3>
+          <div class="price"><b class="num">1,499</b><span>ريال، مرة واحدة</span><s class="num">3,500</s></div>
+          <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li>تتثبت على سيرفر الشركة وتشتغل تلقائياً مع ويندوز</li><li>فريقك يفتحها برابط من أي كمبيوتر أو جوال على الشبكة</li><li>مستخدمين متعددين مع صلاحيات لكل واحد</li></ul>
+          <div class="acts">
+            <a class="btn primary" href="https://github.com/mohammedftouhi/sahla-hr-downloads/raw/main/Sahla-HR-Server-Email-Setup.exe" rel="noopener">حمّل التجربة <small>Windows Server · 19 ميجا</small></a>
+            <a class="btn ghost" href="https://wa.me/966538000892?text=%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B4%D8%AA%D8%B1%D9%8A%20%D8%B3%D9%87%D9%84%D8%A9%20HR%20%D9%86%D8%B3%D8%AE%D8%A9%20%D8%A7%D9%84%D8%B3%D9%8A%D8%B1%D9%81%D8%B1%20%D9%85%D8%B9%20%D8%A5%D8%B4%D8%B9%D8%A7%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%A8%D8%B1%D9%8A%D8%AF" target="_blank" rel="noopener">اشترِ الترخيص</a>
           </div>
           <p class="req">يشتغل على Windows Server 2012 R2 وأحدث، أو أي ويندوز 10/11 يكون سيرفر للشبكة.</p>
         </article>
@@ -305,12 +334,14 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       <div class="eyebrow">أسئلة شائعة</div>
       <h2>قبل ما تحمّل</h2>
       <div class="list">
-        <details><summary>هل يحتاج إنترنت؟</summary><p>لا. البرنامج يشتغل على جهازك أو على سيرفر شركتك، والأجهزة الثانية تفتحه من الشبكة الداخلية. الإنترنت تحتاجه بس إذا كان جهاز البصمة على شبكة ثانية.</p></details>
+        <details><summary>هل يحتاج إنترنت؟</summary><p>لا. البرنامج يشتغل على جهازك أو على سيرفر شركتك، والأجهزة الثانية تفتحه من الشبكة الداخلية. الإنترنت تحتاجه بس لإرسال إشعارات البريد في نسخها، أو إذا كان جهاز البصمة على شبكة ثانية.</p></details>
         <details><summary>ويندوز يطلع تحذير «Windows protected your PC» عند التثبيت</summary><p>هذا تنبيه عام لأي برنامج جديد ما انتشر كثير. اضغط «More info» ثم «Run anyway» ويكمل التثبيت عادي.</p></details>
         <details><summary>وش يصير بعد 7 أيام إذا ما اشتريت؟</summary><p>البرنامج يقفل لين تُدخل رقم الترخيص، وبياناتك تبقى محفوظة كما هي. لما تفعّل تكمل من حيث وقفت.</p></details>
         <details><summary>هل الترخيص اشتراك شهري؟</summary><p>لا. تدفع مرة وحدة وتستخدمه على طول. الترخيص مربوط بالجهاز اللي ثبّت عليه البرنامج.</p></details>
         <details><summary>أقدر أربطه بجهاز البصمة؟</summary><p>نعم. يسحب الحركات من برنامج ZKBioTime تلقائياً كل نص ساعة، أو تستورد ملف حركات البصمة من Excel لأي جهاز ثاني.</p></details>
         <details><summary>عندي أكثر من علامة تجارية أو فرع</summary><p>تضيف كل علامة بشعارها وسجلها التجاري، وكل علامة لها فروعها ومسيرها المستقل، وتقدر تشوف الكل في لوحة وحدة.</p></details>
+        <details><summary>وش الفرق بين النسخ مع إشعارات البريد وبدونها؟</summary><p>نفس البرنامج بكل أقسامه. النسخ «مع إشعارات البريد» ترسل للموظف إيميل تلقائي من بريد منشأتك مع كل حدث يخصه: الإنذارات، قرار الإجازة والسلفة، قسيمة الراتب، وقرب انتهاء وثائقه. تحتاج بريد للمنشأة (Google Workspace أو Gmail أو Microsoft 365 أو Zoho) وأن يكون الجهاز متصل بالإنترنت وقت الإرسال.</p></details>
+        <details><summary>اشتريت بدون إشعارات البريد، أقدر أرقّي بعدين؟</summary><p>نعم. تواصل معنا على واتساب، نرسل لك رقم ترخيص جديد يشمل إشعارات البريد، وتكمل بنفس بياناتك بدون إعادة تثبيت.</p></details>
         <details><summary>أقدر أنقل البرنامج لجهاز جديد؟</summary><p>نعم. تاخذ نسخة احتياطية من البرنامج وترجعها على الجهاز الجديد. تواصل معنا على واتساب لنقل الترخيص.</p></details>
       </div>
     </div>
@@ -344,6 +375,8 @@ const TABS = [
     p: ['<b>21 يوم</b> سنوياً، و30 بعد خمس سنوات', 'الإجازة المرضية بشرائحها', 'رصيد افتتاحي للموظفين الحاليين', 'تنبيه بالطلبات اللي تنتظر الاعتماد'] },
   { k: 'documents', t: 'الوثائق والتنبيهات', d: 'الإقامات والجوازات والعقود والتأمين الطبي، مع تواريخ انتهائها.',
     p: ['<b>تنبيه قبل الانتهاء</b> في لوحة التحكم', 'إرفاق صورة الوثيقة بملف الموظف', 'تقرير كامل بالوثائق المنتهية والقريبة'] },
+  { k: 'email', t: 'إشعارات البريد', d: 'في نسخ «مع إشعارات البريد»: يوصل الموظف إيميل تلقائي من بريد منشأتك مع كل حدث يخصه.',
+    p: ['<b>الإنذارات والجزاءات</b> والخطابات الصادرة له', '<b>قرار الإجازة والسلفة والمصروفات</b> أول ما يُعتمد أو يُرفض', '<b>قسيمة الراتب</b> عند اعتماد مسير الشهر', 'تنبيه بقرب انتهاء الإقامة أو الجواز أو العقد، وملخص يومي لصاحب المنشأة', 'يشتغل مع Google Workspace وGmail وMicrosoft 365 وZoho'] },
   { k: 'reports', t: 'التقارير', d: 'تقارير جاهزة للإدارة، تتصدّر Excel أو PDF.',
     p: ['تكلفة الرواتب ونسبة التوطين لكل علامة', 'الحضور والتأخير والغياب', 'مخصص نهاية الخدمة المتراكم', 'حركة الموظفين والتعيينات'] },
 ];
