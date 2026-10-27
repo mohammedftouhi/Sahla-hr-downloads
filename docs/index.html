@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#0f1115">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18372197410"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18372197410');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18372197410');gtag('config','G-LLQ7YV73QL');</script>
 <link rel="icon" href="img/icon-192.png">
 <title>سهلة HR — برنامج شؤون موظفين ورواتب بدون اشتراك شهري</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -600,7 +600,7 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
     store.set('hr-lead', JSON.stringify(data));
     const body = new URLSearchParams(data);
     try { await Promise.race([fetch(LEADS, { method: 'POST', mode: 'no-cors', body }), new Promise(r => setTimeout(r, 4000))]); } catch (x) {}
-    try { gtag('event', 'conversion', { send_to: 'AW-18372197410/8C4hCMTh26sdEKL4xbhE' }); } catch (x) {}
+    try { gtag('event', 'conversion', { send_to: 'AW-18372197410/8C4hCMTh26sdEKL4xbhE' }); gtag('event', 'generate_lead', { send_to: 'G-LLQ7YV73QL' }); } catch (x) {}
     start(target);
     go.textContent = 'بدأ التحميل ✓';
     setTimeout(() => dlg.close(), 1600);
