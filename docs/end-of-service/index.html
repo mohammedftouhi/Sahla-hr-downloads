@@ -78,7 +78,12 @@ legend { font-weight: 700; font-size: 18px; margin-bottom: 4px; padding: 0; }
 label { display: grid; gap: 6px; font-weight: 500; font-size: 15px; color: var(--muted); }
 input, select { font: inherit; font-size: 17px; color: var(--fg); background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; min-width: 0; }
 input[type="number"] { direction: ltr; text-align: right; }
-input[type="date"] { direction: ltr; text-align: right; min-height: 48px; }
+.dwrap { position: relative; display: block; }
+.dtext { direction: ltr; text-align: left; min-height: 48px; padding-left: 48px; letter-spacing: .5px; font-variant-numeric: tabular-nums; }
+.dtext::placeholder { color: var(--faint); letter-spacing: 1px; }
+.dcal { position: absolute; left: 6px; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; display: grid; place-items: center; border: 0; border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; }
+.dcal:hover { color: var(--accent); background: var(--surface); }
+.dpick { position: absolute; left: 0; bottom: 0; width: 1px; height: 1px; padding: 0; border: 0; opacity: 0; pointer-events: none; }
 input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
 .hint { font-size: 13.5px; color: var(--faint); }
 .err { color: var(--bad); font-size: 15px; min-height: 0; }
@@ -142,8 +147,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         <fieldset>
           <legend>مدة الخدمة</legend>
           <div class="grid2">
-            <label>تاريخ المباشرة<input type="date" id="start" required></label>
-            <label>آخر يوم عمل<input type="date" id="end" required></label>
+            <label for="startT">تاريخ المباشرة<span class="dwrap"><input type="text" id="startT" class="dtext" placeholder="DD/MM/YYYY" inputmode="numeric" dir="ltr" lang="en" maxlength="10" autocomplete="off" required><button type="button" class="dcal" data-for="start" aria-label="اختر من التقويم"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></button><input type="date" id="start" class="dpick" tabindex="-1" aria-hidden="true"></span></label>
+            <label for="endT">آخر يوم عمل<span class="dwrap"><input type="text" id="endT" class="dtext" placeholder="DD/MM/YYYY" inputmode="numeric" dir="ltr" lang="en" maxlength="10" autocomplete="off" required><button type="button" class="dcal" data-for="end" aria-label="اختر من التقويم"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></button><input type="date" id="end" class="dpick" tabindex="-1" aria-hidden="true"></span></label>
           </div>
           <label>أيام غياب بدون أجر تُستبعد من الخدمة (اختياري)<input type="number" id="excl" min="0" step="1" inputmode="numeric" placeholder="0"></label>
         </fieldset>
@@ -241,8 +246,24 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   const money = n => fmt(Math.round(n * 100) / 100);
   const num = id => { const v = parseFloat($(id).value); return isFinite(v) && v > 0 ? v : 0; };
   const parse = s => { if (!s) return null; const [y, m, d] = s.split('-').map(Number); return Date.UTC(y, m - 1, d); };
+  // English DD/MM/YYYY text fields, synced with hidden native pickers
+  const pad = n => String(n).padStart(2, '0');
+  const toText = iso => { if (!iso) return ''; const [y, m, d] = iso.split('-'); return `${d}/${m}/${y}`; };
+  document.querySelectorAll('.dtext').forEach(t => {
+    const pick = $(t.id.slice(0, -1));
+    t.addEventListener('input', () => {
+      let v = t.value.replace(/[\u0660-\u0669]/g, c => c.charCodeAt(0) - 0x660).replace(/[\u06F0-\u06F9]/g, c => c.charCodeAt(0) - 0x6F0).replace(/[^0-9]/g, '').slice(0, 8);
+      if (v.length > 4) v = v.slice(0, 2) + '/' + v.slice(2, 4) + '/' + v.slice(4); else if (v.length > 2) v = v.slice(0, 2) + '/' + v.slice(2);
+      t.value = v;
+      const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(v); let iso = '';
+      if (m) { const d = +m[1], mo = +m[2], y = +m[3], dt = new Date(Date.UTC(y, mo - 1, d)); if (y > 1900 && dt.getUTCMonth() === mo - 1 && dt.getUTCDate() === d) iso = `${y}-${pad(mo)}-${pad(d)}`; }
+      pick.value = iso;
+    });
+    pick.addEventListener('change', () => { t.value = toText(pick.value); calc(); });
+  });
+  document.querySelectorAll('.dcal').forEach(b => b.addEventListener('click', () => { const p = $(b.dataset.for); try { p.showPicker(); } catch (e) { p.focus(); p.click(); } }));
   // today as default end date
-  try { const t = new Date(); $('end').value = new Date(t.getTime() - t.getTimezoneOffset() * 60000).toISOString().slice(0, 10); } catch (e) {}
+  try { const t = new Date(); $('end').value = new Date(t.getTime() - t.getTimezoneOffset() * 60000).toISOString().slice(0, 10); $('endT').value = toText($('end').value); } catch (e) {}
 
   // calendar years / months / days of service (last day inclusive)
   function span(start, end) {
