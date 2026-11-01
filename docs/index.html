@@ -581,6 +581,14 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
   const dlg = document.getElementById('dl'), f = document.getElementById('dlf'), err = document.getElementById('dlerr'), go = document.getElementById('dlgo');
   const ED = { 'Desktop': 'كمبيوتر بدون إشعارات', 'Desktop-Email': 'كمبيوتر مع إشعارات البريد', 'Server': 'سيرفر بدون إشعارات', 'Server-Email': 'سيرفر مع إشعارات البريد' };
   let target = null;
+  const MOB = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
+  const hEl = document.getElementById('dl-h'), subEl = document.querySelector('#dl .dl-sub');
+  const TXT = MOB
+    ? { h: 'البرنامج يشتغل على كمبيوتر ويندوز', sub: 'اكتب اسمك ورقم واتساب، ونرسل لك رابط التجربة تحمّله من الكمبيوتر.', go: 'أرسل لي الرابط على الواتساب', busy: 'جاري الإرسال…', done: 'تم ✓ بنرسل لك الرابط على الواتساب' }
+    : { h: hEl.textContent, sub: subEl.textContent, go: 'حمّل البرنامج الآن', busy: 'جاري التحميل…', done: 'بدأ التحميل ✓' };
+  hEl.textContent = TXT.h; subEl.textContent = TXT.sub;
+  if (MOB) document.querySelectorAll('a[href$=".exe"]').forEach(x => { const t = x.firstChild; if (t && t.nodeType === 3) t.textContent = 'أرسل لي رابط التجربة'; const sm = x.querySelector('small'); if (sm) sm.remove(); });
+  if (MOB) { const opt = document.querySelector('#dl .dl-2'); if (opt) opt.style.display = 'none'; }
   const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
   const edOf = href => { const m = /Sahla-HR-(.+)-Setup\.exe/.exec(href || ''); return m ? (ED[m[1]] || m[1]) : ''; };
   const normPhone = v => { let d = String(v || '').replace(/[٠-٩]/g, c => '٠١٢٣٤٥٦٧٨٩'.indexOf(c)).replace(/[^\d+]/g, ''); return d; };
@@ -592,7 +600,7 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
     e.preventDefault(); target = a.href;
     document.getElementById('dled').textContent = 'النسخة: ' + edOf(target);
     const saved = store.get('hr-lead'); if (saved) { try { const s = JSON.parse(saved); f.name.value = s.name || ''; f.phone.value = s.phone || ''; f.company.value = s.company || ''; f.size.value = s.size || ''; } catch (x) {} }
-    err.textContent = ''; go.disabled = false; go.textContent = 'حمّل البرنامج الآن';
+    err.textContent = ''; go.disabled = false; go.textContent = TXT.go;
     dlg.showModal(); setTimeout(() => (f.name.value ? f.phone : f.name).focus(), 30);
   });
   document.getElementById('dlx').addEventListener('click', () => dlg.close());
@@ -602,15 +610,15 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
     const name = f.name.value.trim(), phone = normPhone(f.phone.value);
     if (name.length < 2) { err.textContent = 'اكتب اسمك.'; f.name.focus(); return; }
     if (!validPhone(phone)) { err.textContent = 'اكتب رقم واتساب صحيح، مثل 05xxxxxxxx'; f.phone.focus(); return; }
-    go.disabled = true; go.textContent = 'جاري التحميل…';
-    const data = { name, phone, company: f.company.value.trim(), size: f.size.value, edition: edOf(target), page: location.hostname + location.pathname + (srcTag() ? ' ← ' + srcTag() : '') };
+    go.disabled = true; go.textContent = TXT.busy;
+    const data = { name, phone, company: f.company.value.trim(), size: f.size.value, edition: edOf(target) + (MOB ? ' — من الجوال: يبي الرابط على الواتساب' : ''), page: location.hostname + location.pathname + (srcTag() ? ' ← ' + srcTag() : '') };
     store.set('hr-lead', JSON.stringify(data));
     const body = new URLSearchParams(data);
     try { await Promise.race([fetch(LEADS, { method: 'POST', mode: 'no-cors', body }), new Promise(r => setTimeout(r, 4000))]); } catch (x) {}
     try { gtag('event', 'conversion', { send_to: 'AW-18372197410/8C4hCMTh26sdEKL4xbhE' }); gtag('event', 'generate_lead', { send_to: 'G-LLQ7YV73QL' }); } catch (x) {}
-    start(target);
-    go.textContent = 'بدأ التحميل ✓';
-    setTimeout(() => dlg.close(), 1600);
+    if (!MOB) start(target);
+    go.textContent = TXT.done;
+    setTimeout(() => dlg.close(), MOB ? 3000 : 1600);
   });
 })();
 </script>
