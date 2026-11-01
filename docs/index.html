@@ -611,7 +611,7 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
     if (name.length < 2) { err.textContent = 'اكتب اسمك.'; f.name.focus(); return; }
     if (!validPhone(phone)) { err.textContent = 'اكتب رقم واتساب صحيح، مثل 05xxxxxxxx'; f.phone.focus(); return; }
     go.disabled = true; go.textContent = TXT.busy;
-    const data = { name, phone, company: f.company.value.trim(), size: f.size.value, edition: edOf(target) + (MOB ? ' — من الجوال: يبي الرابط على الواتساب' : ''), page: location.hostname + location.pathname + (srcTag() ? ' ← ' + srcTag() : '') };
+    const data = { name, phone, company: f.company.value.trim(), size: f.size.value, edition: edOf(target) + (MOB ? ' (جوال)' : ''), page: location.hostname + location.pathname + (srcTag() ? ' ← ' + srcTag() : '') };
     store.set('hr-lead', JSON.stringify(data));
     const body = new URLSearchParams(data);
     try { await Promise.race([fetch(LEADS, { method: 'POST', mode: 'no-cors', body }), new Promise(r => setTimeout(r, 4000))]); } catch (x) {}
