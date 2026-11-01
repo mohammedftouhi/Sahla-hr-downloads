@@ -295,6 +295,21 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
 .dl-go { width: 100%; font-size: 17px; padding: 14px; }
 .dl-go:disabled { opacity: .75; cursor: progress; transform: none; }
 .dl-note { color: var(--faint); font-size: 13px; text-align: center; }
+/* SmartScreen help shown after the download starts */
+#dlf[hidden], .ss[hidden] { display: none !important; }
+.ss { display: grid; gap: 14px; padding: 26px 22px 22px; position: relative; }
+.ss::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: var(--accent); }
+.ss h3 { font-size: 21px; padding-inline-end: 34px; }
+.ss-step { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; font-size: 15.5px; line-height: 1.7; }
+.ss-n { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-weight: 700; }
+.ss-win { background: #1f5fa8; color: #fff; border-radius: 6px; padding: 14px 16px 12px; font-family: "Segoe UI", Tahoma, sans-serif; display: grid; gap: 8px; }
+.ss-win b { font-size: 17px; font-weight: 600; }
+.ss-win p { font-size: 13px; opacity: .9; margin: 0; }
+.ss-link { text-decoration: underline; font-size: 13.5px; outline: 2px dashed #ffd54f; outline-offset: 3px; width: fit-content; }
+.ss-btns { display: flex; gap: 8px; justify-content: flex-end; }
+.ss-btns span { border: 1px solid rgba(255,255,255,.7); padding: 5px 14px; font-size: 13px; }
+.ss-btns .hl { outline: 2px dashed #ffd54f; outline-offset: 3px; }
+.ss small { color: var(--faint); font-size: 13.5px; line-height: 1.7; }
 .dl-x { position: absolute; top: 14px; left: 14px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface-2); color: var(--muted); font-size: 22px; line-height: 1; cursor: pointer; }
 </style>
 </head>
@@ -532,6 +547,20 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
     <button class="btn primary dl-go" type="submit" id="dlgo">حمّل البرنامج الآن</button>
     <p class="dl-note">بياناتك ما تُشارك مع أي جهة، ونستخدمها للتواصل معك بخصوص البرنامج فقط.</p>
   </form>
+  <div class="ss" id="ss" hidden>
+    <button type="button" class="dl-x" aria-label="إغلاق" onclick="this.closest('dialog').close()">×</button>
+    <h3>بدأ التحميل ✓ — وإذا طلع لك تحذير ويندوز الأزرق:</h3>
+    <div class="ss-win" aria-hidden="true" dir="ltr">
+      <b>Windows protected your PC</b>
+      <p>Microsoft Defender SmartScreen prevented an unrecognized app from starting…</p>
+      <span class="ss-link">More info</span>
+      <div class="ss-btns"><span class="hl">Run anyway</span><span>Don't run</span></div>
+    </div>
+    <div class="ss-step"><span class="ss-n">1</span><span>اضغط <b>«مزيد من المعلومات» More info</b></span></div>
+    <div class="ss-step"><span class="ss-n">2</span><span>اضغط <b>«تشغيل على أي حال» Run anyway</b> ويكمل التثبيت عادي.</span></div>
+    <small>هذا تنبيه يطلع لأي برنامج جديد ما انتشر كثير، مو لأن فيه مشكلة. ولو المتصفح قال إن الملف «غير شائع»، اختر «الاحتفاظ» Keep. وإذا تعثّرت، بنكلمك على الواتساب ونساعدك.</small>
+    <button type="button" class="btn primary dl-go" onclick="this.closest('dialog').close()">تمام</button>
+  </div>
 </dialog>
 
 <script>
@@ -578,7 +607,7 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
 /* trial download: name + WhatsApp required, saved to Google Sheet, then download starts */
 (function () {
   const LEADS = 'https://script.google.com/macros/s/AKfycbydzDJ4b7MGnmaVyrxQ_no8mS-X4ZrJCus6GuxcVVTvnE1DZShqfd2Y6lZS1p_WNz4mrw/exec';
-  const dlg = document.getElementById('dl'), f = document.getElementById('dlf'), err = document.getElementById('dlerr'), go = document.getElementById('dlgo');
+  const ss = document.getElementById('ss'), dlg = document.getElementById('dl'), f = document.getElementById('dlf'), err = document.getElementById('dlerr'), go = document.getElementById('dlgo');
   const ED = { 'Desktop': 'كمبيوتر بدون إشعارات', 'Desktop-Email': 'كمبيوتر مع إشعارات البريد', 'Server': 'سيرفر بدون إشعارات', 'Server-Email': 'سيرفر مع إشعارات البريد' };
   let target = null;
   const MOB = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
@@ -601,6 +630,7 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
     document.getElementById('dled').textContent = 'النسخة: ' + edOf(target);
     const saved = store.get('hr-lead'); if (saved) { try { const s = JSON.parse(saved); f.name.value = s.name || ''; f.phone.value = s.phone || ''; f.company.value = s.company || ''; f.size.value = s.size || ''; } catch (x) {} }
     err.textContent = ''; go.disabled = false; go.textContent = TXT.go;
+    f.hidden = false; ss.hidden = true;
     dlg.showModal(); setTimeout(() => (f.name.value ? f.phone : f.name).focus(), 30);
   });
   document.getElementById('dlx').addEventListener('click', () => dlg.close());
@@ -618,7 +648,8 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
     try { gtag('event', 'conversion', { send_to: 'AW-18372197410/8C4hCMTh26sdEKL4xbhE' }); gtag('event', 'generate_lead', { send_to: 'G-LLQ7YV73QL' }); } catch (x) {}
     if (!MOB) start(target);
     go.textContent = TXT.done;
-    setTimeout(() => dlg.close(), MOB ? 3000 : 1600);
+    if (MOB) setTimeout(() => dlg.close(), 3000);
+    else setTimeout(() => { f.hidden = true; ss.hidden = false; }, 900);
   });
 })();
 </script>
