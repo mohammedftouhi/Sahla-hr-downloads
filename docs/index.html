@@ -356,8 +356,8 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
         <div class="meta"><span><i></i>بدون اشتراك شهري</span><span><i></i>عربي بالكامل</span><span><i></i>كمبيوتر أو سيرفر للشبكة</span><span><i></i>يشتغل على الجوال من الشبكة</span></div>
       </div>
       <div class="stage">
-        <div class="frame"><div class="bar"><i></i><i></i><i></i></div><img src="img/dashboard-d.webp" alt="لوحة التحكم في سهلة HR: عدد الموظفين لكل علامة، الحاضرون والغائبون اليوم، تكلفة الرواتب، وتنبيهات انتهاء الإقامات والعقود" width="1600" height="1000"></div>
-        <div class="phone"><img src="img/dashboard-m.webp" alt="لوحة التحكم على الجوال" width="560" height="1212"></div>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i></div><img src="img/dashboard-d.webp?v=3" alt="لوحة التحكم في سهلة HR: عدد الموظفين لكل علامة، الحاضرون والغائبون اليوم، تكلفة الرواتب، وتنبيهات انتهاء الإقامات والعقود" width="1600" height="1000"></div>
+        <div class="phone"><img src="img/dashboard-m.webp?v=3" alt="لوحة التحكم على الجوال" width="560" height="1212"></div>
       </div>
     </div>
   </section>
@@ -402,7 +402,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
         <h2>شوف البرنامج في أقل من دقيقة</h2>
         <p class="lead" style="margin-top:10px">جولة سريعة على لوحة التحكم، ملف الموظف، الحضور، الرواتب، نهاية الخدمة، الإجازات، التقارير، وإشعارات البريد وتنبيهات التأخير.</p>
       </div>
-      <div class="vbox"><video controls playsinline preload="metadata" poster="media/sahla-hr-intro-poster.jpg"><source src="media/sahla-hr-intro.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
+      <div class="vbox"><video controls playsinline preload="metadata" poster="media/sahla-hr-intro-poster.jpg?v=3"><source src="media/sahla-hr-intro.mp4?v=3" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
     </div>
   </section>
 
@@ -426,7 +426,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
       </div>
       <div class="tabs" role="tablist" aria-label="أقسام البرنامج" id="tabs"></div>
       <div class="panel" role="tabpanel" id="panel" aria-live="polite">
-        <div class="shot"><img id="shot" src="img/attendance-d.webp" alt="" width="1600" height="1000"></div>
+        <div class="shot"><img id="shot" src="img/attendance-d.webp?v=3" alt="" width="1600" height="1000"></div>
         <div class="text"><h3 id="ttl">الحضور والانصراف</h3><p class="lead" id="dsc" style="font-size:16.5px"></p><ul id="pts"></ul></div>
       </div>
     </div>
@@ -666,14 +666,14 @@ const tabsEl = document.getElementById('tabs'), shot = document.getElementById('
 function show(i, focus) {
   const x = TABS[i];
   [...tabsEl.children].forEach((b, j) => { b.setAttribute('aria-selected', j === i); b.tabIndex = j === i ? 0 : -1; });
-  shot.src = 'img/' + x.k + '-d.webp'; shot.alt = 'لقطة من قسم ' + x.t;
+  shot.src = 'img/' + x.k + '-d.webp?v=3'; shot.alt = 'لقطة من قسم ' + x.t;
   ttl.textContent = x.t; dsc.textContent = x.d; pts.innerHTML = x.p.map(s => '<li><span>' + s + '</span></li>').join('');
   if (focus) tabsEl.children[i].focus();
 }
 TABS.forEach((x, i) => { const b = document.createElement('button'); b.type = 'button'; b.role = 'tab'; b.id = 'tab-' + x.k; b.textContent = x.t; b.onclick = () => show(i); tabsEl.append(b); });
 tabsEl.addEventListener('keydown', e => { const cur = TABS.findIndex((_, j) => tabsEl.children[j].getAttribute('aria-selected') === 'true');
   if (e.key === 'ArrowLeft') show((cur + 1) % TABS.length, true); if (e.key === 'ArrowRight') show((cur - 1 + TABS.length) % TABS.length, true); });
-TABS.forEach(x => { const im = new Image(); im.src = 'img/' + x.k + '-d.webp'; });
+TABS.forEach(x => { const im = new Image(); im.src = 'img/' + x.k + '-d.webp?v=3'; });
 show(0);
 document.getElementById('copyBtn').addEventListener('click', async e => {
   const b = e.currentTarget;
