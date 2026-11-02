@@ -311,6 +311,25 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
 .ss-btns .hl { outline: 2px dashed #ffd54f; outline-offset: 3px; }
 .ss small { color: var(--faint); font-size: 13.5px; line-height: 1.7; }
 .dl-x { position: absolute; top: 14px; left: 14px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface-2); color: var(--muted); font-size: 22px; line-height: 1; cursor: pointer; }
+
+/* new: full employee report + per-weekday shift */
+.rep { background: var(--bg); }
+.rep .wrap, .dshift .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+@media (max-width: 900px) { .rep .wrap, .dshift .wrap { grid-template-columns: 1fr; } }
+.paper { background: #fff; color: #1d2433; border-radius: 14px; padding: 16px 16px 18px; box-shadow: 0 30px 70px -28px rgba(0,0,0,.55); border: 1px solid #e3e7ee; display: grid; gap: 12px; min-width: 0; }
+.pp-head { display: flex; align-items: center; gap: 12px; border-radius: 12px; padding: 12px 14px; color: #fff; background: linear-gradient(135deg, #0a84d6, #1d2433); }
+.pp-av { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,.2); display: grid; place-items: center; font-weight: 700; flex: none; }
+.pp-head b { display: block; font-size: 16px; } .pp-head small { font-size: 12px; opacity: .9; }
+.pp-kpi { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.pp-kpi div { border-radius: 10px; padding: 7px 8px; color: #fff; font-size: 11px; line-height: 1.4; } .pp-kpi b { display: block; font-size: 16px; }
+.pp-row { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; align-items: center; }
+.pp-lg { display: grid; gap: 4px; font-size: 12px; } .pp-lg span { display: flex; align-items: center; gap: 6px; } .pp-lg i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.pp-cap { font-size: 12.5px; font-weight: 700; color: #1d2433; display: flex; align-items: center; gap: 6px; } .pp-cap::before { content: ""; width: 4px; height: 13px; border-radius: 2px; background: #0a84d6; }
+.dshift { border-block: 1px solid var(--line); background: var(--surface); }
+.week { display: grid; gap: 8px; min-width: 0; }
+.week div { display: grid; grid-template-columns: 76px minmax(0, 1fr); align-items: center; gap: 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; font-size: 15px; }
+.week div span:first-child { font-weight: 700; } .week div span:last-child { color: var(--muted); }
+.week div.hl { border-color: var(--accent); background: var(--accent-soft); } .week div.hl span:last-child { color: var(--fg); font-weight: 700; }
 </style>
 </head>
 <body>
@@ -413,12 +432,69 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
     </div>
   </section>
 
+  <section class="rep" id="employee-report" aria-labelledby="rep-h">
+    <div class="wrap">
+      <div class="attn-copy">
+        <div class="eyebrow">جديد · في كل النسخ</div>
+        <h2 id="rep-h">تقرير شامل عن أي موظف، بضغطة وحدة</h2>
+        <p class="lead">زر «التقرير الشامل» في ملف كل موظف يطلّع لك تقرير PDF ملوّن يجمع كل شي عنه في الفترة اللي تختارها، جاهز تطبعه أو ترسله للإدارة.</p>
+        <ul class="attn-list">
+          <li><b>الالتزام بالحضور</b><span>نسبة الالتزام، ورسم بأيام الحضور والتأخير والغياب والإجازات</span></li>
+          <li><b>التأخير والإضافي</b><span>رسم أعمدة شهر بشهر، مع إجمالي الساعات</span></li>
+          <li><b>الإجازات والراتب</b><span>الرصيد المتبقي، وصافي الراتب كل شهر، ومكافأة نهاية الخدمة حتى اليوم</span></li>
+          <li><b>السلف والعهد والجزاءات</b><span>كل اللي على الموظف في مكان واحد</span></li>
+        </ul>
+        <p class="attn-note">اللي ما عنده صلاحية رؤية الرواتب يطلع له التقرير بدون قسم الراتب.</p>
+      </div>
+      <div class="paper" aria-hidden="true">
+        <div class="pp-head"><div class="pp-av">ع ق</div><div><b>عبدالعزيز القحطاني</b><small>مشرف صالة · فرع النهضة · الخدمة: سنتين</small></div></div>
+        <div class="pp-kpi">
+          <div style="background:#1f9d57"><b class="num">96%</b>الالتزام</div>
+          <div style="background:#d64545"><b class="num">2</b>أيام غياب</div>
+          <div style="background:#e8a33d"><b>4 ساعات</b>تأخير</div>
+          <div style="background:#0fa3a3"><b>18 ساعة</b>إضافي</div>
+        </div>
+        <div class="pp-cap">توزيع أيام الحضور</div>
+        <div class="pp-row">
+          <svg viewBox="0 0 110 110" width="110" height="110"><circle cx="55" cy="55" r="42" fill="none" stroke="#1f9d57" stroke-width="16" stroke-dasharray="211 53" transform="rotate(-90 55 55)"/><circle cx="55" cy="55" r="42" fill="none" stroke="#e8a33d" stroke-width="16" stroke-dasharray="32 232" stroke-dashoffset="-211" transform="rotate(-90 55 55)"/><circle cx="55" cy="55" r="42" fill="none" stroke="#d64545" stroke-width="16" stroke-dasharray="7 257" stroke-dashoffset="-243" transform="rotate(-90 55 55)"/><circle cx="55" cy="55" r="42" fill="none" stroke="#3b7dd8" stroke-width="16" stroke-dasharray="14 250" stroke-dashoffset="-250" transform="rotate(-90 55 55)"/><text x="55" y="61" text-anchor="middle" font-size="19" font-weight="700" fill="#1d2433">96%</text></svg>
+          <div class="pp-lg"><span><i style="background:#1f9d57"></i>حضور منتظم</span><span><i style="background:#e8a33d"></i>حضور مع تأخير</span><span><i style="background:#d64545"></i>غياب</span><span><i style="background:#3b7dd8"></i>إجازة</span></div>
+        </div>
+        <div class="pp-cap">التأخير والإضافي شهرياً</div>
+        <svg viewBox="0 0 300 92" width="100%" height="96" preserveAspectRatio="none" style="direction:ltr"><g fill="#e8a33d"><rect x="18" y="70" width="14" height="12" rx="2"/><rect x="66" y="64" width="14" height="18" rx="2"/><rect x="114" y="74" width="14" height="8" rx="2"/><rect x="162" y="60" width="14" height="22" rx="2"/><rect x="210" y="72" width="14" height="10" rx="2"/><rect x="258" y="68" width="14" height="14" rx="2"/></g><g fill="#0fa3a3"><rect x="33" y="30" width="14" height="52" rx="2"/><rect x="81" y="22" width="14" height="60" rx="2"/><rect x="129" y="36" width="14" height="46" rx="2"/><rect x="177" y="28" width="14" height="54" rx="2"/><rect x="225" y="40" width="14" height="42" rx="2"/><rect x="273" y="26" width="14" height="56" rx="2"/></g><line x1="10" y1="82" x2="295" y2="82" stroke="#e3e7ee"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="dshift" id="day-shifts" aria-labelledby="ds-h">
+    <div class="wrap">
+      <div class="attn-copy">
+        <div class="eyebrow">جديد</div>
+        <h2 id="ds-h">وردية مختلفة لأي يوم في الأسبوع</h2>
+        <p class="lead">عندك موظف دوامه من 8 الصبح إلى 8 المسا، ويوم الجمعة من 1 الظهر إلى 1 الليل؟ تحدد للجمعة ورديتها مرة وحدة في ملفه، وتنطبق كل أسبوع تلقائياً.</p>
+        <ul class="attn-list">
+          <li><b>حساب صحيح</b><span>الحضور والتأخير والإضافي يتحسب على وردية اليوم نفسه</span></li>
+          <li><b>بدون تنبيهات غلط</b><span>ما يوصل الموظف أو يوصلك إيميل تأخير لأن البرنامج حسب دوامه على الوردية العادية</span></li>
+        </ul>
+        <p class="attn-note">اليوم اللي له وردية خاصة يُعتبر يوم دوام حتى لو كان من أيام الراحة.</p>
+      </div>
+      <div class="week" aria-hidden="true">
+        <div><span>السبت</span><span>من 8 ص إلى 8 م</span></div>
+        <div><span>الأحد</span><span>من 8 ص إلى 8 م</span></div>
+        <div><span>الاثنين</span><span>من 8 ص إلى 8 م</span></div>
+        <div><span>الثلاثاء</span><span>من 8 ص إلى 8 م</span></div>
+        <div><span>الأربعاء</span><span>من 8 ص إلى 8 م</span></div>
+        <div><span>الخميس</span><span>من 8 ص إلى 8 م</span></div>
+        <div class="hl"><span>الجمعة</span><span>من 1 الظهر إلى 1 الليل · وردية خاصة</span></div>
+      </div>
+    </div>
+  </section>
+
   <section class="offline">
     <div class="wrap">
       <div class="eyebrow">بياناتك عندك</div>
       <h2>يشتغل على جهازك أو سيرفر شركتك، بدون إنترنت</h2>
       <div class="grid">
-        <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><h3>مشفّر ومحفوظ محلياً</h3><p>قاعدة البيانات مشفرة على جهازك، ولا تنرفع لأي سحابة. رواتب موظفينك ما يشوفها أحد غيرك.</p></div>
+        <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><h3>مشفّر ومربوط بجهازك</h3><p>قاعدة البيانات مشفرة على جهازك ولا تنرفع لأي سحابة، ومفتاحها مربوط بالجهاز نفسه: لو أحد نسخ مجلد البيانات لجهاز ثاني ما يقدر يفتحه.</p></div>
         <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg><h3>مستخدمين وصلاحيات</h3><p>الموارد البشرية، المحاسب، مدير الفرع: كل واحد يشوف ويعدّل اللي يخصه، وكل تعديل مسجّل باسم صاحبه.</p></div>
         <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg><h3>نسخ احتياطي تلقائي</h3><p>نسخة احتياطية كل يوم، وتقدر تحفظ نسخة على فلاش أو قرص خارجي وترجعها على جهاز ثاني.</p></div>
       </div>
@@ -510,7 +586,9 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
         <details><summary>عندي أكثر من علامة تجارية أو فرع</summary><p>تضيف كل علامة بشعارها وسجلها التجاري، وكل علامة لها فروعها ومسيرها المستقل، وتقدر تشوف الكل في لوحة وحدة.</p></details>
         <details><summary>وش الفرق بين النسخ مع إشعارات البريد وبدونها؟</summary><p>نفس البرنامج بكل أقسامه. النسخ «مع إشعارات البريد» ترسل للموظف إيميل تلقائي من بريد منشأتك مع كل حدث يخصه: الإنذارات، قرار الإجازة والسلفة، قسيمة الراتب، وقرب انتهاء وثائقه. تحتاج بريد للمنشأة (Google Workspace أو Gmail أو Microsoft 365 أو Zoho) وأن يكون الجهاز متصل بالإنترنت وقت الإرسال.</p></details>
         <details><summary>اشتريت بدون إشعارات البريد، أقدر أرقّي بعدين؟</summary><p>نعم. تواصل معنا على واتساب، نرسل لك رقم ترخيص جديد يشمل إشعارات البريد، وتكمل بنفس بياناتك بدون إعادة تثبيت.</p></details>
-        <details><summary>أقدر أنقل البرنامج لجهاز جديد؟</summary><p>نعم. تاخذ نسخة احتياطية من البرنامج وترجعها على الجهاز الجديد. تواصل معنا على واتساب لنقل الترخيص.</p></details>
+        <details><summary>أقدر أنقل البرنامج لجهاز جديد؟</summary><p>نعم. تاخذ نسخة احتياطية من البرنامج وترجعها على الجهاز الجديد بكلمة مرور الاستعادة. نسخ مجلد البيانات يدوياً ما يكفي، لأن مفتاح البيانات مربوط بالجهاز. تواصل معنا على واتساب لنقل الترخيص.</p></details>
+        <details><summary>عندي موظفين دوامهم يختلف يوم الجمعة</summary><p>من ملف الموظف تحدد لأي يوم في الأسبوع ورديته الخاصة مرة وحدة، والبرنامج يحسب حضوره وتأخيره وتنبيهاته على وردية ذاك اليوم كل أسبوع.</p></details>
+        <details><summary>هل الاتصال بين الأجهزة والسيرفر مشفّر؟</summary><p>في نسخة السيرفر تقدر تفعّل الاتصال المشفّر (HTTPS) داخل شبكتك بسطر واحد في الإعدادات، والبرنامج يجهّز شهادته بنفسه. أول مرة يطلع في المتصفح تنبيه لأن الشهادة خاصة بسيرفرك، تختار «متابعة» ويكمل عادي.</p></details>
       </div>
     </div>
   </section>
@@ -568,13 +646,13 @@ function srcTag(){ var q=new URLSearchParams(location.search).get('src'); try{ i
 srcTag();
 const TABS = [
   { k: 'attendance', t: 'الحضور والانصراف', d: 'كشف يومي وشهري لكل فرع، يتعبّى من جهاز البصمة أو من ملف Excel.',
-    p: ['<b>الحالة لكل موظف:</b> حاضر، غائب، إجازة، بصمة ناقصة', '<b>التأخير والخروج المبكر والإضافي</b> محسوبة حسب ورديته', '<b>إيميل فوري للموظف</b> إذا تأخر أو ما بصم أو طلع بدري (نسخ البريد)', 'دوام فترة واحدة أو فترتين، حسب الوردية أو ساعات خاصة لكل موظف', 'أيام راحة مختلفة لكل موظف، ودوام رمضان تلقائياً', 'تصدير الكشف Excel أو PDF'] },
+    p: ['<b>الحالة لكل موظف:</b> حاضر، غائب، إجازة، بصمة ناقصة', '<b>التأخير والخروج المبكر والإضافي</b> محسوبة حسب ورديته', '<b>إيميل فوري للموظف</b> إذا تأخر أو ما بصم أو طلع بدري (نسخ البريد)', 'دوام فترة واحدة أو فترتين، حسب الوردية أو ساعات خاصة لكل موظف', 'أيام راحة مختلفة لكل موظف، ودوام رمضان تلقائياً', '<b>وردية مختلفة لأي يوم</b> مثل الجمعة، تُحدد مرة وحدة', 'تصدير الكشف Excel أو PDF'] },
   { k: 'payroll-run', t: 'مسير الرواتب', d: 'مسير لكل علامة كل شهر، يتحسب من الحضور والإجازات والسلف والجزاءات.',
     p: ['<b>التأمينات</b> على الموظف والمنشأة حسب نوعه', '<b>ملف حماية الأجور</b> مع تنبيه بالموظف الناقص هويته أو آيبانه', 'قسائم رواتب PDF لكل موظف', 'اعتماد وقفل المسير بعد المراجعة'] },
   { k: 'eos-calc', t: 'نهاية الخدمة', d: 'حاسبة المكافأة والمخالصة حسب سبب انتهاء العلاقة.',
     p: ['<b>المواد 84 و85 و87</b> من نظام العمل', 'بدل رصيد الإجازات وراتب الأيام الأخيرة', 'خصم السلف المتبقية والعهد غير المسلّمة', 'طباعة المخالصة جاهزة للتوقيع'] },
   { k: 'employee', t: 'ملف الموظف', d: 'كل شي عن الموظف في صفحة وحدة، بتبويبات واضحة.',
-    p: ['البيانات، الراتب، السجل الوظيفي، الوثائق', 'الإجازات، الحضور، السلف، العهد، الجزاءات', 'التقييم والتدريب والخطابات الصادرة', '<b>إصدار خطاب</b> تعريف أو غيره بضغطة'] },
+    p: ['البيانات، الراتب، السجل الوظيفي، الوثائق', 'الإجازات، الحضور، السلف، العهد، الجزاءات', 'التقييم والتدريب والخطابات الصادرة', '<b>إصدار خطاب</b> تعريف أو غيره بضغطة', '<b>التقرير الشامل PDF</b> برسومات ملونة عن حضوره وإجازاته وراتبه'] },
   { k: 'leaves', t: 'الإجازات', d: 'طلبات واعتماد وأرصدة، حسب نظام العمل.',
     p: ['<b>21 يوم</b> سنوياً، و30 بعد خمس سنوات', 'الإجازة المرضية بشرائحها', 'كشف الحضور يكتب نوع الإجازة: سنوية أو مرضية أو غيرها', 'رصيد افتتاحي للموظفين الحاليين', 'تنبيه بالطلبات اللي تنتظر الاعتماد'] },
   { k: 'documents', t: 'الوثائق والتنبيهات', d: 'الإقامات والجوازات والعقود والتأمين الطبي، مع تواريخ انتهائها.',
@@ -582,7 +660,7 @@ const TABS = [
   { k: 'email', t: 'إشعارات البريد', d: 'في نسخ «مع إشعارات البريد»: يوصل الموظف إيميل تلقائي من بريد منشأتك مع كل حدث يخصه.',
     p: ['<b>التأخير وعدم التبصيم والخروج المبكر</b> بعد دقائق تحددها أنت', '<b>الإنذارات والجزاءات</b> والخطابات الصادرة له', '<b>قرار الإجازة والسلفة والمصروفات</b> أول ما يُعتمد أو يُرفض', '<b>قسيمة الراتب</b> عند اعتماد مسير الشهر', 'تنبيه بقرب انتهاء الإقامة أو الجواز أو العقد، وملخص يومي لصاحب المنشأة', 'يشتغل مع Google Workspace وGmail وMicrosoft 365 وZoho'] },
   { k: 'reports', t: 'التقارير', d: 'تقارير جاهزة للإدارة، تتصدّر Excel أو PDF.',
-    p: ['تكلفة الرواتب ونسبة التوطين لكل علامة', 'الحضور والتأخير والغياب', 'مخصص نهاية الخدمة المتراكم', 'حركة الموظفين والتعيينات'] },
+    p: ['<b>تقرير شامل لكل موظف</b> PDF ملوّن بالرسومات', 'تكلفة الرواتب ونسبة التوطين لكل علامة', 'الحضور والتأخير والغياب', 'مخصص نهاية الخدمة المتراكم', 'حركة الموظفين والتعيينات'] },
 ];
 const tabsEl = document.getElementById('tabs'), shot = document.getElementById('shot'), ttl = document.getElementById('ttl'), dsc = document.getElementById('dsc'), pts = document.getElementById('pts');
 function show(i, focus) {
