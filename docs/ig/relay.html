@@ -1,6 +1,7 @@
 <!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><title>relay</title><body>…</body>
 <script>
+const T=()=>window.opener||(window.parent!==window?window.parent:null);
 (async()=>{const q=new URLSearchParams(location.search);const files=(q.get('f')||'').split(',').filter(Boolean);
-for(const f of files){try{const r=await fetch(f);const b=await r.arrayBuffer();window.opener&&window.opener.postMessage({sahlaRelay:1,name:f.split('/').pop(),type:r.headers.get('content-type'),buf:b},'*',[b]);}catch(e){window.opener&&window.opener.postMessage({sahlaRelay:1,error:String(e),name:f},'*');}}
-window.opener&&window.opener.postMessage({sahlaRelay:1,done:1},'*');document.body.textContent='done';setTimeout(()=>window.close(),500);})();
+for(const f of files){try{const r=await fetch(f);const b=await r.arrayBuffer();T()&&T().postMessage({sahlaRelay:1,name:f.split('/').pop(),type:r.headers.get('content-type'),buf:b},'*',[b]);}catch(e){T()&&T().postMessage({sahlaRelay:1,error:String(e),name:f},'*');}}
+T()&&T().postMessage({sahlaRelay:1,done:1},'*');document.body.textContent='done';setTimeout(()=>window.close(),500);})();
 </script>
