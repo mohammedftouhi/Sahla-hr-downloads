@@ -326,6 +326,27 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
 .pp-lg { display: grid; gap: 4px; font-size: 12px; } .pp-lg span { display: flex; align-items: center; gap: 6px; } .pp-lg i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
 .pp-cap { font-size: 12.5px; font-weight: 700; color: #1d2433; display: flex; align-items: center; gap: 6px; } .pp-cap::before { content: ""; width: 4px; height: 13px; border-radius: 2px; background: #0a84d6; }
 .dshift { border-block: 1px solid var(--line); background: var(--surface); }
+.circ .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+@media (max-width: 900px) { .circ .wrap { grid-template-columns: 1fr; } }
+.cdemo { display: grid; gap: 14px; min-width: 0; }
+.cbrands { display: flex; flex-wrap: wrap; gap: 8px; }
+.cbrands span { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 12px; font-size: 14px; color: var(--muted); }
+.cbrands span i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+.cbrands span.on { color: var(--fg); border-color: var(--fg); font-weight: 700; }
+.cbrands .cbtn { background: #0a84d6; border-color: #0a84d6; color: #fff; font-weight: 700; }
+.cmail { background: #fff; color: #1f2328; border-radius: 16px; padding: 0 20px 18px; box-shadow: 0 30px 70px -28px rgba(0,0,0,.55); border: 1px solid #e3e6ea; overflow: hidden; }
+.cmail .bar { height: 6px; margin: 0 -20px 14px; background: #e8833a; }
+.cmail .hd { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.cmail .lg { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 19px; letter-spacing: .5px; direction: ltr; }
+.cmail .lg i { width: 32px; height: 32px; border-radius: 8px; background: #e8833a; color: #fff; display: grid; place-items: center; font-style: normal; }
+.cmail .ref { font-size: 12.5px; color: #6b7280; text-align: left; line-height: 1.6; }
+.cmail .tag { display: inline-block; margin-top: 12px; background: #e8833a; color: #fff; border-radius: 999px; padding: 2px 12px; font-size: 12.5px; font-weight: 700; }
+.cmail .tt { font-size: 19px; font-weight: 700; margin: 6px 0 4px; }
+.cmail p { margin: 4px 0; font-size: 14.5px; color: #374151; line-height: 1.85; }
+.cmail ul { margin: 4px 0; padding-inline-start: 20px; font-size: 14.5px; line-height: 1.85; }
+.ccount { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 15px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+.ccount b { color: var(--ok); }
+
 .week { display: grid; gap: 8px; min-width: 0; }
 .week div { display: grid; grid-template-columns: 76px minmax(0, 1fr); align-items: center; gap: 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; font-size: 15px; }
 .week div span:first-child { font-weight: 700; } .week div span:last-child { color: var(--muted); }
@@ -402,9 +423,9 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
       <div>
         <div class="eyebrow">فيديو تعريفي</div>
         <h2>شوف البرنامج في أقل من دقيقة</h2>
-        <p class="lead" style="margin-top:10px">جولة سريعة على لوحة التحكم، ملف الموظف، الحضور، الرواتب، نهاية الخدمة، الإجازات، التقارير، وإشعارات البريد وتنبيهات التأخير.</p>
+        <p class="lead" style="margin-top:10px">جولة سريعة على لوحة التحكم، ملف الموظف، الحضور، الرواتب، نهاية الخدمة، الإجازات، التقارير، وإشعارات البريد وتنبيهات التأخير، والتعميمات بهوية العلامة.</p>
       </div>
-      <div class="vbox"><video controls playsinline preload="metadata" poster="media/sahla-hr-intro-poster.jpg?v=3"><source src="media/sahla-hr-intro.mp4?v=3" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
+      <div class="vbox"><video controls playsinline preload="metadata" poster="media/sahla-hr-intro-poster.jpg?v=4"><source src="media/sahla-hr-intro.mp4?v=4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
     </div>
   </section>
 
@@ -413,9 +434,9 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
       <div>
         <div class="eyebrow">فيديو التأسيس</div>
         <h2>التثبيت والتأسيس من أول مرة، خطوة بخطوة</h2>
-        <p class="lead" style="margin-top:10px">من التحميل والتثبيت على Windows، إلى إضافة العلامات والفروع والورديات والموظفين، وربط جهاز البصمة، والمستخدمين والصلاحيات، والنسخ الاحتياطي. في حوالي 7 دقائق.</p>
+        <p class="lead" style="margin-top:10px">من التحميل والتثبيت على Windows، إلى إضافة العلامات والفروع والورديات والموظفين، وربط جهاز البصمة، والمستخدمين والصلاحيات، والنسخ الاحتياطي، وبعدها جولة على المميزات ومنها التعميمات. في حوالي 8 دقائق.</p>
       </div>
-      <div class="vbox"><video controls playsinline preload="none" poster="media/sahla-hr-setup-poster.jpg?v=1"><source src="media/sahla-hr-setup-guide.mp4?v=1" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
+      <div class="vbox"><video controls playsinline preload="none" poster="media/sahla-hr-setup-poster.jpg?v=1"><source src="media/sahla-hr-setup-guide.mp4?v=2" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
     </div>
   </section>
 
@@ -502,6 +523,37 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
     </div>
   </section>
 
+  <section class="circ" id="circulars" aria-labelledby="circ-h">
+    <div class="wrap">
+      <div class="attn-copy">
+        <div class="eyebrow">جديد · التعميمات</div>
+        <h2 id="circ-h">تعميم واحد يوصل بريد كل موظفي العلامة</h2>
+        <p class="lead">زر «تعميم» أعلى الشاشة: تكتب التعميم مرة وحدة، ويوصل لكل موظف إيميل باسمه بشعار ولون علامته، مع رقم تعميم وتوقيع الموارد البشرية.</p>
+        <ul class="attn-list">
+          <li><b>لمن تبي</b><span>كل موظفي العلامة، أو فرع أو قسم أو مسمى محدد، ويبيّن لك اللي ما عندهم إيميل</span></li>
+          <li><b>قوالب جاهزة</b><span>الأعياد واليوم الوطني ويوم التأسيس ودوام رمضان وتحديث الوثائق والاجتماعات</span></li>
+          <li><b>معاينة وجدولة</b><span>تشوف الإيميل قبل الإرسال، وترسل لنفسك تجربة، أو تجدوله لوقت لاحق</span></li>
+          <li><b>أرشيف وطباعة</b><span>من وصله ومن فشل، وPDF بهوية العلامة للوحة الإعلانات مع كشف توقيع استلام</span></li>
+        </ul>
+        <p class="attn-note">الإرسال بالبريد في نسخ إشعارات البريد. الكتابة والطباعة PDF متوفرة في كل النسخ. وإذا أضفت عطلة رسمية، يجهز لك تعميمها بالتواريخ.</p>
+      </div>
+      <div class="cdemo" aria-hidden="true">
+        <div class="cbrands"><span style="--c:#0a84d6"><i></i>شركة الريادة</span><span class="on" style="--c:#e8833a"><i></i>مؤسسة البناء</span><span class="cbtn">📣 تعميم</span></div>
+        <div class="cmail">
+          <div class="bar"></div>
+          <div class="hd"><div class="lg"><i>B</i>BINAA</div><div class="ref">تعميم رقم <b dir="ltr">HR-T/2026/0002</b><br><span class="num">04/11/2026</span></div></div>
+          <span class="tag">تغيير دوام</span>
+          <div class="tt">مواعيد الدوام في شهر رمضان المبارك</div>
+          <p>عزيزي نواف،</p>
+          <p>نحيطكم علماً بأن مواعيد الدوام خلال الشهر الكريم ستكون:</p>
+          <ul><li>من الساعة <b>10 صباحاً</b> إلى <b>4 عصراً</b></li><li>ويبدأ العمل بها من أول أيام الشهر</li></ul>
+        </div>
+        <div class="ccount">✉️ وصل إلى <b>42 من 42</b> موظف · أرشيف التعميم محفوظ</div>
+      </div>
+    </div>
+  </section>
+
+
   <section class="offline">
     <div class="wrap">
       <div class="eyebrow">بياناتك عندك</div>
@@ -537,7 +589,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
           <span class="tag"><svg viewBox="0 0 28 21" width="16" height="12" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M3 4 L14 12 L25 4" fill="none" stroke="currentColor" stroke-width="3"/></svg>نسخة الكمبيوتر</span>
           <h3>مع إشعارات البريد</h3>
           <div class="price"><b class="num">1,299</b><span>ريال، مرة واحدة</span><s class="num">2,700</s></div>
-          <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li><span><b>تنبيه فوري بالتأخير</b> وعدم التبصيم والخروج المبكر، بعد دقائق تحددها أنت</span></li><li>كل أقسام البرنامج بدون استثناء</li><li>بياناتك في مجلد مستقل، ما تنحذف لو حدّثت البرنامج</li></ul>
+          <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li><span><b>تنبيه فوري بالتأخير</b> وعدم التبصيم والخروج المبكر، بعد دقائق تحددها أنت</span></li><li><span><b>التعميمات بالبريد</b> لكل موظفي العلامة بشعارها</span></li><li>كل أقسام البرنامج بدون استثناء</li><li>بياناتك في مجلد مستقل، ما تنحذف لو حدّثت البرنامج</li></ul>
           <div class="acts">
             <a class="btn primary" href="https://hr.sahla-sa.com/download/Sahla-HR-Desktop-Email-Setup.exe" rel="noopener">حمّل التجربة <small>Windows · 19 ميجا</small></a>
             <a class="btn ghost" href="https://sahla-sa.com/-/p839986011" target="_blank" rel="noopener">اشترِ الترخيص</a>
@@ -563,7 +615,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
           <span class="tag"><svg viewBox="0 0 28 21" width="16" height="12" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M3 4 L14 12 L25 4" fill="none" stroke="currentColor" stroke-width="3"/></svg>نسخة السيرفر · الأكثر طلباً</span>
           <h3>مع إشعارات البريد</h3>
           <div class="price"><b class="num">1,699</b><span>ريال، مرة واحدة</span><s class="num">3,500</s></div>
-          <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li><span><b>تنبيه فوري بالتأخير</b> وعدم التبصيم والخروج المبكر، بعد دقائق تحددها أنت</span></li><li>تتثبت على سيرفر الشركة وتشتغل تلقائياً مع ويندوز</li><li>فريقك يفتحها برابط من أي كمبيوتر أو جوال على الشبكة</li><li>مستخدمين متعددين مع صلاحيات لكل واحد</li></ul>
+          <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li><span><b>تنبيه فوري بالتأخير</b> وعدم التبصيم والخروج المبكر، بعد دقائق تحددها أنت</span></li><li><span><b>التعميمات بالبريد</b> لكل موظفي العلامة بشعارها</span></li><li>تتثبت على سيرفر الشركة وتشتغل تلقائياً مع ويندوز</li><li>فريقك يفتحها برابط من أي كمبيوتر أو جوال على الشبكة</li><li>مستخدمين متعددين مع صلاحيات لكل واحد</li></ul>
           <div class="acts">
             <a class="btn primary" href="https://hr.sahla-sa.com/download/Sahla-HR-Server-Email-Setup.exe" rel="noopener">حمّل التجربة <small>Windows Server · 19 ميجا</small></a>
             <a class="btn ghost" href="https://sahla-sa.com/-/p982089646" target="_blank" rel="noopener">اشترِ الترخيص</a>
@@ -672,6 +724,8 @@ const TABS = [
     p: ['<b>تنبيه قبل الانتهاء</b> في لوحة التحكم', 'إرفاق صورة الوثيقة بملف الموظف', 'تقرير كامل بالوثائق المنتهية والقريبة'] },
   { k: 'email', t: 'إشعارات البريد', d: 'في نسخ «مع إشعارات البريد»: يوصل الموظف إيميل تلقائي من بريد منشأتك مع كل حدث يخصه.',
     p: ['<b>التأخير وعدم التبصيم والخروج المبكر</b> بعد دقائق تحددها أنت', '<b>الإنذارات والجزاءات</b> والخطابات الصادرة له', '<b>قرار الإجازة والسلفة والمصروفات</b> أول ما يُعتمد أو يُرفض', '<b>قسيمة الراتب</b> عند اعتماد مسير الشهر', 'تنبيه بقرب انتهاء الإقامة أو الجواز أو العقد، وملخص يومي لصاحب المنشأة', 'يشتغل مع Google Workspace وGmail وMicrosoft 365 وZoho'] },
+  { k: 'circulars', t: 'التعميمات', d: 'تعميم موحد بهوية كل علامة، يوصل بريد الموظفين أو تطبعه للوحة الإعلانات.',
+    p: ['<b>زر «تعميم»</b> أعلى الشاشة للعلامة المختارة', 'كل الموظفين أو فرع أو قسم أو مسمى محدد', 'قوالب جاهزة للأعياد ودوام رمضان والاجتماعات', 'معاينة وإرسال تجربة وجدولة', '<b>أرشيف</b> بمن وصله، وPDF مع كشف توقيع استلام'] },
   { k: 'reports', t: 'التقارير', d: 'تقارير جاهزة للإدارة، تتصدّر Excel أو PDF.',
     p: ['<b>تقرير شامل لكل موظف</b> PDF ملوّن بالرسومات', 'تكلفة الرواتب ونسبة التوطين لكل علامة', 'الحضور والتأخير والغياب', 'مخصص نهاية الخدمة المتراكم', 'حركة الموظفين والتعيينات'] },
 ];
