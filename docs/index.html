@@ -295,6 +295,8 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
 .dl-go { width: 100%; font-size: 17px; padding: 14px; }
 .dl-go:disabled { opacity: .75; cursor: progress; transform: none; }
 .dl-note { color: var(--faint); font-size: 13px; text-align: center; }
+.dl-wa { display: block; text-align: center; font-weight: 700; color: #1f9d57; text-decoration: none; padding: 10px; border: 1.5px solid #1f9d57; border-radius: 12px; }
+.dl-wa:hover { background: #1f9d571a; }
 /* SmartScreen help shown after the download starts */
 #dlf[hidden], .ss[hidden] { display: none !important; }
 .ss { display: grid; gap: 14px; padding: 26px 22px 22px; position: relative; }
@@ -688,6 +690,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
     </div>
     <p class="dl-err" id="dlerr" role="alert"></p>
     <button class="btn primary dl-go" type="submit" id="dlgo">حمّل البرنامج الآن</button>
+    <a class="dl-wa" href="https://wa.me/966538000892?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%B1%D8%A7%D8%A8%D8%B7%20%D8%AA%D8%AC%D8%B1%D8%A8%D8%A9%20%D8%B3%D9%87%D9%84%D8%A9%20HR" target="_blank" rel="noopener">أو كلّمنا على الواتساب مباشرة ←</a>
     <p class="dl-note">بياناتك ما تُشارك مع أي جهة، ونستخدمها للتواصل معك بخصوص البرنامج فقط.</p>
   </form>
   <div class="ss" id="ss" hidden>
@@ -748,6 +751,12 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
   catch { const r = document.createRange(); r.selectNodeContents(document.querySelector('.numrow .n')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'انسخ الرقم المحدد'; }
   setTimeout(() => { b.textContent = 'نسخ الرقم'; }, 2500);
 });
+
+/* WhatsApp clicks count as a contact conversion */
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href*="wa.me/"]'); if (!a) return;
+  try { gtag('event', 'conversion', { send_to: 'AW-18372197410/4qUjCKnM67EdEKL4xbhE', transport_type: 'beacon' }); gtag('event', 'contact', { method: 'whatsapp', send_to: 'G-LLQ7YV73QL', transport_type: 'beacon' }); } catch (x) {}
+}, true);
 
 /* trial download: name + WhatsApp required, saved to Google Sheet, then download starts */
 (function () {
