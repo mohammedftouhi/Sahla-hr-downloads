@@ -20,7 +20,14 @@ if (fs.existsSync(LOG)) for (const l of fs.readFileSync(LOG, 'utf8').split('\n')
 const seen = fs.existsSync(SEEN) ? JSON.parse(fs.readFileSync(SEEN, 'utf8')) : {};
 const saveSeen = () => fs.writeFile(SEEN, JSON.stringify(seen, null, 2), () => {});
 const log = m => console.log(new Date().toISOString(), m);
-const allowed = sn => sn && (!cfg.allow.length || cfg.allow.includes(sn));
+// Several customers on one relay: relay.json "clients": [{ "name": "...", "key": "...", "sns": ["SN1", ...] }].
+// The master "key" sees everything; a client key sees only its own devices. A device is accepted if it is in "allow"
+// or in any client's "sns"; with both empty the relay is in learning mode and accepts every device.
+const clients = () => Array.isArray(cfg.clients) ? cfg.clients : [];
+const allSns = () => [...cfg.allow, ...clients().flatMap(c => c.sns || [])];
+const allowed = sn => sn && (!allSns().length || allSns().includes(sn));
+const scopeOf = key => { if (key && key === cfg.key) return null; const c = clients().find(c => c.key && c.key === key); return c ? new Set(c.sns || []) : false; };
+fs.watchFile(CFG_FILE, { interval: 5000 }, () => { try { Object.assign(cfg, JSON.parse(fs.readFileSync(CFG_FILE, 'utf8'))); log('relay.json reloaded'); } catch (e) { log('relay.json reload failed ' + e.message); } });
 const touch = (sn, ip, what) => { seen[sn] = Object.assign(seen[sn] || { first: new Date().toISOString() }, { last: new Date().toISOString(), ip, what, allowed: allowed(sn) }); saveSeen(); };
 
 function send(res, code, body, type = 'text/plain') { res.writeHead(code, { 'Content-Type': type + '; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(body); }
@@ -47,11 +54,13 @@ const server = http.createServer((req, res) => {
       const p = u.pathname.replace(/\/+$/, '');
       // ---- pull API for Sahla HR (secret key) ----
       if (p === '/pull' || p === '/status') {
-        if ((req.headers['x-key'] || u.searchParams.get('key')) !== cfg.key) return send(res, 403, 'forbidden');
-        if (p === '/status') return send(res, 200, JSON.stringify({ ok: true, lastId, devices: seen, allow: cfg.allow }), 'application/json');
+        const scope = scopeOf(req.headers['x-key'] || u.searchParams.get('key'));
+        if (scope === false) return send(res, 403, 'forbidden');
+        const mine = sn => !scope || scope.has(sn);
+        if (p === '/status') return send(res, 200, JSON.stringify({ ok: true, lastId, devices: Object.fromEntries(Object.entries(seen).filter(([k]) => mine(k))), allow: scope ? [...scope] : cfg.allow }), 'application/json');
         const after = Number(u.searchParams.get('after') || 0), lim = Math.min(Number(u.searchParams.get('limit') || 5000), 20000);
         const rows = [];
-        if (fs.existsSync(LOG)) for (const l of fs.readFileSync(LOG, 'utf8').split('\n')) { if (!l) continue; const r = JSON.parse(l); if (r.id > after) { rows.push(r); if (rows.length >= lim) break; } }
+        if (fs.existsSync(LOG)) for (const l of fs.readFileSync(LOG, 'utf8').split('\n')) { if (!l) continue; const r = JSON.parse(l); if (r.id > after && mine(r.sn)) { rows.push(r); if (rows.length >= lim) break; } }
         return send(res, 200, JSON.stringify({ ok: true, rows, lastId }), 'application/json');
       }
       // ---- ADMS / iClock protocol ----
@@ -73,7 +82,7 @@ const server = http.createServer((req, res) => {
     } catch (e) { log('error ' + e.message); send(res, 200, 'OK'); }
   });
 });
-server.listen(cfg.port, () => log(`ADMS relay on :${cfg.port} — allow=${cfg.allow.length ? cfg.allow.join(',') : 'ALL (learning)'}; pull key in relay.json`));
+server.listen(cfg.port, () => log(`ADMS relay on :${cfg.port} — devices=${allSns().length ? allSns().join(',') : 'ALL (learning)'}; clients=${clients().length}`));
 JS
 [ -f /opt/sahla-adms/relay.json ] || echo "{\"port\":8099,\"key\":\"$(head -c 18 /dev/urandom | od -An -tx1 | tr -d ' \n')\",\"allow\":[],\"tz\":3}" > /opt/sahla-adms/relay.json
 NODE=$(command -v node)

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ربط أجهزة البصمة البعيدة عبر الإنترنت | سهلة HR</title>
+<meta name="description" content="اربط حتى 5 أجهزة بصمة ZKTeco في فروعك المتفرقة مع سهلة HR عبر الإنترنت فقط، بدون ترخيص BioTime إضافي وبدون شبكة موحّدة.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../img/logo-dark.png">
+<style>
+@font-face{font-family:'Dubai';src:url('../fonts/Dubai-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'Dubai';src:url('../fonts/Dubai-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+:root{--bg:#f3f6f9;--card:#fff;--line:#dbe1e8;--fg:#15191e;--muted:#57606b;--accent:#0a84d6;--ok:#138a57}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:'Dubai',Tahoma,sans-serif;line-height:1.8}
+.w{max-width:980px;margin:0 auto;padding:22px 16px 40px}
+header{display:flex;align-items:center;gap:10px;margin-bottom:18px}header img{height:34px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.pics img{width:100%;border-radius:14px;display:block;border:1px solid var(--line)}.pics img+img{margin-top:12px}
+h1{font-size:26px;line-height:1.5;margin:0 0 8px}
+.price{display:flex;align-items:baseline;gap:12px;margin:10px 0 4px}.price b{font-size:34px;color:var(--accent)}.price s{color:var(--muted);font-size:20px}
+.tag{display:inline-block;background:#e6f4ec;color:var(--ok);border-radius:999px;padding:2px 12px;font-size:14px;font-weight:700}
+ul{padding:0 18px 0 0;margin:14px 0}li{margin:6px 0}
+.btn{display:block;text-align:center;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:19px;padding:14px;border-radius:12px;margin-top:16px}
+.btn.alt{background:#fff;color:var(--accent);border:1px solid var(--accent);font-size:16px;padding:10px}
+.small{color:var(--muted);font-size:14px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.card{order:-1}h1{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="w">
+<header><a href="../"><img src="../img/logo-light.png" alt="سهلة HR"></a></header>
+<div class="grid">
+  <div class="pics"><img src="p1.webp" alt="سهلة HR للفروع المتفرقة"><img src="p2.webp" alt="طريقة الربط"></div>
+  <div class="card">
+    <span class="tag">خدمة إضافية</span>
+    <h1>سهلة HR للفروع المتفرقة — ربط حتى 5 أجهزة بصمة</h1>
+    <div class="price"><b>2,999 ر.س</b><s>4,500 ر.س</s></div>
+    <div class="small">دفعة واحدة، بدون اشتراك شهري</div>
+    <ul>
+      <li>أجهزة بصمة ZKTeco في فروع بعيدة، متصلة بالإنترنت فقط بدون شبكة موحّدة</li>
+      <li>البصمات توصل للبرنامج تلقائياً كل بضع دقائق، وتنحسب في الحضور والتأخير والرواتب</li>
+      <li>بدون ترخيص BioTime إضافي وبدون فتح منافذ في الراوتر</li>
+      <li>نجهّز لك الربط ونرسل ترخيصاً جديداً، وتبقى بياناتك كما هي</li>
+    </ul>
+    <a class="btn" id="buy" href="#">اطلب الخدمة الآن</a>
+    <a class="btn alt" id="wa" href="#">استفسار عبر واتساب</a>
+    <p class="small" id="iid"></p>
+  </div>
+</div>
+</div>
+<script>
+// When the Salla product is live, put its link here and the main button goes to it.
+var SALLA = '';
+var id = new URLSearchParams(location.search).get('id') || '';
+var msg = 'السلام عليكم، أبغى خدمة ربط الأجهزة البعيدة (سهلة HR للفروع المتفرقة — 2,999 ر.س)' + (id ? '\nرقم التثبيت: ' + id : '');
+var wa = 'https://wa.me/966538000892?text=' + encodeURIComponent(msg);
+document.getElementById('buy').href = SALLA || wa;
+document.getElementById('wa').href = wa;
+if (SALLA) document.getElementById('buy').target = '_blank';
+if (id) document.getElementById('iid').textContent = 'رقم التثبيت عندك: ' + id + ' — يُرسل تلقائياً مع الطلب عبر واتساب.';
+</script>
+</body>
+</html>
