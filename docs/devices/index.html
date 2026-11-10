@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ربط أجهزة البصمة البعيدة عبر الإنترنت | سهلة HR</title>
 <meta name="description" content="اربط حتى 5 أجهزة بصمة ZKTeco في فروعك المتفرقة مع سهلة HR عبر الإنترنت فقط، بدون ترخيص BioTime إضافي وبدون شبكة موحّدة.">
-<meta name="robots" content="noindex">
 <link rel="icon" href="../img/logo-dark.png">
 <style>
 @font-face{font-family:'Dubai';src:url('../fonts/Dubai-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
@@ -35,8 +34,8 @@ ul{padding:0 18px 0 0;margin:14px 0}li{margin:6px 0}
   <div class="card">
     <span class="tag">خدمة إضافية</span>
     <h1>سهلة HR للفروع المتفرقة — ربط حتى 5 أجهزة بصمة</h1>
-    <div class="price"><b>2,999 ر.س</b><s>4,500 ر.س</s></div>
-    <div class="small">دفعة واحدة، بدون اشتراك شهري</div>
+    <div class="price"><b>1,999 ر.س</b></div>
+    <div class="small">رسوم التأسيس تشمل السنة الأولى، وبعدها 599 ر.س سنوياً</div>
     <ul>
       <li>أجهزة بصمة ZKTeco في فروع بعيدة، متصلة بالإنترنت فقط بدون شبكة موحّدة</li>
       <li>البصمات توصل للبرنامج تلقائياً كل بضع دقائق، وتنحسب في الحضور والتأخير والرواتب</li>
@@ -53,7 +52,7 @@ ul{padding:0 18px 0 0;margin:14px 0}li{margin:6px 0}
 // When the Salla product is live, put its link here and the main button goes to it.
 var SALLA = '';
 var id = new URLSearchParams(location.search).get('id') || '';
-var msg = 'السلام عليكم، أبغى خدمة ربط الأجهزة البعيدة (سهلة HR للفروع المتفرقة — 2,999 ر.س)' + (id ? '\nرقم التثبيت: ' + id : '');
+var msg = 'السلام عليكم، أبغى خدمة ربط الأجهزة البعيدة (سهلة HR للفروع المتفرقة — 1,999 ر.س تأسيس + 599 ر.س سنوياً)' + (id ? '\nرقم التثبيت: ' + id : '');
 var wa = 'https://wa.me/966538000892?text=' + encodeURIComponent(msg);
 document.getElementById('buy').href = SALLA || wa;
 document.getElementById('wa').href = wa;

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="برنامج شؤون موظفين ورواتب وحضور بدفعة واحدة بدون اشتراك شهري، يعمل بدون إنترنت. تجربة مجانية 7 أيام.">
-<meta property="og:title" content="سهلة HR — شؤون الموظفين بدون اشتراك شهري">
+<meta name="description" content="برنامج شؤون موظفين ورواتب وحضور يعمل بدون إنترنت. رسوم تأسيس تشمل السنة الأولى، وبعدها تجديد سنوي يبدأ من 33 ريال بالشهر. تجربة مجانية 7 أيام.">
+<meta property="og:title" content="سهلة HR — شؤون الموظفين والرواتب والحضور على جهازك">
 <meta property="og:description" content="الرواتب والحضور من جهاز البصمة والإجازات ونهاية الخدمة وتنبيه انتهاء الإقامة. جرّبه مجاناً 7 أيام.">
 <meta property="og:image" content="https://hr.sahla-sa.com/img/og-sahla.png?v=2">
 <meta property="og:image:width" content="1200">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hr.sahla-sa.com/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="سهلة HR — شؤون الموظفين بدون اشتراك شهري">
+<meta name="twitter:title" content="سهلة HR — شؤون الموظفين والرواتب والحضور على جهازك">
 <meta name="twitter:description" content="الرواتب والحضور من جهاز البصمة والإجازات ونهاية الخدمة وتنبيه انتهاء الإقامة. جرّبه مجاناً 7 أيام.">
 <meta name="twitter:image" content="https://hr.sahla-sa.com/img/og-sahla.png?v=2">
 <meta name="theme-color" content="#0f1115">
@@ -20,7 +20,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18372197410"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18372197410');gtag('config','G-LLQ7YV73QL');</script>
 <link rel="icon" href="img/icon-192.png">
-<title>سهلة HR — برنامج شؤون موظفين ورواتب بدون اشتراك شهري</title>
+<title>سهلة HR — برنامج شؤون موظفين ورواتب وحضور، يبدأ من 33 ريال بالشهر</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
@@ -194,6 +194,36 @@ header .btn { padding: 9px 16px; font-size: 15px; }
 
 .editions .grp { margin: 40px 0 0; font-size: 19px; color: var(--muted); font-weight: 700; }
 .editions .grp + .grid { margin-top: 16px; }
+/* draft: 3 subscription packages */
+.editions .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1000px) { .editions .grid.three { grid-template-columns: 1fr; } }
+.ed .fit { color: var(--muted); font-size: 16px; line-height: 1.8; }
+.ed .renew { color: var(--muted); font-size: 15.5px; border-top: 1px dashed var(--line); padding-top: 12px; margin-top: -6px; }
+.ed .renew b { color: var(--fg); }
+.ed .alt { color: var(--faint); font-size: 14px; text-align: center; line-height: 1.7; }
+.ed .alt a { font-weight: 600; }
+.ed.mail h3 + .fit, .ed.mail .fit { color: #b8c0c9; }
+.ed.mail .renew { color: #b8c0c9; border-top-color: rgba(255,255,255,.18); }
+.ed.mail .renew b { color: #fff; }
+.ed.mail .alt { color: #8f99a4; }
+.ed.mail .alt a { color: #00b8ff; }
+.addons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 20px; }
+.addons > div { background: var(--surface); border: 1px dashed var(--line); border-radius: var(--r); padding: 18px 22px; display: grid; gap: 4px; min-width: 0; }
+.addons b { font-size: 17px; }
+.addons .p { color: var(--accent); font-weight: 700; }
+.addons span { color: var(--muted); font-size: 15.5px; line-height: 1.8; }
+.renewal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 40px; }
+.renewal .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 24px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.renewal ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 11px; }
+.renewal li { display: grid; grid-template-columns: 22px 1fr; gap: 6px; color: var(--muted); font-size: 16px; line-height: 1.85; }
+.renewal li::before { content: "✓"; color: var(--ok); font-weight: 700; }
+.renewal li b { color: var(--fg); font-weight: 600; }
+.renewal ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.renewal ol li { grid-template-columns: 1fr; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; position: relative; overflow: hidden; }
+.renewal ol li::before { content: ""; position: absolute; inset: 0 0 auto auto; width: 4px; height: 100%; background: var(--accent); }
+.renewal ol li.last::before { background: var(--ok); }
+.renewal .note { color: var(--faint); font-size: 14.5px; line-height: 1.8; }
+@media (max-width: 860px) { .addons, .renewal { grid-template-columns: 1fr; } }
 
 
 /* steps */
@@ -356,14 +386,14 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
 .week div.hl { border-color: var(--accent); background: var(--accent-soft); } .week div.hl span:last-child { color: var(--fg); font-weight: 700; }
 </style>
 <link rel="canonical" href="https://hr.sahla-sa.com/">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"سهلة HR","alternateName":["Sahla HR","برنامج سهلة HR","سهلة اتش ار"],"description":"برنامج شؤون موظفين ورواتب وحضور وانصراف مربوط بأجهزة البصمة ZKTeco، بترخيص دفعة واحدة بدون اشتراك شهري، يعمل بدون إنترنت. تجربة مجانية 7 أيام.","applicationCategory":"BusinessApplication","operatingSystem":"Windows","inLanguage":"ar","url":"https://hr.sahla-sa.com/","image":"https://hr.sahla-sa.com/img/og-sahla.png","offers":{"@type":"AggregateOffer","priceCurrency":"SAR","lowPrice":"999","highPrice":"1699","offerCount":"4"},"publisher":{"@type":"Organization","name":"سهلة | Sahla","url":"https://hr.sahla-sa.com/","email":"info@sahla-sa.com","telephone":"+966538000892"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"سهلة HR","alternateName":["Sahla HR","برنامج سهلة HR","سهلة اتش ار"],"description":"برنامج شؤون موظفين ورواتب وحضور وانصراف مربوط بأجهزة البصمة ZKTeco، يعمل بدون إنترنت. رسوم تأسيس تشمل السنة الأولى وتجديد سنوي، في ثلاث باقات. تجربة مجانية 7 أيام.","applicationCategory":"BusinessApplication","operatingSystem":"Windows","inLanguage":"ar","url":"https://hr.sahla-sa.com/","image":"https://hr.sahla-sa.com/img/og-sahla.png","offers":{"@type":"AggregateOffer","priceCurrency":"SAR","lowPrice":"999","highPrice":"2499","offerCount":"3","offers":[{"@type":"Offer","name":"الباقة الأساسية","price":"999","priceCurrency":"SAR","description":"حتى 25 موظف على جهاز واحد. رسوم التأسيس 999 ريال تشمل السنة الأولى، والتجديد 399 ريال سنوياً."},{"@type":"Offer","name":"باقة الأعمال","price":"1699","priceCurrency":"SAR","description":"حتى 75 موظف على سيرفر الشبكة، مع إشعارات البريد. رسوم التأسيس 1,699 ريال تشمل السنة الأولى، والتجديد 599 ريال سنوياً."},{"@type":"Offer","name":"باقة المؤسسات","price":"2499","priceCurrency":"SAR","description":"عدد غير محدود من الموظفين على سيرفر الشبكة، مع إشعارات البريد. رسوم التأسيس 2,499 ريال تشمل السنة الأولى، والتجديد 899 ريال سنوياً."}]},"publisher":{"@type":"Organization","name":"سهلة | Sahla","url":"https://hr.sahla-sa.com/","email":"info@sahla-sa.com","telephone":"+966538000892"}}]}</script>
 </head>
 <body>
 
 <header>
   <div class="wrap">
     <a href="#top" aria-label="سهلة HR — الرئيسية"><img class="logo dark" src="img/logo-dark.png" alt="سهلة HR Management"><img class="logo light" src="img/logo-light.png" alt="سهلة HR Management"></a>
-    <nav aria-label="أقسام الصفحة"><a href="#tour">جولة في البرنامج</a><a href="#editions">النسخ والأسعار</a><a href="#faq">أسئلة شائعة</a><a href="end-of-service/">حاسبة نهاية الخدمة</a></nav>
+    <nav aria-label="أقسام الصفحة"><a href="#tour">جولة في البرنامج</a><a href="#editions">الباقات والأسعار</a><a href="#faq">أسئلة شائعة</a><a href="end-of-service/">حاسبة نهاية الخدمة</a></nav>
     <a class="btn primary" href="#editions">جرّب مجاناً</a>
   </div>
 </header>
@@ -374,12 +404,12 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
       <div class="copy">
         <div class="eyebrow">سهلة HR — نظام شؤون الموظفين</div>
         <h1>موظفينك ورواتبك وحضورهم في مكان واحد، <em>على جهازك وبدون إنترنت</em></h1>
-        <p class="lead">برنامج شؤون موظفين مبني على نظام العمل السعودي: ملفات الموظفين، الحضور من جهاز البصمة، الرواتب مع التأمينات وملف حماية الأجور، الإجازات، ونهاية الخدمة. تشتريه مرة وحدة، وبياناتك تبقى عندك.</p>
+        <p class="lead">برنامج شؤون موظفين مبني على نظام العمل السعودي: ملفات الموظفين، الحضور من جهاز البصمة، الرواتب مع التأمينات وملف حماية الأجور، الإجازات، ونهاية الخدمة. رسوم التأسيس تشمل السنة الأولى، وبعدها تجديد سنوي يبدأ من 33 ريال بالشهر، وبياناتك تبقى عندك.</p>
         <div class="ctas">
           <a class="btn primary" href="#editions">حمّل التجربة المجانية <small>7 أيام كاملة</small></a>
           <a class="btn wa" href="https://wa.me/966538000892?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B9%D8%B1%D9%81%20%D8%B9%D9%86%20%D8%B3%D9%87%D9%84%D8%A9%20HR" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"/></svg>تواصل واتساب</a>
         </div>
-        <div class="meta"><span><i></i>بدون اشتراك شهري</span><span><i></i>عربي بالكامل</span><span><i></i>كمبيوتر أو سيرفر للشبكة</span><span><i></i>يشتغل على الجوال من الشبكة</span></div>
+        <div class="meta"><span><i></i>يبدأ من 33 ريال بالشهر بعد السنة الأولى</span><span><i></i>عربي بالكامل</span><span><i></i>كمبيوتر أو سيرفر للشبكة</span><span><i></i>يشتغل على الجوال من الشبكة</span></div>
       </div>
       <div class="stage">
         <div class="frame"><div class="bar"><i></i><i></i><i></i></div><img src="img/dashboard-d.webp?v=3" alt="لوحة التحكم في سهلة HR: عدد الموظفين لكل علامة، الحاضرون والغائبون اليوم، تكلفة الرواتب، وتنبيهات انتهاء الإقامات والعقود" width="1600" height="1000"></div>
@@ -428,9 +458,9 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
         <h2>شوف البرنامج في أقل من دقيقة</h2>
         <p class="lead" style="margin-top:10px">جولة سريعة على لوحة التحكم، ملف الموظف، الحضور، الرواتب، نهاية الخدمة، الإجازات، التقارير، وإشعارات البريد وتنبيهات التأخير، والتعميمات بهوية العلامة.</p>
       </div>
-      <div class="vbox"><video controls playsinline preload="metadata" poster="media/sahla-hr-intro-poster.jpg?v=4"><source src="media/sahla-hr-intro.mp4?v=4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
+      <div class="vbox"><video controls playsinline preload="metadata" poster="media/sahla-hr-intro-poster.jpg?v=4"><source src="media/sahla-hr-intro.mp4?v=5" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
       <p class="lead" style="margin-top:28px"><b>الجديد في سهلة HR</b>: إيميلات بالإنجليزي للموظف الأجنبي، ربط جهاز البصمة مباشرة وفي الفروع البعيدة، وحدود نظام العمل محسوبة تلقائياً. في 30 ثانية.</p>
-      <div class="vbox"><video controls playsinline preload="metadata" poster="media/sahla-hr-whatsnew-poster.jpg?v=1"><source src="media/sahla-hr-whatsnew.mp4?v=1" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
+      <div class="vbox"><video controls playsinline preload="metadata" poster="media/sahla-hr-whatsnew-poster.jpg?v=1"><source src="media/sahla-hr-whatsnew.mp4?v=2" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
     </div>
   </section>
 
@@ -441,7 +471,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
         <h2>التثبيت والتأسيس من أول مرة، خطوة بخطوة</h2>
         <p class="lead" style="margin-top:10px">من التحميل والتثبيت على Windows، إلى إضافة العلامات والفروع والورديات والموظفين، وربط جهاز البصمة، والمستخدمين والصلاحيات، والنسخ الاحتياطي، وبعدها جولة على المميزات ومنها التعميمات. في حوالي 8 دقائق.</p>
       </div>
-      <div class="vbox"><video controls playsinline preload="none" poster="media/sahla-hr-setup-poster.jpg?v=1"><source src="media/sahla-hr-setup-guide.mp4?v=3" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
+      <div class="vbox"><video controls playsinline preload="none" poster="media/sahla-hr-setup-poster.jpg?v=1"><source src="media/sahla-hr-setup-guide.mp4?v=4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div>
     </div>
   </section>
 
@@ -474,7 +504,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
   <section class="attn" id="attendance-alerts" aria-labelledby="attn-h">
     <div class="wrap">
       <div class="attn-copy">
-        <div class="eyebrow">جديد · في نسخ إشعارات البريد</div>
+        <div class="eyebrow">جديد · مع إشعارات البريد</div>
         <h2 id="attn-h">الموظف يعرف بتأخيره قبل ما تكلّمه</h2>
         <p class="lead">البرنامج يسحب البصمات من جهاز BioTime كل 3 دقائق، ولما يتأخر الموظف أو ما يبصم أو يطلع بدري، يوصله إيميل تلقائي من بريد منشأتك، وتوصلك نسخة إذا تبي.</p>
         <ul class="attn-list">
@@ -531,7 +561,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
   <section class="dshift" id="english-mail" aria-labelledby="en-h">
     <div class="wrap">
       <div class="attn-copy">
-        <div class="eyebrow">جديد · في نسخ إشعارات البريد</div>
+        <div class="eyebrow">جديد · مع إشعارات البريد</div>
         <h2 id="en-h">موظفك الأجنبي يوصله الإيميل بالإنجليزي</h2>
         <p class="lead">من ملف الموظف تختار لغة إشعاراته: عربي أو إنجليزي أو الاثنين. قسيمة الراتب وقرار الإجازة وتنبيه التأخير وانتهاء الإقامة توصله بلغته، بدون ما تترجم شي بيدك.</p>
         <ul class="attn-list">
@@ -556,7 +586,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
         <p class="lead">أجهزة ZKTeco على نفس الشبكة ترتبط بعنوانها مباشرة بدون أي برنامج إضافي. والأجهزة في الفروع البعيدة توصل بصماتها عبر الإنترنت، وتضيفها بزر «إضافة جهاز جديد»: البرنامج يكتشف الجهاز ويطلب موافقتك.</p>
         <ul class="attn-list">
           <li><b>على نفس الشبكة</b><span>ربط مباشر بعنوان الجهاز، في كل النسخ</span></li>
-          <li><b>فروع متفرقة</b><span>حتى 5 أجهزة بعيدة عبر الإنترنت، بدون ترخيص BioTime وبدون فتح منافذ في الراوتر · <a href="devices/">خدمة إضافية</a></span></li>
+          <li><b>فروع متفرقة</b><span>حتى 5 أجهزة بعيدة عبر الإنترنت، بدون ترخيص BioTime وبدون فتح منافذ في الراوتر · <a href="devices/">خدمة إضافية</a>: <span class="num">1,999</span> تأسيس + <span class="num">599</span> سنوياً</span></li>
           <li><b>BioTime أو Excel</b><span>وما زال الربط مع ZKBioTime واستيراد ملف البصمات متوفر</span></li>
         </ul>
       </div>
@@ -603,7 +633,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
           <li><b>معاينة وجدولة</b><span>تشوف الإيميل قبل الإرسال، وترسل لنفسك تجربة، أو تجدوله لوقت لاحق</span></li>
           <li><b>أرشيف وطباعة</b><span>من وصله ومن فشل، وPDF بهوية العلامة للوحة الإعلانات مع كشف توقيع استلام</span></li>
         </ul>
-        <p class="attn-note">الإرسال بالبريد في نسخ إشعارات البريد. الكتابة والطباعة PDF متوفرة في كل النسخ. وإذا أضفت عطلة رسمية، يجهز لك تعميمها بالتواريخ.</p>
+        <p class="attn-note">الإرسال بالبريد مع إشعارات البريد (مشمولة في باقتي الأعمال والمؤسسات). الكتابة والطباعة PDF متوفرة في كل النسخ. وإذا أضفت عطلة رسمية، يجهز لك تعميمها بالتواريخ.</p>
       </div>
       <div class="cdemo" aria-hidden="true">
         <div class="cbrands"><span style="--c:#0a84d6"><i></i>شركة الريادة</span><span class="on" style="--c:#e8833a"><i></i>مؤسسة البناء</span><span class="cbtn">📣 تعميم</span></div>
@@ -636,60 +666,82 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
 
   <section id="editions" class="editions">
     <div class="wrap">
-      <div class="eyebrow">النسخ والأسعار</div>
-      <h2>جرّب 7 أيام مجاناً، وبعدها ترخيص دائم تدفعه مرة وحدة</h2>
-      <p class="lead" style="margin-top:12px">اختر جهاز واحد أو كل أجهزة الشبكة، ومع إشعارات البريد للموظفين أو بدونها. جرّب 7 أيام بدون أي قيود، وإذا عجبك نرسل لك رقم الترخيص على واتساب.</p>
-      <h3 class="grp">لجهاز واحد</h3>
-      <div class="grid">
+      <div class="eyebrow">الباقات والأسعار</div>
+      <h2>جرّب 7 أيام مجاناً، وبعدها اختر الباقة اللي تناسب منشأتك</h2>
+      <p class="lead" style="margin-top:12px">رسوم التأسيس تشمل السنة الأولى كاملة، وبعدها تجديد سنوي يشمل تحديثات الأنظمة والنسخ الجديدة والدعم الفني. جرّب 7 أيام بدون أي قيود، وإذا عجبك نرسل لك رقم الترخيص على واتساب.</p>
+      <div class="grid three">
         <article class="ed">
-          <span class="tag">نسخة الكمبيوتر</span>
-          <h3>بدون إشعارات البريد</h3>
-          <div class="price"><b class="num">999</b><span>ريال، مرة واحدة</span><s class="num">2,300</s></div>
-          <ul><li>تثبيت مباشر بدون صلاحيات مدير</li><li>أيقونة على سطح المكتب وتفتح في نافذة مستقلة</li><li>كل أقسام البرنامج بدون استثناء</li><li>بياناتك في مجلد مستقل، ما تنحذف لو حدّثت البرنامج</li></ul>
+          <span class="tag">نسخة الكمبيوتر · جهاز واحد</span>
+          <h3>الأساسية</h3>
+          <p class="fit">للمنشأة الصغيرة اللي يدير شؤون موظفيها شخص واحد من جهازه.</p>
+          <div class="price"><b class="num">999</b><span>ريال رسوم التأسيس، تشمل السنة الأولى</span></div>
+          <p class="renew">بعدها <b class="num">399</b> ريال سنوياً · <b>حوالي 33 ريال بالشهر</b></p>
+          <ul><li><span><b>حتى 25 موظف</b></span></li><li>يشتغل على جهاز واحد، بتثبيت مباشر وأيقونة على سطح المكتب</li><li>كل أقسام البرنامج: الحضور والرواتب والإجازات ونهاية الخدمة والتقارير</li><li>ربط جهاز البصمة على نفس الشبكة</li><li><span>إشعارات البريد <b>إضافة اختيارية</b> بـ <span class="num">300</span> ريال</span></li></ul>
           <div class="acts">
             <a class="btn primary" href="https://hr.sahla-sa.com/download/Sahla-HR-Desktop-Setup.exe" rel="noopener">حمّل التجربة <small>Windows · 19 ميجا</small></a>
-            <a class="btn ghost" href="https://sahla-sa.com/-/p1999974278" target="_blank" rel="noopener">اشترِ الترخيص</a>
+            <!-- TODO(salla): replace this WhatsApp link with the new Salla product link for الأساسية (Basic) once the product is created in the store -->
+            <a class="btn ghost" href="https://wa.me/966538000892?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B4%D8%AA%D8%B1%D9%83%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%A3%D8%B3%D8%A7%D8%B3%D9%8A%D8%A9%20%D9%85%D9%86%20%D8%B3%D9%87%D9%84%D8%A9%20HR" target="_blank" rel="noopener">اشترك في الأساسية</a>
           </div>
+          <p class="alt">تبي تجرّب إشعارات البريد؟ <a href="https://hr.sahla-sa.com/download/Sahla-HR-Desktop-Email-Setup.exe" rel="noopener">حمّل نسخة الكمبيوتر مع البريد</a></p>
           <p class="req">يحتاج Windows 10 أو 11.</p>
-        </article>
-        <article class="ed mail">
-          <div class="mailfx" aria-hidden="true"><div class="trail"><i></i><i></i><i></i></div><svg viewBox="0 0 120 90"><rect x="4" y="4" width="112" height="82" rx="12" fill="#1d232b" stroke="#00b8ff" stroke-width="6"/><path d="M8 12 L60 52 L112 12" fill="none" stroke="#00b8ff" stroke-width="6" stroke-linejoin="round"/></svg><span class="badge">1</span></div>
-          <span class="tag"><svg viewBox="0 0 28 21" width="16" height="12" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M3 4 L14 12 L25 4" fill="none" stroke="currentColor" stroke-width="3"/></svg>نسخة الكمبيوتر</span>
-          <h3>مع إشعارات البريد</h3>
-          <div class="price"><b class="num">1,299</b><span>ريال، مرة واحدة</span><s class="num">2,700</s></div>
-          <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li><span><b>تنبيه فوري بالتأخير</b> وعدم التبصيم والخروج المبكر، بعد دقائق تحددها أنت</span></li><li><span><b>التعميمات بالبريد</b> لكل موظفي العلامة بشعارها</span></li><li>كل أقسام البرنامج بدون استثناء</li><li>بياناتك في مجلد مستقل، ما تنحذف لو حدّثت البرنامج</li></ul>
-          <div class="acts">
-            <a class="btn primary" href="https://hr.sahla-sa.com/download/Sahla-HR-Desktop-Email-Setup.exe" rel="noopener">حمّل التجربة <small>Windows · 19 ميجا</small></a>
-            <a class="btn ghost" href="https://sahla-sa.com/-/p839986011" target="_blank" rel="noopener">اشترِ الترخيص</a>
-          </div>
-          <p class="req">يحتاج Windows 10 أو 11.</p>
-        </article>
-      </div>
-      <h3 class="grp">لكل أجهزة الشبكة</h3>
-      <div class="grid">
-        <article class="ed">
-          <span class="tag">نسخة السيرفر</span>
-          <h3>بدون إشعارات البريد</h3>
-          <div class="price"><b class="num">1,299</b><span>ريال، مرة واحدة</span><s class="num">3,000</s></div>
-          <ul><li>تتثبت على سيرفر الشركة وتشتغل تلقائياً مع ويندوز</li><li>فريقك يفتحها برابط من أي كمبيوتر أو جوال على الشبكة</li><li>مستخدمين متعددين مع صلاحيات لكل واحد</li><li>تقدر تثبّتها على الكمبيوتر كتطبيق بأيقونة سهلة HR</li></ul>
-          <div class="acts">
-            <a class="btn primary" href="https://hr.sahla-sa.com/download/Sahla-HR-Server-Setup.exe" rel="noopener">حمّل التجربة <small>Windows Server · 19 ميجا</small></a>
-            <a class="btn ghost" href="https://sahla-sa.com/-/p1475062499" target="_blank" rel="noopener">اشترِ الترخيص</a>
-          </div>
-          <p class="req">يشتغل على Windows Server 2012 R2 وأحدث، أو أي ويندوز 10/11 يكون سيرفر للشبكة.</p>
         </article>
         <article class="ed hot mail">
           <div class="mailfx" aria-hidden="true"><div class="trail"><i></i><i></i><i></i></div><svg viewBox="0 0 120 90"><rect x="4" y="4" width="112" height="82" rx="12" fill="#1d232b" stroke="#00b8ff" stroke-width="6"/><path d="M8 12 L60 52 L112 12" fill="none" stroke="#00b8ff" stroke-width="6" stroke-linejoin="round"/></svg><span class="badge">1</span></div>
           <span class="tag"><svg viewBox="0 0 28 21" width="16" height="12" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M3 4 L14 12 L25 4" fill="none" stroke="currentColor" stroke-width="3"/></svg>نسخة السيرفر · الأكثر طلباً</span>
-          <h3>مع إشعارات البريد</h3>
-          <div class="price"><b class="num">1,699</b><span>ريال، مرة واحدة</span><s class="num">3,500</s></div>
-          <ul><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li><span><b>تنبيه فوري بالتأخير</b> وعدم التبصيم والخروج المبكر، بعد دقائق تحددها أنت</span></li><li><span><b>التعميمات بالبريد</b> لكل موظفي العلامة بشعارها</span></li><li>تتثبت على سيرفر الشركة وتشتغل تلقائياً مع ويندوز</li><li>فريقك يفتحها برابط من أي كمبيوتر أو جوال على الشبكة</li><li>مستخدمين متعددين مع صلاحيات لكل واحد</li></ul>
+          <h3>الأعمال</h3>
+          <p class="fit">للشركة اللي فيها فريق موارد بشرية ومحاسب ومدراء فروع يشتغلون من أكثر من جهاز.</p>
+          <div class="price"><b class="num">1,699</b><span>ريال رسوم التأسيس، تشمل السنة الأولى</span></div>
+          <p class="renew">بعدها <b class="num">599</b> ريال سنوياً · <b>حوالي 50 ريال بالشهر</b></p>
+          <ul><li><span><b>حتى 75 موظف</b></span></li><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li><span><b>تنبيه فوري بالتأخير</b> وعدم التبصيم والخروج المبكر، بعد دقائق تحددها أنت</span></li><li><span><b>التعميمات بالبريد</b> لكل موظفي العلامة بشعارها</span></li><li>تتثبت على سيرفر الشركة، وفريقك يفتحها برابط من أي كمبيوتر أو جوال على الشبكة</li><li>مستخدمين متعددين مع صلاحيات لكل واحد</li></ul>
           <div class="acts">
             <a class="btn primary" href="https://hr.sahla-sa.com/download/Sahla-HR-Server-Email-Setup.exe" rel="noopener">حمّل التجربة <small>Windows Server · 19 ميجا</small></a>
-            <a class="btn ghost" href="https://sahla-sa.com/-/p982089646" target="_blank" rel="noopener">اشترِ الترخيص</a>
+            <!-- TODO(salla): replace this WhatsApp link with the new Salla product link for الأعمال (Business) once the product is created in the store -->
+            <a class="btn ghost" href="https://wa.me/966538000892?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B4%D8%AA%D8%B1%D9%83%20%D9%81%D9%8A%20%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84%20%D9%85%D9%86%20%D8%B3%D9%87%D9%84%D8%A9%20HR" target="_blank" rel="noopener">اشترك في الأعمال</a>
           </div>
+          <p class="alt">ما عندك بريد للمنشأة الحين؟ <a href="https://hr.sahla-sa.com/download/Sahla-HR-Server-Setup.exe" rel="noopener">حمّل تجربة السيرفر بدون البريد</a></p>
           <p class="req">يشتغل على Windows Server 2012 R2 وأحدث، أو أي ويندوز 10/11 يكون سيرفر للشبكة.</p>
         </article>
+        <article class="ed mail">
+          <div class="mailfx" aria-hidden="true"><div class="trail"><i></i><i></i><i></i></div><svg viewBox="0 0 120 90"><rect x="4" y="4" width="112" height="82" rx="12" fill="#1d232b" stroke="#00b8ff" stroke-width="6"/><path d="M8 12 L60 52 L112 12" fill="none" stroke="#00b8ff" stroke-width="6" stroke-linejoin="round"/></svg><span class="badge">1</span></div>
+          <span class="tag"><svg viewBox="0 0 28 21" width="16" height="12" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M3 4 L14 12 L25 4" fill="none" stroke="currentColor" stroke-width="3"/></svg>نسخة السيرفر</span>
+          <h3>المؤسسات</h3>
+          <p class="fit">للمنشأة الكبيرة أو المجموعة اللي عندها أكثر من علامة وفروع وموظفين كثير.</p>
+          <div class="price"><b class="num">2,499</b><span>ريال رسوم التأسيس، تشمل السنة الأولى</span></div>
+          <p class="renew">بعدها <b class="num">899</b> ريال سنوياً · <b>حوالي 75 ريال بالشهر</b></p>
+          <ul><li><span><b>عدد موظفين غير محدود</b></span></li><li><span><b>إيميل تلقائي للموظف</b> مع كل حدث: الإنذار، قرار الإجازة والسلفة، قسيمة الراتب، قرب انتهاء الإقامة</span></li><li><span><b>تنبيه فوري بالتأخير</b> وعدم التبصيم والخروج المبكر، بعد دقائق تحددها أنت</span></li><li><span><b>التعميمات بالبريد</b> لكل موظفي العلامة بشعارها</span></li><li>تتثبت على سيرفر الشركة، وفريقك يفتحها برابط من أي كمبيوتر أو جوال على الشبكة</li><li>مستخدمين متعددين مع صلاحيات لكل واحد</li></ul>
+          <div class="acts">
+            <a class="btn primary" href="https://hr.sahla-sa.com/download/Sahla-HR-Server-Email-Setup.exe" rel="noopener">حمّل التجربة <small>Windows Server · 19 ميجا</small></a>
+            <!-- TODO(salla): replace this WhatsApp link with the new Salla product link for المؤسسات (Enterprise) once the product is created in the store -->
+            <a class="btn ghost" href="https://wa.me/966538000892?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B4%D8%AA%D8%B1%D9%83%20%D9%81%D9%8A%20%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA%20%D9%85%D9%86%20%D8%B3%D9%87%D9%84%D8%A9%20HR" target="_blank" rel="noopener">اشترك في المؤسسات</a>
+          </div>
+          <p class="alt">ما عندك بريد للمنشأة الحين؟ <a href="https://hr.sahla-sa.com/download/Sahla-HR-Server-Setup.exe" rel="noopener">حمّل تجربة السيرفر بدون البريد</a></p>
+          <p class="req">يشتغل على Windows Server 2012 R2 وأحدث، أو أي ويندوز 10/11 يكون سيرفر للشبكة.</p>
+        </article>
+      </div>
+      <div class="addons">
+        <div><b>إشعارات البريد للباقة الأساسية</b><span class="p"><span class="num">300</span> ريال إضافة</span><span>نفس إشعارات باقة الأعمال: التأخير وقسيمة الراتب وقرارات الإجازة والتعميمات.</span></div>
+        <div><b>الفروع البعيدة</b><span class="p"><span class="num">1,999</span> ريال تأسيس + <span class="num">599</span> ريال سنوياً</span><span>حتى 5 أجهزة بصمة في فروع بعيدة توصل بصماتها عبر الإنترنت. <a href="devices/">التفاصيل</a></span></div>
+      </div>
+      <div class="renewal" id="renewal">
+        <div class="card">
+          <h3>وش يشمل التجديد السنوي؟</h3>
+          <ul>
+            <li><span><b>تحديثات الأنظمة</b>: نسب التأمينات، تعديلات نظام العمل، وملفات حماية الأجور</span></li>
+            <li><span><b>كل النسخ الجديدة</b> والمميزات والتحسينات أول ما تنزل</span></li>
+            <li><span><b>الدعم الفني</b> على واتساب بأوقات استجابة محددة في الاتفاقية</span></li>
+            <li><span><b>المساعدة</b> في استرجاع النسخ الاحتياطية والنقل لجهاز جديد</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>وإذا ما جددت؟</h3>
+          <ol>
+            <li>نذكّرك قبل انتهاء السنة بـ 30 يوم</li>
+            <li>بعد الانتهاء عندك 30 يوم مهلة، والبرنامج يشتغل عادي</li>
+            <li>بعد المهلة يصير للعرض فقط: تشوف وتطبع وتصدّر، والنسخ الاحتياطي مستمر</li>
+            <li class="last"><span><b>بياناتك ما تنقفل أبداً</b>، ولما تجدد يرجع كل شي مثل ما كان</span></li>
+          </ol>
+          <p class="note">ترجع خلال 6 أشهر بسعر التجديد العادي، وبعدها بـ 50% من رسوم التأسيس.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -701,7 +753,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
       <ol>
         <li><h3>حمّل وثبّت</h3><p>شغّل ملف التثبيت. أول مرة يفتح يطلب اسم منشأتك وحساب المالك.</p></li>
         <li><h3>جرّب 7 أيام</h3><p>البرنامج كامل بكل أقسامه. أضف موظفينك وجرّب الرواتب والحضور على بياناتك الحقيقية.</p></li>
-        <li><h3>فعّل الترخيص</h3><p>اضغط «إدخال رقم الترخيص» وأرسل لنا رقم التثبيت. يوصلك رقم الترخيص الدائم، وتكمل بنفس بياناتك.</p></li>
+        <li><h3>فعّل الترخيص</h3><p>اضغط «إدخال رقم الترخيص» وأرسل لنا رقم التثبيت. يوصلك رقم ترخيص باقتك، وتكمل بنفس بياناتك.</p></li>
       </ol>
     </div>
   </section>
@@ -711,16 +763,18 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
       <div class="eyebrow">أسئلة شائعة</div>
       <h2>قبل ما تحمّل</h2>
       <div class="list">
-        <details><summary>هل يحتاج إنترنت؟</summary><p>لا. البرنامج يشتغل على جهازك أو على سيرفر شركتك، والأجهزة الثانية تفتحه من الشبكة الداخلية. الإنترنت تحتاجه بس لإرسال إشعارات البريد في نسخها، أو إذا كان جهاز البصمة على شبكة ثانية.</p></details>
+        <details><summary>هل يحتاج إنترنت؟</summary><p>لا. البرنامج يشتغل على جهازك أو على سيرفر شركتك، والأجهزة الثانية تفتحه من الشبكة الداخلية. الإنترنت تحتاجه بس لإرسال إشعارات البريد، أو إذا كان جهاز البصمة على شبكة ثانية.</p></details>
         <details><summary>ويندوز يطلع تحذير «Windows protected your PC» عند التثبيت</summary><p>هذا تنبيه عام لأي برنامج جديد ما انتشر كثير. اضغط «More info» ثم «Run anyway» ويكمل التثبيت عادي.</p></details>
         <details><summary>وش يصير بعد 7 أيام إذا ما اشتريت؟</summary><p>البرنامج يقفل لين تُدخل رقم الترخيص، وبياناتك تبقى محفوظة كما هي. لما تفعّل تكمل من حيث وقفت.</p></details>
-        <details><summary>هل الترخيص اشتراك شهري؟</summary><p>لا. تدفع مرة وحدة وتستخدمه على طول. الترخيص مربوط بالجهاز اللي ثبّت عليه البرنامج.</p></details>
-        <details><summary>أقدر أربطه بجهاز البصمة؟</summary><p>نعم. أجهزة ZKTeco على نفس الشبكة ترتبط بعنوانها مباشرة، والأجهزة في الفروع البعيدة ترتبط عبر الإنترنت بخدمة إضافية. ويسحب أيضاً من برنامج ZKBioTime، أو تستورد ملف حركات البصمة من Excel لأي جهاز ثاني.</p></details>
-        <details><summary>موظفيني أجانب، هل الإيميلات بالعربي بس؟</summary><p>لا. في نسخ إشعارات البريد تختار لكل موظف لغة إشعاراته: عربي أو إنجليزي أو الاثنين، والتعميمات تقدر تكتبها بلغتين.</p></details>
+        <details><summary>كيف يكون الدفع؟ شهري ولا سنوي؟</summary><p>سنوي. تدفع رسوم التأسيس وتشمل السنة الأولى كاملة، وبعدها تجديد سنوي: <span class="num">399</span> ريال للأساسية (حوالي 33 ريال بالشهر)، <span class="num">599</span> للأعمال، و<span class="num">899</span> للمؤسسات. الترخيص مربوط بالجهاز اللي ثبّت عليه البرنامج.</p></details>
+        <details><summary>وش يشمل التجديد السنوي؟</summary><p>تحديثات الأنظمة (نسب التأمينات، تعديلات نظام العمل، ملفات حماية الأجور)، وكل النسخ الجديدة والتحسينات، والدعم الفني بأوقات استجابة محددة، والمساعدة في استرجاع النسخ الاحتياطية والنقل لجهاز جديد.</p></details>
+        <details><summary>وش يصير إذا ما جددت؟</summary><p>نذكّرك قبل الانتهاء بـ 30 يوم، وبعد الانتهاء عندك 30 يوم مهلة والبرنامج يشتغل عادي. بعد المهلة يصير البرنامج للعرض فقط: تشوف بياناتك وتطبعها وتصدّرها، والنسخ الاحتياطي مستمر. بياناتك ما تنقفل أبداً. وإذا رجعت خلال 6 أشهر تجدد بالسعر العادي، وبعدها بـ 50% من رسوم التأسيس.</p></details>
+        <details><summary>أقدر أربطه بجهاز البصمة؟</summary><p>نعم. أجهزة ZKTeco على نفس الشبكة ترتبط بعنوانها مباشرة، والأجهزة في الفروع البعيدة ترتبط عبر الإنترنت بخدمة إضافية (<span class="num">1,999</span> ريال تأسيس + <span class="num">599</span> ريال سنوياً). ويسحب أيضاً من برنامج ZKBioTime، أو تستورد ملف حركات البصمة من Excel لأي جهاز ثاني.</p></details>
+        <details><summary>موظفيني أجانب، هل الإيميلات بالعربي بس؟</summary><p>لا. مع إشعارات البريد تختار لكل موظف لغة إشعاراته: عربي أو إنجليزي أو الاثنين، والتعميمات تقدر تكتبها بلغتين.</p></details>
         <details><summary>عندي أكثر من علامة تجارية أو فرع</summary><p>تضيف كل علامة بشعارها وسجلها التجاري، وكل علامة لها فروعها ومسيرها المستقل، وتقدر تشوف الكل في لوحة وحدة.</p></details>
-        <details><summary>وش الفرق بين النسخ مع إشعارات البريد وبدونها؟</summary><p>نفس البرنامج بكل أقسامه. النسخ «مع إشعارات البريد» ترسل للموظف إيميل تلقائي من بريد منشأتك مع كل حدث يخصه: الإنذارات، قرار الإجازة والسلفة، قسيمة الراتب، وقرب انتهاء وثائقه. تحتاج بريد للمنشأة (Google Workspace أو Gmail أو Microsoft 365 أو Zoho) وأن يكون الجهاز متصل بالإنترنت وقت الإرسال.</p></details>
-        <details><summary>اشتريت بدون إشعارات البريد، أقدر أرقّي بعدين؟</summary><p>نعم. تواصل معنا على واتساب، نرسل لك رقم ترخيص جديد يشمل إشعارات البريد، وتكمل بنفس بياناتك بدون إعادة تثبيت.</p></details>
-        <details><summary>أقدر أنقل البرنامج لجهاز جديد؟</summary><p>نعم. تاخذ نسخة احتياطية من البرنامج وترجعها على الجهاز الجديد بكلمة مرور الاستعادة. نسخ مجلد البيانات يدوياً ما يكفي، لأن مفتاح البيانات مربوط بالجهاز. تواصل معنا على واتساب لنقل الترخيص.</p></details>
+        <details><summary>إشعارات البريد في أي باقة؟</summary><p>مشمولة في باقتي الأعمال والمؤسسات، وفي الأساسية إضافة بـ <span class="num">300</span> ريال. إشعارات البريد ترسل للموظف إيميل تلقائي من بريد منشأتك مع كل حدث يخصه: الإنذارات، قرار الإجازة والسلفة، قسيمة الراتب، وقرب انتهاء وثائقه. تحتاج بريد للمنشأة (Google Workspace أو Gmail أو Microsoft 365 أو Zoho) وأن يكون الجهاز متصل بالإنترنت وقت الإرسال.</p></details>
+        <details><summary>أقدر أرقّي باقتي بعدين؟</summary><p>نعم. تدفع الفرق بين رسوم التأسيس للباقتين، وبعدها يكون تجديدك بسعر الباقة الجديدة. تواصل معنا على واتساب ونرسل لك رقم الترخيص الجديد، وتكمل بنفس بياناتك، وإذا انتقلت من الأساسية لنسخة السيرفر نساعدك تنقل بياناتك.</p></details>
+        <details><summary>أقدر أنقل البرنامج لجهاز جديد؟</summary><p>نعم. تاخذ نسخة احتياطية من البرنامج وترجعها على الجهاز الجديد بكلمة مرور الاستعادة. نسخ مجلد البيانات يدوياً ما يكفي، لأن مفتاح البيانات مربوط بالجهاز. تواصل معنا على واتساب لنقل الترخيص، والمساعدة بالنقل مشمولة في التجديد السنوي.</p></details>
         <details><summary>عندي موظفين دوامهم يختلف يوم الجمعة</summary><p>من ملف الموظف تحدد لأي يوم في الأسبوع ورديته الخاصة مرة وحدة، والبرنامج يحسب حضوره وتأخيره وتنبيهاته على وردية ذاك اليوم كل أسبوع.</p></details>
         <details><summary>هل الاتصال بين الأجهزة والسيرفر مشفّر؟</summary><p>في نسخة السيرفر تقدر تفعّل الاتصال المشفّر (HTTPS) داخل شبكتك بسطر واحد في الإعدادات، والبرنامج يجهّز شهادته بنفسه. أول مرة يطلع في المتصفح تنبيه لأن الشهادة خاصة بسيرفرك، تختار «متابعة» ويكمل عادي.</p></details>
       </div>
@@ -753,7 +807,7 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
     <div class="dl-2">
       <label><span>اسم المنشأة <small>(اختياري)</small></span><input name="company" id="dlc" autocomplete="organization" maxlength="100"></label>
       <label><span>عدد الموظفين <small>(اختياري)</small></span>
-        <select name="size" id="dls"><option value="">—</option><option>أقل من 10</option><option>10 – 50</option><option>51 – 100</option><option>أكثر من 100</option></select>
+        <select name="size" id="dls"><option value="">—</option><option>حتى 25</option><option>26 – 75</option><option>أكثر من 75</option></select>
       </label>
     </div>
     <p class="dl-err" id="dlerr" role="alert"></p>
@@ -782,7 +836,7 @@ function srcTag(){ var q=new URLSearchParams(location.search).get('src'); try{ i
 srcTag();
 const TABS = [
   { k: 'attendance', t: 'الحضور والانصراف', d: 'كشف يومي وشهري لكل فرع، يتعبّى من جهاز البصمة أو من ملف Excel.',
-    p: ['<b>الحالة لكل موظف:</b> حاضر، غائب، إجازة، بصمة ناقصة', '<b>التأخير والخروج المبكر والإضافي</b> محسوبة حسب ورديته', '<b>إيميل فوري للموظف</b> إذا تأخر أو ما بصم أو طلع بدري (نسخ البريد)', 'دوام فترة واحدة أو فترتين، حسب الوردية أو ساعات خاصة لكل موظف', 'أيام راحة مختلفة لكل موظف، ودوام رمضان تلقائياً', '<b>وردية مختلفة لأي يوم</b> مثل الجمعة، تُحدد مرة وحدة', 'تصدير الكشف Excel أو PDF'] },
+    p: ['<b>الحالة لكل موظف:</b> حاضر، غائب، إجازة، بصمة ناقصة', '<b>التأخير والخروج المبكر والإضافي</b> محسوبة حسب ورديته', '<b>إيميل فوري للموظف</b> إذا تأخر أو ما بصم أو طلع بدري (مع إشعارات البريد)', 'دوام فترة واحدة أو فترتين، حسب الوردية أو ساعات خاصة لكل موظف', 'أيام راحة مختلفة لكل موظف، ودوام رمضان تلقائياً', '<b>وردية مختلفة لأي يوم</b> مثل الجمعة، تُحدد مرة وحدة', 'تصدير الكشف Excel أو PDF'] },
   { k: 'payroll-run', t: 'مسير الرواتب', d: 'مسير لكل علامة كل شهر، يتحسب من الحضور والإجازات والسلف والجزاءات.',
     p: ['<b>التأمينات</b> على الموظف والمنشأة حسب نوعه', '<b>ملف حماية الأجور</b> مع تنبيه بالموظف الناقص هويته أو آيبانه', 'قسائم رواتب PDF لكل موظف', 'اعتماد وقفل المسير بعد المراجعة'] },
   { k: 'eos-calc', t: 'نهاية الخدمة', d: 'حاسبة المكافأة والمخالصة حسب سبب انتهاء العلاقة.',
@@ -793,7 +847,7 @@ const TABS = [
     p: ['<b>21 يوم</b> سنوياً، و30 بعد خمس سنوات', 'الإجازة المرضية بشرائحها', 'كشف الحضور يكتب نوع الإجازة: سنوية أو مرضية أو غيرها', 'رصيد افتتاحي للموظفين الحاليين', 'تنبيه بالطلبات اللي تنتظر الاعتماد'] },
   { k: 'documents', t: 'الوثائق والتنبيهات', d: 'الإقامات والجوازات والعقود والتأمين الطبي، مع تواريخ انتهائها.',
     p: ['<b>تنبيه قبل الانتهاء</b> في لوحة التحكم', 'إرفاق صورة الوثيقة بملف الموظف', 'تقرير كامل بالوثائق المنتهية والقريبة'] },
-  { k: 'email', t: 'إشعارات البريد', d: 'في نسخ «مع إشعارات البريد»: يوصل الموظف إيميل تلقائي من بريد منشأتك مع كل حدث يخصه.',
+  { k: 'email', t: 'إشعارات البريد', d: 'مشمولة في باقتي الأعمال والمؤسسات، وإضافة للأساسية: يوصل الموظف إيميل تلقائي من بريد منشأتك مع كل حدث يخصه.',
     p: ['<b>التأخير وعدم التبصيم والخروج المبكر</b> بعد دقائق تحددها أنت', '<b>الإنذارات والجزاءات</b> والخطابات الصادرة له', '<b>قرار الإجازة والسلفة والمصروفات</b> أول ما يُعتمد أو يُرفض', '<b>قسيمة الراتب</b> عند اعتماد مسير الشهر', 'تنبيه بقرب انتهاء الإقامة أو الجواز أو العقد، وملخص يومي لصاحب المنشأة', 'يشتغل مع Google Workspace وGmail وMicrosoft 365 وZoho'] },
   { k: 'circulars', t: 'التعميمات', d: 'تعميم موحد بهوية كل علامة، يوصل بريد الموظفين أو تطبعه للوحة الإعلانات.',
     p: ['<b>زر «تعميم»</b> أعلى الشاشة للعلامة المختارة', 'كل الموظفين أو فرع أو قسم أو مسمى محدد', 'قوالب جاهزة للأعياد ودوام رمضان والاجتماعات', 'معاينة وإرسال تجربة وجدولة', '<b>أرشيف</b> بمن وصله، وPDF مع كشف توقيع استلام'] },
@@ -830,7 +884,7 @@ document.addEventListener('click', e => {
 (function () {
   const LEADS = 'https://script.google.com/macros/s/AKfycbydzDJ4b7MGnmaVyrxQ_no8mS-X4ZrJCus6GuxcVVTvnE1DZShqfd2Y6lZS1p_WNz4mrw/exec';
   const ss = document.getElementById('ss'), dlg = document.getElementById('dl'), f = document.getElementById('dlf'), err = document.getElementById('dlerr'), go = document.getElementById('dlgo');
-  const ED = { 'Desktop': 'كمبيوتر بدون إشعارات', 'Desktop-Email': 'كمبيوتر مع إشعارات البريد', 'Server': 'سيرفر بدون إشعارات', 'Server-Email': 'سيرفر مع إشعارات البريد' };
+  const ED = { 'Desktop': 'الأساسية (كمبيوتر)', 'Desktop-Email': 'الأساسية + إشعارات البريد', 'Server': 'سيرفر بدون إشعارات البريد', 'Server-Email': 'الأعمال / المؤسسات (سيرفر)' };
   let target = null;
   const MOB = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
   const hEl = document.getElementById('dl-h'), subEl = document.querySelector('#dl .dl-sub');
