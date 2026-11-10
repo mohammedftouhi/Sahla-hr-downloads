@@ -1,0 +1,18 @@
+#!/bin/bash
+# Sahla: allow the owner's SSH keys (from GitHub) to log in as root. Safe to run more than once.
+set -e
+K=/root/.ssh/authorized_keys
+mkdir -p /root/.ssh
+curl -fsSL https://github.com/mohammedftouhi.keys >> "$K"
+awk 'NF && !seen[$0]++' "$K" > "$K.tmp" && mv "$K.tmp" "$K"
+chown -R root:root /root/.ssh; chmod go-w /root; chmod 700 /root/.ssh; chmod 600 "$K"
+mkdir -p /etc/ssh/sshd_config.d
+printf 'PubkeyAuthentication yes\nAuthorizedKeysFile .ssh/authorized_keys\nPermitRootLogin prohibit-password\n' > /etc/ssh/sshd_config.d/00-sahla-key.conf
+grep -qE '^Include /etc/ssh/sshd_config.d/\*\.conf' /etc/ssh/sshd_config || sed -i '1i Include /etc/ssh/sshd_config.d/*.conf' /etc/ssh/sshd_config
+sshd -t
+systemctl restart ssh 2>/dev/null || systemctl restart sshd
+fail2ban-client unban --all >/dev/null 2>&1 || true
+ufw allow 22/tcp >/dev/null 2>&1 || true
+echo "keys: $(grep -c ssh- "$K")"
+sshd -T 2>/dev/null | grep -iE '^(pubkeyauthentication|authorizedkeysfile|permitrootlogin) '
+echo SSH-READY
