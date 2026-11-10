@@ -51,7 +51,13 @@ if (!cfg.epoch || (!existing.length && lastId === 0)) { cfg.epoch = crypto.rando
 if (dirty) saveCfg();
 
 let seen = {}; try { seen = fs.existsSync(SEEN) ? JSON.parse(fs.readFileSync(SEEN, 'utf8')) : {}; } catch { seen = {}; }
-const saveSeen = () => fs.writeFile(SEEN, JSON.stringify(seen, null, 2), () => {});
+// devices.json: one atomic write at a time, batched (1 s) — concurrent fs.writeFile calls could interleave and corrupt the file
+let seenTimer = null;
+function saveSeen(now) {
+  const write = () => { seenTimer = null; try { writeAtomic(SEEN, JSON.stringify(seen, null, 2)); } catch (e) { log('devices.json save failed ' + e.message); } };
+  if (now) { if (seenTimer) clearTimeout(seenTimer); return write(); }
+  if (!seenTimer) { seenTimer = setTimeout(write, 1000); if (seenTimer.unref) seenTimer.unref(); }
+}
 // Several customers on one relay: relay.json "clients": [{ "name": "...", "key": "...", "sns": ["SN1", ...] }].
 // The master "key" sees everything; a client key sees only its own devices. A device is accepted if it is in "allow"
 // or in any client's "sns", or (any device) while a learning window ("learnUntil") is open.
@@ -70,7 +76,7 @@ const whoIs = key => {
   return hit ? { id: cidOf(hit.key), client: hit } : null;
 };
 const scopeOf = key => { const w = whoIs(key); return !w ? false : w.master ? null : new Set(w.client.sns || []); };
-fs.watchFile(CFG_FILE, { interval: 5000 }, () => { try { Object.assign(cfg, readCfg()); log('relay.json reloaded'); } catch (e) { log('relay.json reload failed ' + e.message); } });
+fs.watchFile(CFG_FILE, { interval: 5000 }, () => { try { const nc = readCfg(); for (const k of Object.keys(cfg)) if (!(k in nc)) delete cfg[k]; Object.assign(cfg, nc); log('relay.json reloaded'); } catch (e) { log('relay.json reload failed ' + e.message); } });
 // ---- discovery: per-customer windows and pending (seen but not yet approved) devices ----
 const DISCOVER_MIN = 10, MAX_PENDING = 20, PENDING_TTL = 24 * 3600e3, SN_RE = /^[A-Za-z0-9]{1,32}$/;
 let disc = {}; // { [customerId]: { until: ISO|null, pending: { [sn]: {...} }, rejected: [sn] } }
@@ -117,8 +123,16 @@ function noteUnknown(sn, ip, u, p, body) {
   if (!SN_RE.test(sn) || owned(sn)) return;
   const meta = deviceMeta(u, p, body), now = new Date().toISOString();
   let changed = false, added = false;
-  for (const { id } of identities()) {
-    const st = disc[id]; if (!st || !st.pending) continue;
+  // A knocking device is not shown to every customer whose window happens to be open: only to those already holding it,
+  // else the only open window, else the windows opened from the device's own public IP (same site).
+  const ids = identities().map(x => x.id).filter(id => disc[id] && disc[id].pending);
+  let owners = ids.filter(id => disc[id].pending[sn]);
+  if (!owners.length) {
+    const open = ids.filter(id => windowOpen(disc[id]) && !disc[id].rejected.includes(sn));
+    owners = open.length === 1 ? open : open.filter(id => disc[id].startIp && disc[id].startIp === clean(ip));
+  }
+  for (const id of owners) {
+    const st = disc[id];
     const had = st.pending[sn], open = windowOpen(st);
     if (!had && (!open || st.rejected.includes(sn) || Object.keys(st.pending).length >= MAX_PENDING)) continue;
     st.pending[sn] = Object.assign(had || { sn, firstSeen: now }, meta, { ip: clean(ip), lastSeen: now });
@@ -126,7 +140,7 @@ function noteUnknown(sn, ip, u, p, body) {
   }
   if (changed) saveDisc(added); // a new device is written at once; lastSeen refreshes are batched
 }
-function discoverApi(req, res, p, who, body) {
+function discoverApi(req, res, p, who, body, ip) {
   const st = dstate(who.id); prune(st);
   // looked up again on every call: relay.json may have been reloaded/rewritten since the key was checked
   const myList = () => { if (who.master) return Array.isArray(cfg.allow) ? cfg.allow : []; const c = clients().find(x => x.key && sameKey(x.key, who.client.key)); return (c && c.sns) || []; };
@@ -138,7 +152,7 @@ function discoverApi(req, res, p, who, body) {
   };
   if (p === '/discover') return req.method === 'GET' ? view() : json(res, 405, { ok: false, error: 'method' });
   if (req.method !== 'POST') return json(res, 405, { ok: false, error: 'method' });
-  if (p === '/discover/start') { st.until = new Date(Date.now() + DISCOVER_MIN * 60e3).toISOString(); st.rejected = []; saveDisc(true); log(`discovery opened for ${who.id}`); return view(); }
+  if (p === '/discover/start') { st.until = new Date(Date.now() + DISCOVER_MIN * 60e3).toISOString(); st.rejected = []; st.startIp = clean(ip); saveDisc(true); log(`discovery opened for ${who.id}`); return view(); }
   if (p === '/discover/stop') { st.until = null; saveDisc(true); return view(); }
   if (p !== '/discover/approve' && p !== '/discover/reject') return json(res, 404, { ok: false, error: 'not_found' });
   let sn = '';
@@ -168,7 +182,13 @@ function discoverApi(req, res, p, who, body) {
   log(`device ${sn} approved for ${who.id}`);
   return view({ approved: sn });
 }
-const touch = (sn, ip, what) => { seen[sn] = Object.assign(seen[sn] || { first: new Date().toISOString() }, { last: new Date().toISOString(), ip, what, allowed: allowed(sn) }); saveSeen(); };
+const MAX_UNKNOWN_SEEN = 50;
+const touch = (sn, ip, what) => {
+  if (!allowed(sn) && !seen[sn]) { // never let unknown devices grow the file without bound
+    const unk = Object.keys(seen).filter(k => !seen[k].allowed);
+    if (unk.length >= MAX_UNKNOWN_SEEN) { unk.sort((x, y) => String(seen[x].last).localeCompare(String(seen[y].last))); delete seen[unk[0]]; }
+  }
+  seen[sn] = Object.assign(seen[sn] || { first: new Date().toISOString() }, { last: new Date().toISOString(), ip, what, allowed: allowed(sn) }); saveSeen(); };
 
 function send(res, code, body, type = 'text/plain') { res.writeHead(code, { 'Content-Type': type + '; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(body); }
 const json = (res, code, obj) => send(res, code, JSON.stringify(obj), 'application/json');
@@ -207,7 +227,7 @@ const server = http.createServer((req, res) => {
       if (p === '/discover' || p.startsWith('/discover/')) {
         const who = whoIs(req.headers['x-key']);
         if (!who) return json(res, 403, { ok: false, error: 'forbidden' });
-        return discoverApi(req, res, p, who, body);
+        return discoverApi(req, res, p, who, body, ip);
       }
       if (api) {
         const scope = scopeOf(req.headers['x-key']);
@@ -244,7 +264,7 @@ const server = http.createServer((req, res) => {
     }
   });
 });
-server.on('close', () => { if (discTimer) saveDisc(true); });
+server.on('close', () => { if (discTimer) saveDisc(true); if (seenTimer) saveSeen(true); });
 if (require.main === module) {
   server.listen(cfg.port, () => log(`ADMS relay on :${cfg.port} — devices=${allSns().join(',') || '(none)'}${learning() ? ` + learning until ${cfg.learnUntil}` : ''}; clients=${clients().length}; epoch=${cfg.epoch}`));
 }
