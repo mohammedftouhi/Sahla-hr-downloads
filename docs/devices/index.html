@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ربط أجهزة البصمة البعيدة عبر الإنترنت | سهلة HR</title>
-<meta name="description" content="اربط حتى 5 أجهزة بصمة ZKTeco في فروعك المتفرقة مع سهلة HR عبر الإنترنت فقط، بدون ترخيص BioTime إضافي وبدون شبكة موحّدة.">
+<title>إضافة «الربط عن بُعد»: التحضير من الجوال وأجهزة البصمة البعيدة | سهلة HR</title>
+<meta name="description" content="إضافة «الربط عن بُعد» في سهلة HR: تحضير من الجوال لكل الموظفين (رابط شخصي + سيلفي + الموقع)، وربط حتى 5 أجهزة بصمة ZKTeco في الفروع البعيدة عبر الإنترنت. من 50 ريال بالشهر.">
 <link rel="icon" href="../img/logo-dark.png">
 <style>
 @font-face{font-family:'Dubai';src:url('../fonts/Dubai-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
@@ -32,17 +32,18 @@ ul{padding:0 18px 0 0;margin:14px 0}li{margin:6px 0}
 <div class="grid">
   <div class="pics"><img src="p1.webp" alt="سهلة HR للفروع المتفرقة"><img src="p2.webp" alt="طريقة الربط"></div>
   <div class="card">
-    <span class="tag">خدمة إضافية</span>
-    <h1>سهلة HR للفروع المتفرقة — ربط حتى 5 أجهزة بصمة</h1>
-    <div class="price"><b>1,499 ر.س</b></div>
-    <div class="small">رسوم التأسيس تشمل السنة الأولى، وبعدها 499 ر.س سنوياً</div>
+    <span class="tag">إضافة لكل الباقات</span>
+    <h1>«الربط عن بُعد» — تحضير من الجوال وأجهزة البصمة في الفروع البعيدة</h1>
+    <div class="price"><b>من 50 ر.س بالشهر</b></div>
+    <div class="small">تُدفع سنوياً مع الاشتراك: 600 ر.س للأساسية، 1,200 ر.س للأعمال، 1,800 ر.س للمؤسسات</div>
     <ul>
-      <li>أجهزة بصمة ZKTeco في فروع بعيدة، متصلة بالإنترنت فقط بدون شبكة موحّدة</li>
+      <li>تحضير من الجوال لكل الموظفين: رابط شخصي + سيلفي + الموقع</li>
+      <li>حتى 5 أجهزة بصمة ZKTeco في فروع بعيدة، متصلة بالإنترنت فقط بدون شبكة موحّدة</li>
       <li>البصمات توصل للبرنامج تلقائياً كل بضع دقائق، وتنحسب في الحضور والتأخير والرواتب</li>
       <li>بدون ترخيص BioTime إضافي وبدون فتح منافذ في الراوتر</li>
-      <li>نجهّز لك الربط ونرسل ترخيصاً جديداً، وتبقى بياناتك كما هي</li>
+      <li>نفعّل لك الإضافة على ترخيصك، وتبقى بياناتك كما هي</li>
     </ul>
-    <a class="btn" id="buy" href="#">اطلب الخدمة الآن</a>
+    <a class="btn" id="buy" href="#">اطلب الإضافة الآن</a>
     <a class="btn alt" id="wa" href="#">استفسار عبر واتساب</a>
     <p class="small" id="iid"></p>
   </div>
@@ -50,9 +51,9 @@ ul{padding:0 18px 0 0;margin:14px 0}li{margin:6px 0}
 </div>
 <script>
 // When the Salla product is live, put its link here and the main button goes to it.
-var SALLA = 'https://sahla-sa.com/-/p654636697';
+var SALLA = '';
 var id = new URLSearchParams(location.search).get('id') || '';
-var msg = 'السلام عليكم، أبغى خدمة ربط الأجهزة البعيدة (سهلة HR للفروع المتفرقة — 1,499 ر.س تأسيس + 499 ر.س سنوياً)' + (id ? '\nرقم التثبيت: ' + id : '');
+var msg = 'السلام عليكم، أبغى إضافة «الربط عن بُعد» في سهلة HR' + (id ? '\nرقم التثبيت: ' + id : '');
 var wa = 'https://wa.me/966538000892?text=' + encodeURIComponent(msg);
 document.getElementById('buy').href = SALLA || wa;
 document.getElementById('wa').href = wa;
