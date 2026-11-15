@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>إضافة «الربط عن بُعد»: التحضير من الجوال وأجهزة البصمة البعيدة | سهلة HR</title>
-<meta name="description" content="إضافة «الربط عن بُعد» في سهلة HR: تحضير من الجوال لكل الموظفين (رابط شخصي + سيلفي + الموقع)، وربط حتى 5 أجهزة بصمة ZKTeco في الفروع البعيدة عبر الإنترنت. من 50 ريال بالشهر.">
+<title>إضافة «أجهزة الفروع البعيدة»: ربط أجهزة البصمة عبر الإنترنت | سهلة HR</title>
+<meta name="description" content="إضافة «أجهزة الفروع البعيدة» في سهلة HR: ربط حتى 5 أجهزة بصمة ZKTeco في الفروع البعيدة عبر الإنترنت، 468 ريال بالسنة (39 بالشهر) لأي باقة. والبصمة من الجوال مع مطابقة الوجه مشمولة في كل الباقات.">
 <link rel="icon" href="../img/logo-dark.png">
 <style>
 @font-face{font-family:'Dubai';src:url('../fonts/Dubai-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
@@ -23,6 +23,7 @@ ul{padding:0 18px 0 0;margin:14px 0}li{margin:6px 0}
 .btn{display:block;text-align:center;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:19px;padding:14px;border-radius:12px;margin-top:16px}
 .btn.alt{background:#fff;color:var(--accent);border:1px solid var(--accent);font-size:16px;padding:10px}
 .small{color:var(--muted);font-size:14px}
+.note{background:#eef6fd;border:1px solid #cfe5f7;border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.8;margin-top:6px}.note .small{display:block}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.card{order:-1}h1{font-size:22px}}
 </style>
 </head>
@@ -32,17 +33,17 @@ ul{padding:0 18px 0 0;margin:14px 0}li{margin:6px 0}
 <div class="grid">
   <div class="pics"><img src="p1.webp" alt="سهلة HR للفروع المتفرقة"><img src="p2.webp" alt="طريقة الربط"></div>
   <div class="card">
-    <span class="tag">إضافة لكل الباقات</span>
-    <h1>«الربط عن بُعد» — تحضير من الجوال وأجهزة البصمة في الفروع البعيدة</h1>
-    <div class="price"><b>من 50 ر.س بالشهر</b></div>
-    <div class="small">تُدفع سنوياً مع الاشتراك: 600 ر.س للأساسية، 1,200 ر.س للأعمال، 1,800 ر.س للمؤسسات</div>
+    <span class="tag">إضافة لأي باقة</span>
+    <h1>«أجهزة الفروع البعيدة» — أجهزة البصمة في فروعك المتفرقة عبر الإنترنت</h1>
+    <div class="price"><b>468 ر.س بالسنة</b></div>
+    <div class="small">يعادل 39 ر.س بالشهر، بنفس السعر لأي باقة. إذا أضفتها في نص السنة تدفع عن المدة الباقية فقط.</div>
     <ul>
-      <li>تحضير من الجوال لكل الموظفين: رابط شخصي + سيلفي + الموقع</li>
       <li>حتى 5 أجهزة بصمة ZKTeco في فروع بعيدة، متصلة بالإنترنت فقط بدون شبكة موحّدة</li>
       <li>البصمات توصل للبرنامج تلقائياً كل بضع دقائق، وتنحسب في الحضور والتأخير والرواتب</li>
       <li>بدون ترخيص BioTime إضافي وبدون فتح منافذ في الراوتر</li>
       <li>نفعّل لك الإضافة على ترخيصك، وتبقى بياناتك كما هي</li>
     </ul>
+    <div class="note"><b>والبصمة من الجوال؟</b> مشمولة في كل الباقات بدون إضافة: رابط شخصي لكل موظف، الموقع داخل نطاق الفرع، وسيلفي مع مطابقة الوجه (5 موظفين في الأساسية، 15 في الأعمال، 30 في المؤسسات). تحتاج أكثر؟ كل 5 موظفين إضافيين بـ 240 ر.س بالسنة. <span class="small">أجهزة الفروع البعيدة ما تدخل في التجربة المجانية.</span></div>
     <a class="btn" id="buy" href="#">اطلب الإضافة الآن</a>
     <a class="btn alt" id="wa" href="#">استفسار عبر واتساب</a>
     <p class="small" id="iid"></p>
@@ -53,7 +54,7 @@ ul{padding:0 18px 0 0;margin:14px 0}li{margin:6px 0}
 // When the Salla product is live, put its link here and the main button goes to it.
 var SALLA = '';
 var id = new URLSearchParams(location.search).get('id') || '';
-var msg = 'السلام عليكم، أبغى إضافة «الربط عن بُعد» في سهلة HR' + (id ? '\nرقم التثبيت: ' + id : '');
+var msg = 'السلام عليكم، أبغى إضافة «أجهزة الفروع البعيدة» في سهلة HR' + (id ? '\nرقم التثبيت: ' + id : '');
 var wa = 'https://wa.me/966538000892?text=' + encodeURIComponent(msg);
 document.getElementById('buy').href = SALLA || wa;
 document.getElementById('wa').href = wa;
