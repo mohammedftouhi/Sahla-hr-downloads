@@ -632,7 +632,7 @@ dialog::backdrop{background:rgba(5,8,11,.72);backdrop-filter:blur(3px)}
         <select name="size" id="dls"><option value="">—</option><option>حتى 25</option><option>26 – 75</option><option>أكثر من 75</option></select>
       </label>
     </div>
-    <label class="dl-hp" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">Website<input name="website" id="dlw" tabindex="-1" autocomplete="off"></label>
+    <span class="dl-hp" aria-hidden="true" style="position:absolute;top:0;right:0;width:1px;height:1px;margin:0;overflow:hidden;clip-path:inset(50%);opacity:0;pointer-events:none"><input name="hpx_f2" id="dlw" tabindex="-1" autocomplete="new-password" aria-hidden="true"></span>
     <p class="dl-err" id="dlerr" role="alert"></p>
     <button class="btn primary dl-go" type="submit" id="dlgo">حمّل البرنامج الآن</button>
     <a class="dl-wa" href="https://wa.me/966538000892?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%B1%D8%A7%D8%A8%D8%B7%20%D8%AA%D8%AC%D8%B1%D8%A8%D8%A9%20%D8%B3%D9%87%D9%84%D8%A9%20HR" target="_blank" rel="noopener">أو كلّمنا على الواتساب مباشرة ←</a>
@@ -810,7 +810,7 @@ document.addEventListener('click', e => {
     const saved = store.get('hr-lead'); if (saved) { try { const s = JSON.parse(saved); f.name.value = s.name || ''; f.phone.value = s.phone || ''; f.company.value = s.company || ''; f.size.value = s.size || ''; } catch (x) {} }
     err.textContent = ''; go.disabled = false; go.textContent = TXT.go;
     f.hidden = false; ss.hidden = true; dlg.setAttribute('aria-labelledby', 'dl-h');
-    window.__dlOpen = Date.now(); dlg.showModal(); setTimeout(() => (f.name.value ? f.phone : f.name).focus(), 30);
+    dlg.showModal(); setTimeout(() => (f.name.value ? f.phone : f.name).focus(), 30);
   });
   document.getElementById('dlx').addEventListener('click', () => dlg.close());
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
@@ -823,9 +823,10 @@ document.addEventListener('click', e => {
     const data = { name, phone, company: f.company.value.trim(), size: f.size.value, edition: edOf(target) + (MOB ? ' (جوال)' : ''), page: location.hostname + location.pathname + (srcTag() ? ' ← ' + srcTag() : '') };
     store.set('hr-lead', JSON.stringify(data));
     const body = new URLSearchParams(data);
-    const bot = !!(f.website && f.website.value) || (Date.now() - (window.__dlOpen || 0) < 1500);
-    if (!bot) try { await Promise.race([fetch(LEADS, { method: 'POST', mode: 'no-cors', body }), new Promise(r => setTimeout(r, 4000))]); } catch (x) {}
-    try { gtag('event', 'conversion', { send_to: 'AW-18372197410/8C4hCMTh26sdEKL4xbhE' }); gtag('event', 'generate_lead', { send_to: 'G-LLQ7YV73QL' }); } catch (x) {}
+    const bot = !!(f.hpx_f2 && f.hpx_f2.value);
+    if (bot) body.set('flag', 'hp');
+    try { await Promise.race([fetch(LEADS, { method: 'POST', mode: 'no-cors', body }), new Promise(r => setTimeout(r, 4000))]); } catch (x) {}
+    if (!bot) try { gtag('event', 'conversion', { send_to: 'AW-18372197410/8C4hCMTh26sdEKL4xbhE' }); gtag('event', 'generate_lead', { send_to: 'G-LLQ7YV73QL' }); } catch (x) {}
     if (!MOB) start(target);
     go.textContent = TXT.done;
     if (MOB) { const wa = f.querySelector('.dl-wa'); if (wa) { wa.textContent = 'ما وصلك الرابط خلال دقائق؟ كلّمنا على الواتساب'; wa.focus(); } }
